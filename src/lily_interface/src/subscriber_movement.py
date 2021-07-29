@@ -18,15 +18,19 @@ class LilyMovement(object):
         # Is this possible with this type of bot?
 
         if msg.linear.x > 0:
+            rospy.loginfo('Movement: forward')
             self.movement_handler.move_forward()
         
         if msg.linear.x < 0:
+            rospy.loginfo('Movement: back')
             self.movement_handler.move_back()
         
         if msg.angular.z > 0:
+            rospy.loginfo('Movement: left')
             self.movement_handler.move_left()
         
         if msg.angular.z < 0:
+            rospy.loginfo('Movement: right')
             self.movement_handler.move_right()
 
         pass
