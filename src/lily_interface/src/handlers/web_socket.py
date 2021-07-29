@@ -3,10 +3,13 @@ import asyncio
 import os
 import websockets
 import json
+import sys
+import rospy
 
 class WebSocket(object):
     def __init__(self):
         self.load_config()
+        self.TIMEOUT = 5
 
     def load_config(self):
         __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
@@ -18,12 +21,22 @@ class WebSocket(object):
 
     async def __aenter__(self):
         uri = f'ws://{self.host}:{self.port}'
-        self._conn = websockets.connect(uri)
-        self.websocket = await self._conn.__aenter__()
+        try:
+            self._conn = await asyncio.wait_for(websockets.connect(uri), self.TIMEOUT)
+            self.websocket = await self._conn.__aenter__()
+        except asyncio.exceptions.TimeoutError as e:
+            rospy.logerr('Error connecting to web sockets. Timeout exceeded. Check the status of Lily.')
+            rospy.logerr('Exiting')
+            sys.exit(-1)
+            
         return self
 
     async def __aexit__(self, *args, **kwargs):
-        await self._conn.__aexit__(*args, **kwargs)
+        try: 
+            await self._conn.__aexit__(*args, **kwargs)
+        except:
+            rospy.logerr('Error closing sockets')
+            pass
 
     async def send(self, message):
         await self.websocket.send(message)
@@ -45,7 +58,6 @@ class CommandHandler(object):
         async with self.wws as echo:
             await echo.send(json.dumps(payload))
             return await echo.receive()
-
 
 if __name__ == '__main__':
     ch = CommandHandler()
