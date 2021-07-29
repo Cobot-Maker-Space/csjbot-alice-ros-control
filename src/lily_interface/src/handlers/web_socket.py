@@ -26,9 +26,8 @@ class WebSocket(object):
             self.websocket = await self._conn.__aenter__()
         except asyncio.exceptions.TimeoutError as e:
             rospy.logerr('Error connecting to web sockets. Timeout exceeded. Check the status of Lily.')
-            rospy.logerr('Exiting')
             sys.exit(-1)
-            
+
         return self
 
     async def __aexit__(self, *args, **kwargs):
