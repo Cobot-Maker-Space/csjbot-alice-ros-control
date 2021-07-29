@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from handlers import MovementHandler
+from handlers.movement import MovementHandler
 import rospy
 from geometry_msgs.msg import Twist
 

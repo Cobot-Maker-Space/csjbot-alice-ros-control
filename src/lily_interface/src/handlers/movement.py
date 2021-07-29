@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from .web_socket import CommandHandler
+from handlers.web_socket import CommandHandler
 import time
 
 class MovementHandler(object):
