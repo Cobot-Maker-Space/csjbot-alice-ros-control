@@ -1,0 +1,14 @@
+#ROS
+devel/
+logs/
+build/
+.catkin_tools/
+
+#IDE 
+.vscode/
+robin.code-workspace
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
