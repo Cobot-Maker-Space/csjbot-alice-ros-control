@@ -8,9 +8,10 @@ def process_message(message):
     payload = None
     message = ast.literal_eval(message)
     
-    if message['Msg_id'] == 'NAVI_ROBOT_MOVE_REQ':
+    if message['msg_id'] == 'NAVI_ROBOT_MOVE_REQ':
         payload = {
-            "Msg_id": "NAVI_ROBOT_MOVE_RSP",
+            "msg_id": "NAVI_ROBOT_MOVE_RSP",
+
             "error_code": 0,
         }
     
@@ -23,7 +24,7 @@ async def echo(websocket, path):
         print("RESP:", response)
         await websocket.send(str(response))
 
-start_server = websockets.serve(echo, "localhost", 60001)
+start_server = websockets.serve(echo, '172.17.0.2', 60001)
 
 asyncio.get_event_loop().run_until_complete(start_server)
 print("Pseudo Lily Service: Running....")

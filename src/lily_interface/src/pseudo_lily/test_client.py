@@ -13,7 +13,7 @@ async def test_socket(message):
         print(f"< {response}")
 
 test_payload = {
-    "Msg_id": "NAVI_ROBOT_MOVE_REQ",
+    "msg_id": "NAVI_ROBOT_MOVE_REQ",
     "direction": 0,
 }
 

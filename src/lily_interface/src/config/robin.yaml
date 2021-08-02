@@ -3,5 +3,5 @@ connection:
         host: '10.0.1.5'
         port: 60001
     dev:
-        host: '127.0.0.1'
+        host: '172.17.0.2'
         port: 60001

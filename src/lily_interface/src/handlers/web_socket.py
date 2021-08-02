@@ -10,20 +10,25 @@ class WebSocket(object):
     def __init__(self):
         self.load_config()
         self.TIMEOUT = 5
+        # self.APP_ENV = rospy.get_param('APP_ENV', 'dev')
+        self.APP_ENV = 'dev'
 
     def load_config(self):
         __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
         config_yaml = open(os.path.join(__location__, '../config/robin.yaml'))
 
         self.config_yaml = yaml.load(config_yaml, Loader=yaml.FullLoader)
-        self.port = self.config_yaml['connection']['port']
-        self.host = self.config_yaml['connection']['host']
+        self.port = self.config_yaml['connection']['dev']['port']
+        self.host = self.config_yaml['connection']['dev']['host']
 
     async def __aenter__(self):
         uri = f'ws://{self.host}:{self.port}'
         try:
-            self._conn = await asyncio.wait_for(websockets.connect(uri), self.TIMEOUT)
+            # self._conn = await asyncio.wait_for(websockets.connect(uri), self.TIMEOUT)
+            # self.websocket = await self._conn.__aenter__()
+            self._conn = websockets.connect(uri)
             self.websocket = await self._conn.__aenter__()
+
         except asyncio.exceptions.TimeoutError as e:
             rospy.logerr('Error connecting to web sockets. Timeout exceeded. Check the status of Lily.')
             sys.exit(-1)
