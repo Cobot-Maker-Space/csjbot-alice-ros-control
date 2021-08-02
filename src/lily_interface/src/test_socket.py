@@ -1,4 +1,4 @@
-from handlers import MovementHandler
+from handlers.movement import MovementHandler
 from pynput import keyboard
 
 class ActionHandler:
