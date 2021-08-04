@@ -3,12 +3,14 @@
 import asyncio
 import websockets
 import ast
+import time
 
 def process_message(message):
     payload = None
     message = ast.literal_eval(message)
     
     if message['msg_id'] == 'NAVI_ROBOT_MOVE_REQ':
+        time.sleep(5)
         payload = {
             "msg_id": "NAVI_ROBOT_MOVE_RSP",
 
