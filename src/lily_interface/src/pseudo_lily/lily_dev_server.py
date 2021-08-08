@@ -10,7 +10,7 @@ def process_message(message):
     message = ast.literal_eval(message)
     
     if message['msg_id'] == 'NAVI_ROBOT_MOVE_REQ':
-        time.sleep(5)
+        time.sleep(2)
         payload = {
             "msg_id": "NAVI_ROBOT_MOVE_RSP",
             "error_code": 0,
