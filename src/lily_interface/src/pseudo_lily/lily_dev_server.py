@@ -13,7 +13,12 @@ def process_message(message):
         time.sleep(5)
         payload = {
             "msg_id": "NAVI_ROBOT_MOVE_RSP",
+            "error_code": 0,
+        }
 
+    if message['msg_id'] == 'SPEECH_TTS_REQ':
+        payload = {
+            "msg_id": "SPEECH_TTS_RSP",
             "error_code": 0,
         }
     
