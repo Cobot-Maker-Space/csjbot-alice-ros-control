@@ -4,6 +4,9 @@ import asyncio
 import websockets
 import ast
 import time
+import os
+import yaml
+from config.loader import ConfigLoader 
 
 def process_message(message):
     payload = None
@@ -31,7 +34,9 @@ async def echo(websocket, path):
         print("RESP:", response)
         await websocket.send(str(response))
 
-start_server = websockets.serve(echo, '172.17.0.2', 60001)
+SERVER_MODE = 'dev'
+config_loader = ConfigLoader(SERVER_MODE)
+start_server = websockets.serve(echo, config_loader.fetch_value('host'), config_loader.fetch_value('port'))
 
 asyncio.get_event_loop().run_until_complete(start_server)
 print("Pseudo Lily Service: Running....")

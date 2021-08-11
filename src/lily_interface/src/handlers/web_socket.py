@@ -5,21 +5,17 @@ import websockets
 import json
 import sys
 import rospy
+from config.loader import ConfigLoader 
 
 class WebSocket(object):
     def __init__(self):
-        self.load_config()
         self.TIMEOUT = 5
         # self.APP_ENV = rospy.get_param('APP_ENV', 'dev')
         self.APP_ENV = 'dev'
-
-    def load_config(self):
-        __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
-        config_yaml = open(os.path.join(__location__, '../config/robin.yaml'))
-
-        self.config_yaml = yaml.load(config_yaml, Loader=yaml.FullLoader)
-        self.port = self.config_yaml['connection']['dev']['port']
-        self.host = self.config_yaml['connection']['dev']['host']
+        
+        self.config_loader = ConfigLoader(self.APP_ENV)
+        self.port = self.config_loader.fetch_value('port')
+        self.host = self.config_loader.fetch_value('host')
 
     async def __aenter__(self):
         uri = f'ws://{self.host}:{self.port}'
@@ -53,7 +49,7 @@ class CommandHandler(object):
         self.wws = WebSocket()
         self.loop = asyncio.get_event_loop()
 
-    def action(self, payload):
+    def action(self, payload):  
         return self.loop.run_until_complete(
             self.__async__get_ticks(payload)
         )
