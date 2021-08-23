@@ -9,5 +9,5 @@ class BaseHandler(object):
         self.MSG_ID = ''
         self.commandHandler = CommandHandler()
 
-    def _action(self, payload):
-        return self.commandHandler.action(payload)
+    def _action(self, payload, await_for_return=True):
+        return self.commandHandler.action(payload, await_for_return)

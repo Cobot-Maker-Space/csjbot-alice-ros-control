@@ -22,9 +22,24 @@ To access docker container once running (e.g. to run catkin build, etc)...
 - Add device support
 - Move volume mapping into composer file
 - Execute launch file on startup (to allow docker container to run lily stack autonomously)
+- Look at changing velocity based on length of button press (get controller working first)
 
 ## Notes:
 - Volume used to store and persist logs between container sessions. Stored in /root/ros_logs/. `docker volume create ros_logs` to create but should do it automatically on start.
+
+## Useful commands
+
+Movement:
+`rosrun lily_interface subscriber_movement.py`
+`rosrun teleop_twist_keyboard teleop_twist_keyboard.py`
+
+
+Speech:
+`rosrun lily_interface subscriber_speech.py`
+`rostopic pub /speech std_msgs/String "Hello"`
+
+
+
 
 
 
