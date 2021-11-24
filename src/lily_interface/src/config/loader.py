@@ -8,7 +8,7 @@ class ConfigLoader(object):
         super().__init__()
 
         self.load_config()
-        self.config_type = 'connection' #default option - can be overridden for more complex configs 
+        self.config_type = 'main_connection' #default option - can be overridden for more complex configs 
         self.config_state = state # dev or prod as required
 
     def load_config(self):

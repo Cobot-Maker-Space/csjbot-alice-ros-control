@@ -1,7 +1,16 @@
-connection:
+main_connection:
     prod:
         host: '10.0.1.5'
         port: 60001
     dev:
         host: '172.17.0.2'
         port: 60001
+
+video_connection:
+    prod:
+        host: '10.0.1.5'
+        port: 60003
+    dev: # NOT YET SUPPORTED IN PSEUDO-LILY
+        host: '172.17.0.2'
+        port: 60003 
+

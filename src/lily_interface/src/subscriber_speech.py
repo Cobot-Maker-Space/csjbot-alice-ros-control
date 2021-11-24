@@ -9,7 +9,6 @@ class LilySpeech(object):
 
     def __init__(self):
         self.speech_handler = SpeechHandler()
-        self.next_msg = None
 
         rospy.init_node('speech_listener')
         rospy.Subscriber("/speech", String, self.process_speech)

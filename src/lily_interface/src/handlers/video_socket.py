@@ -7,13 +7,14 @@ import sys
 import rospy
 from config.loader import ConfigLoader 
 
-class WebSocket(object):
+class VideoSocket(object):
     def __init__(self):
         self.TIMEOUT = 5
         # self.APP_ENV = rospy.get_param('APP_ENV', 'dev')
         self.APP_ENV = 'prod'
         
         self.config_loader = ConfigLoader(self.APP_ENV)
+        self.config_loader.set_type('video_connection')
         self.port = self.config_loader.fetch_value('port')
         self.host = self.config_loader.fetch_value('host')
 
