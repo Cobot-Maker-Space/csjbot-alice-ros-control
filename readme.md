@@ -36,19 +36,23 @@ Movement:
 `rosrun lily_interface subscriber_movement.py`
 `rosrun teleop_twist_keyboard teleop_twist_keyboard.py`
 
+TODO: 
+- Fix acceleration on movement - maybe look at incremental changes from 0 upwards depending on keypress timings.
+
 Speech:
 `rosrun lily_interface subscriber_speech.py`
 `rostopic pub /speech std_msgs/String "Hello"`
 
 Video:
 `rosrun lily_interface subscriber_video.py`
-`rostopic pub /video_enable std_msgs/bool "true"` 
-`rostopic pub /video_enable std_msgs/bool "false"`
+`rostopic pub /video_enable std_msgs/Bool "true"` 
+`rostopic pub /video_enable std_msgs/Bool "false"`
 <!-- https://stackoverflow.com/questions/59587166/send-webcam-stream-from-server-in-python-using-sockets -->
 <!-- https://www.youtube.com/watch?v=7-O7yeO3hNQ -->
 
 Each frame of the picture header is: 0xff , 0xfe , 0xfd , 0xfc , 0xfb , 0xfa , 0xd8 
 Tail of each frame image data is: 0xff , 0xfe , 0xfd , 0xfc , 0xfb , 0xfa , 0xd9
+
 
 
 
