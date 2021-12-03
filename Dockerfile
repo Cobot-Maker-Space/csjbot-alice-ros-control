@@ -1,8 +1,11 @@
 FROM ros:noetic
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update && apt-get install -y ros-noetic-desktop-full \
     ros-noetic-catkin ros-noetic-teleop-twist-keyboard ros-noetic-teleop-twist-joy \
     netcat \
+    telnet \
     python3.8 \
     python3-catkin-tools python3-osrf-pycommon \
     python3-wstool python3-pip bash-completion && \
