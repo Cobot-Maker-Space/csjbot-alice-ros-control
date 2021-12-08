@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 
-from handlers.video import VideoHandler
+from handlers.video import VideoOptionsHandler
 import rospy
 from std_msgs.msg import Bool
 
 class LilyVision(object):
 
     def __init__(self):
-        self.video_handler = VideoHandler()
+        self.video_handler = VideoOptionsHandler()
         self.enabled = False
 
         rospy.init_node('video_listener')
         rospy.Subscriber("/video_enable", Bool, self.process_video_state)
-
+        
         rospy.spin()
     
     def process_video_state(self, msg):

@@ -54,7 +54,25 @@ Each frame of the picture header is: 0xff , 0xfe , 0xfd , 0xfc , 0xfb , 0xfa , 0
 Tail of each frame image data is: 0xff , 0xfe , 0xfd , 0xfc , 0xfb , 0xfa , 0xd9
 
 
+Currently:
 
+First enable the video service. Launch:
+
+`rosrun lily_interface subscriber_video.py`
+
+Send a boolean message to active/enable the video socket:
+
+`rostopic pub /video_enable std_msgs/Bool "true"`
+
+Then run the publisher (which retrieves the image from the web socket and republishes it over ROS):
+
+`rosrun lily_interface publisher_video.py`
+
+publishes the images to the /camera/image topic. However, can only seem to pick it up using: 
+
+`rosrun lily_interface subscriber_testimage.py`
+
+Which writes the received image to an image (test2.jpg) which is viewable. Unable to get image viewer on an alternative machine from being able to receive the image. Not sure why, possibly a multi-node ros configuration issue. 
 
 
 
