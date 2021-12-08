@@ -19,7 +19,7 @@ class SpeechHandler(BaseHandler):
         return self._action(message.data)
 
     def update_settings(self, 
-            voice="xiaoyan", 
+            voice="catherine", 
             pitch=50, 
             speed=50,
             rnd=1       # 1 = One-hundred and 23; 2 = 123;
