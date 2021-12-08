@@ -6,7 +6,7 @@
 
 ## Run Docker container: 
 
-`docker run --privileged -v ~/Documents/UoN/PHD/Projects/robin-ros:/root/catkin_ws/ -it ros:robin`
+`docker run --privileged -v ~/Documents/robin-ros:/root/catkin_ws/ -it ros:robin`
 
 Runs interactively and launches roscore as default. extend this as needed to setup everything we need to make porting easier to new machines, etc. Will need to adjust local directory for mapping source code until git repo is included in dockerfile.. (one step at a time eh).
 
