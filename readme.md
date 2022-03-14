@@ -43,7 +43,7 @@ Speech:
 
 To launch the GUI, currently (until integrated into a launch file):
 
-`cd ~/your-project-folder/src/lily_interface/gui python && -m SimpleHTTPServer 8000;`
+`cd ~/your-project-folder/src/lily_interface/gui && python -m SimpleHTTPServer 8000;`
 
 In a web browser on the laptop:
 
