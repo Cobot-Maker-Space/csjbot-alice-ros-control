@@ -6,15 +6,15 @@
 
 ## Run Docker container: 
 
-`docker run --privileged -v ~/Documents/robin-ros:/root/catkin_ws/ -it ros:robin`
+Run the docker start script from your command line. This will start the docker container and automatically fire Robins launch file to start all the relevant nodes. 
+
+`start_docker.sh`
 
 Runs interactively and launches roscore as default. extend this as needed to setup everything we need to make porting easier to new machines, etc. Will need to adjust local directory for mapping source code until git repo is included in dockerfile.. (one step at a time eh).
 
 To access docker container once running (e.g. to run catkin build, etc)... 
 
-`docker ps` to obtain container id
-
-`docker exec -it aab481f0f19f bash` to launch (replacing container id with relevant one)
+`docker exec -it robin bash` to launch (replacing container id with relevant one)
 
 **NOTE**: Docker container is based on ros-noetic-desktop-full but we can strip down at later point if size is issue or just needs optimising.
 
@@ -38,6 +38,7 @@ Movement:
 
 TODO: 
 - Fix acceleration on movement - maybe look at incremental changes from 0 upwards depending on keypress timings.
+- Look at MPO's speech research - https://github.com/MixedRealityLab/nottreal
 
 Speech:
 `rosrun lily_interface subscriber_speech.py`
@@ -79,7 +80,7 @@ Which writes the received image to an image (test2.jpg) which is viewable. Unabl
 
 To launch the GUI, currently (until integrated into a launch file):
 
-`cd ~/your-project-folder/src/lily_interface/gui && python -m SimpleHTTPServer 8000;`
+`cd ~/your-project-folder/src/lily_interface/gui && python -m http.server`
 
 In a web browser on the laptop:
 
