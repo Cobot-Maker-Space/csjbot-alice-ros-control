@@ -31,22 +31,21 @@ class LilyMovement(object):
             msg = self.next_msg
             self.next_msg = None
             
-            if msg.linear.x > 0:
-                rospy.loginfo('Movement: forward')
-                result = self.movement_handler.move_forward()
-            
-            if msg.linear.x < 0:
-                rospy.loginfo('Movement: back')
-                result = self.movement_handler.move_back()
-            
-            if msg.angular.z > 0:
-                rospy.loginfo('Movement: left')
-                result = self.movement_handler.move_left()
-            
-            if msg.angular.z < 0:
-                rospy.loginfo('Movement: right')
-                result = self.movement_handler.move_right()
-
+            if abs(msg.linear.x) > abs(msg.angular.z):
+                if msg.linear.x > 0:
+                    rospy.loginfo('Movement: forward')
+                    result = self.movement_handler.move_forward()
+                elif msg.linear.x < 0:
+                    rospy.loginfo('Movement: back')
+                    result = self.movement_handler.move_back()
+            else:
+                if msg.angular.z > 0:
+                    rospy.loginfo('Movement: left')
+                    result = self.movement_handler.move_left()
+                elif msg.angular.z < 0:
+                    rospy.loginfo('Movement: right')
+                    result = self.movement_handler.move_right()
+                    
             self.next_msg = None
 
         self.rate.sleep()

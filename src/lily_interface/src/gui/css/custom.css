@@ -5,3 +5,8 @@
 div {
     /* border: 1pt red solid; */
 }
+
+#zone_joystick {
+    min-width: 200px;
+    min-height: 200px;
+}
