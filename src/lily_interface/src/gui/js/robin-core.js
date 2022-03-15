@@ -5,14 +5,23 @@ var ros = new ROSLIB.Ros({
 
 ros.on('connection', function() {
     console.log('Connected to websocket server.');
+    $('.connection-status').addClass('badge-success')
+    $('.connection-status').removeClass('badge-danger')
+    $('.connection-status').html('Connected');
 });
 
 ros.on('error', function(error) {
     console.log('Error connecting to websocket server: ', error);
+    $('.connection-status').addClass('badge-danger')
+    $('.connection-status').removeClass('badge-success')
+    $('.connection-status').html('Offline');
 });
 
 ros.on('close', function() {
     console.log('Connection to websocket server closed.');
+    $('.connection-status').addClass('badge-danger')
+    $('.connection-status').removeClass('badge-success')
+    $('.connection-status').html('Offline');
 });
 
 var speechText = new ROSLIB.Topic({ 
