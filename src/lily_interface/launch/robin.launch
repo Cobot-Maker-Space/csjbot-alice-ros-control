@@ -4,5 +4,8 @@
     
     <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
     <node name="web_server" pkg="lily_interface" type="launch_web_server.sh" />
-    
+
+    <!-- <node name="subscriber_video" pkg="lily_interface" type="subscriber_video.py" /> -->
+    <!-- <node name="publisher_video" pkg="lily_interface" type="publisher_video.py" /> -->
+
 </launch>
