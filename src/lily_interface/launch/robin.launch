@@ -1,5 +1,8 @@
 <launch>
     <node name="subscriber_movement" pkg="lily_interface" type="subscriber_movement.py" />
     <node name="subscriber_speech" pkg="lily_interface" type="subscriber_speech.py" />
+    
     <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
+    <node name="web_server" pkg="lily_interface" type="launch_web_server.sh" />
+    
 </launch>
