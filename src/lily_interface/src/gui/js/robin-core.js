@@ -1,7 +1,7 @@
 
 var ros = new ROSLIB.Ros({
     url : 'ws://10.25.132.128:9090'
-});
+});    
 
 ros.on('connection', function() {
     console.log('Connected to websocket server.');
@@ -58,8 +58,6 @@ $(".voice-option").click(function(){
     change_voice($(this).data('voice'));
 });
 
-
-
 function speak(message) {
     speechText.publish(new ROSLIB.Message({data:message}));
 }
@@ -89,5 +87,5 @@ function move(linear, angular) {
     movementPublisher.publish(twist);
 }
 
-console.log('Script running');
+change_voice($('.voice-default').data('voice'));
 
