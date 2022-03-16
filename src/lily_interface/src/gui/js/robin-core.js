@@ -1,7 +1,7 @@
 
 var ros = new ROSLIB.Ros({
-    url : 'ws://10.25.132.128:9090'
-});    
+    url : 'ws://10.0.10.4:9090'
+});
 
 ros.on('connection', function() {
     console.log('Connected to websocket server.');
@@ -24,19 +24,19 @@ ros.on('close', function() {
     $('.connection-status').html('Offline');
 });
 
-var speechText = new ROSLIB.Topic({ 
+var speechText = new ROSLIB.Topic({
     ros : ros,
     name : '/speech',
     messageType : 'std_msgs/String'
 });
 
-var speechVoiceName = new ROSLIB.Topic({ 
+var speechVoiceName = new ROSLIB.Topic({
     ros : ros,
     name : '/speech_settings/voice_name',
     messageType : 'std_msgs/String'
 });
 
-var movementPublisher = new ROSLIB.Topic({ 
+var movementPublisher = new ROSLIB.Topic({
     ros : ros,
     name : '/cmd_vel',
     messageType : 'geometry_msgs/Twist'
