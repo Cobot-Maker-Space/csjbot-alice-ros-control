@@ -16,7 +16,7 @@ class SocketListenerHandler(object):
         self.port = self.config_loader.fetch_value('port')
         self.host = self.config_loader.fetch_value('host')
 
-        self.pub_video_state = rospy.Publisher('/video_on', Bool, queue_size=10)
+        self.pub_video_state = rospy.Publisher('/video_on', Bool, queue_size=10, latch=True)
 
     def start_listening(self):
         uri = f'ws://{self.host}:{self.port}'

@@ -122,8 +122,3 @@ function move(linear, angular) {
 }
 
 change_voice($('.voice-default').data('voice'));
-
-function update_state() {
-    // request update on following topics
-
-}
