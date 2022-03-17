@@ -74,14 +74,14 @@ function move(linear, angular) {
 
     var twist = new ROSLIB.Message({
         linear: {
-        x: linear,
-        y: 0,
-        z: 0
+            x: linear,
+            y: 0,
+            z: 0
         },
         angular: {
-        x: 0,
-        y: 0,
-        z: angular
+            x: 0,
+            y: 0,
+            z: angular
         }
     });
     movementPublisher.publish(twist);
