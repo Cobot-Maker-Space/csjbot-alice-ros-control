@@ -24,11 +24,23 @@ ros.on('close', function() {
     $('.connection-status').html('Offline');
 });
 
+$('.connection-status').on('click', function(){
+    ros.connect();
+});
+
 var speechText = new ROSLIB.Topic({
     ros : ros,
     name : '/speech',
     messageType : 'std_msgs/String'
 });
+
+var jointsTest = new ROSLIB.Topic({
+    ros : ros,
+    name : '/reset_joints',
+    messageType : 'std_msgs/Empty'
+});
+
+jointsTest.publish(new ROSLIB.Message({}));
 
 var speechVoiceName = new ROSLIB.Topic({
     ros : ros,
@@ -40,6 +52,24 @@ var movementPublisher = new ROSLIB.Topic({
     ros : ros,
     name : '/cmd_vel',
     messageType : 'geometry_msgs/Twist'
+});
+
+var videoSubscriber = new ROSLIB.Topic({
+    ros : ros,
+    name : '/video_on',
+    messageType : 'std_msgs/Bool'
+});
+
+videoSubscriber.subscribe(function(message) {
+    console.log('Received message on ' + videoSubscriber.name + ': ' + message.data);
+    if (message.data == true) {
+        console.log('read as true')
+        $('.visuals').removeClass('alert-danger');
+        $('.visuals').addClass('alert alert-success');
+    } else { 
+        $('.visuals').removeClass('alert-success');
+        $('.visuals').addClass('alert alert-danger');
+    }
 });
 
 $('.publish-speech').on('click', function(){
@@ -92,3 +122,8 @@ function move(linear, angular) {
 }
 
 change_voice($('.voice-default').data('voice'));
+
+function update_state() {
+    // request update on following topics
+
+}

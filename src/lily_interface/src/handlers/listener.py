@@ -7,6 +7,7 @@ import io, sys
 import json
 import rospy
 import datetime
+from std_msgs.msg import Bool
 
 class SocketListenerHandler(object):
     def __init__(self):
@@ -14,6 +15,8 @@ class SocketListenerHandler(object):
         self.config_loader = ConfigLoader(self.APP_ENV)
         self.port = self.config_loader.fetch_value('port')
         self.host = self.config_loader.fetch_value('host')
+
+        self.pub_video_state = rospy.Publisher('/video_on', Bool, queue_size=10)
 
     def start_listening(self):
         uri = f'ws://{self.host}:{self.port}'
@@ -33,6 +36,16 @@ class SocketListenerHandler(object):
     def handle_data(self, data):
         payload = json.loads(data)
         msg_id = payload['msg_id']
+
+        if msg_id == "FACE_DETECT_OPEN_VIDEO_RSP":
+            # face detect on
+            self.pub_video_state.publish(Bool(True))
+
+        if msg_id == "FACE_DETECT_CLOSE_VIDEO_RSP":
+            # face detect on
+            self.pub_video_state.publish(Bool(False))
+
+
         rospy.loginfo(payload)        
  
 if __name__ == "__main__":
