@@ -1,6 +1,6 @@
 
 var ros = new ROSLIB.Ros({
-    url : 'ws://10.0.10.4:9090'
+    url : 'ws://' + window.location.host + ':9090'
 });
 
 ros.on('connection', function() {
@@ -88,4 +88,3 @@ function move(linear, angular) {
 }
 
 change_voice($('.voice-default').data('voice'));
-
