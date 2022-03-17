@@ -24,10 +24,38 @@
     <div class="container">
         <div class="row">
             <div class="col-4">
-                <div class="card mt-2">
-                    <div class="card-header text-center">Joystick</div>
-                    <div class="card-body"><div id="zone_joystick" style="position: relative;"></div></div>
-                    <!-- <div class="card-footer">Footer</div> -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card mt-2">
+                                    <div class="card-header text-center">Movement Control</div>
+                                    <div class="card-body p-0 pt-3 pb-3"><div id="zone_joystick" style="position: relative;"></div></div>
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <div class="col-3 pt-3 text-right pr-0">Left:</div>
+                                            <div class="col-9 text-center pt-4">
+                                                <input class="appendix-movement left-arm" min="0" max="100" type="range" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3 pt-3 text-right pr-0">Head:</div>
+                                            <div class="col-9 text-center pt-4">
+                                                <input class="appendix-movement head" min="0" max="100" type="range" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3 pt-3 text-right pr-0">Right:</div>
+                                            <div class="col-9 text-center pt-4">
+                                                <input class="appendix-movement right-arm" min="0" max="100" type="range" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>    
+                        </div>
+                        
+                    </div>
                 </div>
             </div>
             <div class="col-4">

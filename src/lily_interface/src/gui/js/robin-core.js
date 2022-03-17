@@ -58,6 +58,10 @@ $(".voice-option").click(function(){
     change_voice($(this).data('voice'));
 });
 
+$(".appendix-movement").on("input change", function() { 
+    //Code here to dig into Arduino movement.
+});
+
 function speak(message) {
     speechText.publish(new ROSLIB.Message({data:message}));
 }
