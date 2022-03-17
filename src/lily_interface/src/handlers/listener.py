@@ -23,14 +23,13 @@ class SocketListenerHandler(object):
         rospy.loginfo(f"Starting to listen on port {self.port}")
         try:
             async with websockets.connect(uri) as websocket:
-                while rospy.spin():
+                while not rospy.is_shutdown():
                     self.handle_data(await websocket.recv())
             
         except asyncio.exceptions.TimeoutError as e:
             rospy.logerr('Error connecting to web sockets. Timeout exceeded. Check the status of Alice.')
             sys.exit(-1)
         
-    
     def handle_data(self, data):
         payload = json.loads(data)
         msg_id = payload['msg_id']
