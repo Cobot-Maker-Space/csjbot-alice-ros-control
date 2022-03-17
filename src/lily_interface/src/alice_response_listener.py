@@ -13,8 +13,4 @@ class LilySocketListener(object):
         self.socket_listener.start_listening()
     
 if __name__ == '__main__':
-<<<<<<< HEAD
     LilySocketListener()
-=======
-    LilySocketListener()
->>>>>>> 6112b5d6f0768871a76da82e27e08237d995c95d
