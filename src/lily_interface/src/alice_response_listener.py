@@ -10,7 +10,8 @@ class LilySocketListener(object):
         rospy.init_node('alice_listener')
 
         self.socket_listener = SocketListenerHandler()
-        self.socket_listener.start_listening()
+        while not rospy.is_shutdown():
+            self.socket_listener.start_listening()
     
 if __name__ == '__main__':
     LilySocketListener()

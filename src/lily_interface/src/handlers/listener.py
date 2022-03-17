@@ -26,7 +26,7 @@ class SocketListenerHandler(object):
         rospy.loginfo(f"Starting to listen on port {self.port}")
         try:
             async with websockets.connect(uri) as websocket:
-                while not rospy.is_shutdown():
+                while True:
                     self.handle_data(await websocket.recv())
             
         except asyncio.exceptions.TimeoutError as e:
