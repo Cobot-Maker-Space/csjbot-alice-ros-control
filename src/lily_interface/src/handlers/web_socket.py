@@ -57,11 +57,7 @@ class CommandHandler(object):
     async def __async__get_ticks(self, payload, wait_for_return):
         async with self.wws as echo:
             await echo.send(json.dumps(payload))
-            # if wait_for_return:
-            #     return await echo.receive()
-            # else:
-            # return True
-
+           
 if __name__ == '__main__':
     ch = CommandHandler()
 
