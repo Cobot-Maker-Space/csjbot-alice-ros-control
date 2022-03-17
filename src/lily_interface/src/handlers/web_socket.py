@@ -49,7 +49,7 @@ class CommandHandler(object):
         self.wws = WebSocket()
         self.loop = asyncio.get_event_loop()
 
-    def action(self, payload, wait_for_return=True):  
+    def action(self, payload, wait_for_return=False):  
         return self.loop.run_until_complete(
             self.__async__get_ticks(payload, wait_for_return)
         )
@@ -57,10 +57,10 @@ class CommandHandler(object):
     async def __async__get_ticks(self, payload, wait_for_return):
         async with self.wws as echo:
             await echo.send(json.dumps(payload))
-            if wait_for_return:
-                return await echo.receive()
-            else:
-                return True
+            # if wait_for_return:
+            #     return await echo.receive()
+            # else:
+            # return True
 
 if __name__ == '__main__':
     ch = CommandHandler()
