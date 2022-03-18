@@ -143,14 +143,15 @@ function move(linear, angular) {
 
 
 function moveLimbs(neck_to, left_to, right_to) {
+    console.log(next_to, left_to, right_to);
     var joint_movement = new ROSLIB.Message({
-        neck: true,
+        neck: false,
         neck_to: parseInt(neck_to),
         neck_speed: 5000,
         left_arm: true,
         left_arm_to: parseInt(left_to),
-        left_arm_speed: 5000,
-        right_arm: true,
+        left_arm_speed: 3000,
+        right_arm: false,
         right_arm_to: parseInt(right_to),
         right_arm_speed: 5000
     });
@@ -159,6 +160,9 @@ function moveLimbs(neck_to, left_to, right_to) {
 
 $('.reset-limbs').on('click', function() {
     moveLimbs(0, 0, 0);
+    $('.neck').val(0);
+    $('.left-arm').val(0);
+    $('.right-arm').val(0);
 });
 
 
