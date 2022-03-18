@@ -100,7 +100,7 @@ $(".voice-option").click(function(){
     change_voice($(this).data('voice'));
 });
 
-$('input[type=range]').on("change", $.throttle(1000, function() { 
+$('input[type=range]').on("change", $.throttle(250, function() { 
     moveLimbs($(this).data('limb'));
 }));
 
@@ -165,7 +165,6 @@ function moveLimbs(limb_to_move) {
 }
  
 $('.reset-limbs').on('click', function() {
-    console.log('Resetting all limbs.');
     $('.appendix-movement').val(0);
     limbResetPublisher.publish();
 });
