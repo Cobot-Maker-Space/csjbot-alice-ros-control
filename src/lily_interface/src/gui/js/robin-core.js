@@ -150,6 +150,12 @@ function moveLimbs(limb_to_move) {
             break;
 
         case 'all':
+            console.log(limb_to_move + ': ' 
+                + parseInt($('.neck').val())
+                + parseInt($('.left-arm').val())
+                + parseInt($('.right-arm').val())
+            );
+            
             neck_move = true;
             left_arm_move = true;
             right_arm_move = true;
