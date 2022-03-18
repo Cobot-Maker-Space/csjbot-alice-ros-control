@@ -10,8 +10,10 @@ RUN apt-get update && apt-get install -y ros-noetic-desktop-full \
     python3.8 \
     python3-catkin-tools python3-osrf-pycommon \
     python3-wstool python3-pip bash-completion && \
-    apt-get install --assume-yes git && \
     rm -rf /var/lib/apt/lists/* 
+
+RUN apt-get update && \
+apt-get install -y git build-essential curl wget software-properties-common zip unzip
 
 # ADD . /root/catkin_ws/
 
