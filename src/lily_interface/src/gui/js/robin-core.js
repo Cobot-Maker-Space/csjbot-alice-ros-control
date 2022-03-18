@@ -143,7 +143,7 @@ function moveLimbs(limb_to_move) {
             break;
     
         case 'right_arm':
-            console.log(limb_to_move + ': ' + parseInt($('.right-arm').val()));
+            console.log(limb_to_move + ': ' + parseInt(-$('.right-arm').val()));
             right_arm_move = true;
             break;
 
@@ -157,7 +157,7 @@ function moveLimbs(limb_to_move) {
         left_arm_to: parseInt($('.left-arm').val()),
         left_arm_speed: 3000,
         right_arm: right_arm_move,
-        right_arm_to: parseInt($('.right-arm').val()),
+        right_arm_to: parseInt(-$('.right-arm').val()),
         right_arm_speed: 3000
     });
 
