@@ -92,6 +92,10 @@ $(".appendix-movement").on("input change", function() {
     //Code here to dig into Arduino movement.
 });
 
+$(".reset-limbs").on("input change", function() { 
+    //Code here to publish to joint reset topic
+});
+
 function speak(message) {
     speechText.publish(new ROSLIB.Message({data:message}));
 }
