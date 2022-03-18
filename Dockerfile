@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y ros-noetic-desktop-full \
     ros-noetic-catkin ros-noetic-teleop-twist-keyboard ros-noetic-teleop-twist-joy \
     ros-noetic-roslib ros-noetic-rosbridge-server \
     netcat \
+    git \
     telnet \
     python3.8 \
     python3-catkin-tools python3-osrf-pycommon \

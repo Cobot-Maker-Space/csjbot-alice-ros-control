@@ -42,8 +42,6 @@ var jointsTest = new ROSLIB.Topic({
     messageType : 'std_msgs/Empty'
 });
 
-jointsTest.publish(new ROSLIB.Message({}));
-
 var speechVoiceName = new ROSLIB.Topic({
     ros : ros,
     name : '/speech_settings/voice_name',
@@ -54,6 +52,12 @@ var movementPublisher = new ROSLIB.Topic({
     ros : ros,
     name : '/cmd_vel',
     messageType : 'geometry_msgs/Twist'
+});
+
+var limbMovementPublisher = new ROSLIB.Topic({
+    ros : ros,
+    name : '/move_joints',
+    messageType : 'csjbot_alice/JointMovement'
 });
 
 var videoSubscriber = new ROSLIB.Topic({
@@ -90,12 +94,21 @@ $(".voice-option").click(function(){
     change_voice($(this).data('voice'));
 });
 
-$(".appendix-movement").on("input change", function() { 
-    //Code here to dig into Arduino movement.
+// $(".appendix-movement").on("input change", function() { 
+//     //Code here to dig into Arduino movement.
+//     moveLimbs();
+// });
+
+$('input[type=range]').on("change", function() { 
+    //Code here to publish to joint reset
+    console.log($(this).val());
+    moveLimbs();
+
 });
 
-$(".reset-limbs").on("input change", function() { 
-    //Code here to publish to joint reset
+$('input[type=range]').on('input', function () {
+    $(this).trigger('change');
+    console.log('chanhged');
 });
 
 function speak(message) {
@@ -126,5 +139,23 @@ function move(linear, angular) {
     });
     movementPublisher.publish(twist);
 }
+
+function moveLimbs() {
+    console.log('publishing');
+    var joint_movement = new ROSLIB.Message({
+        neck: true,
+        neck_to: 1000,
+        neck_speed: 5000,
+        left_arm: true,
+        left_arm_to: 1000,
+        left_arm_speed: 3000,
+        right_arm: true,
+        right_arm_to: 300,
+        right_arm_speed: 3000,
+
+    });
+    limbMovementPublisher.publish(joint_movement);
+}
+
 
 change_voice($('.voice-default').data('voice'));
