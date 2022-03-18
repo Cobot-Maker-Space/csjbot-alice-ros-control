@@ -169,10 +169,10 @@ function moveLimbs(limb_to_move) {
 }
 
 $('.reset-limbs').on('click', function() {
-    moveLimbs(0, 0, 0);
     $('.neck').val(0);
     $('.left-arm').val(0);
     $('.right-arm').val(0);
+    moveLimbs('all');
 });
 
 
