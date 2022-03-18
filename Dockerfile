@@ -7,13 +7,11 @@ RUN apt-get update && apt-get install -y ros-noetic-desktop-full \
     ros-noetic-roslib ros-noetic-rosbridge-server \
     netcat \
     telnet \
+    git build-essential curl wget \
     python3.8 \
     python3-catkin-tools python3-osrf-pycommon \
     python3-wstool python3-pip bash-completion && \
     rm -rf /var/lib/apt/lists/* 
-
-RUN apt-get update && \
-apt-get install -y git build-essential curl wget software-properties-common zip unzip
 
 # ADD . /root/catkin_ws/
 

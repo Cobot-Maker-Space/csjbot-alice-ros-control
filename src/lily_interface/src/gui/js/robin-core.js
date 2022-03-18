@@ -100,15 +100,11 @@ $(".voice-option").click(function(){
 // });
 
 $('input[type=range]').on("change", function() { 
-    //Code here to publish to joint reset
-    console.log($(this).val());
     moveLimbs();
-
 });
 
 $('input[type=range]').on('input', function () {
     $(this).trigger('change');
-    console.log('chanhged');
 });
 
 function speak(message) {
@@ -141,18 +137,16 @@ function move(linear, angular) {
 }
 
 function moveLimbs() {
-    console.log('publishing');
     var joint_movement = new ROSLIB.Message({
         neck: true,
-        neck_to: 1000,
+        neck_to: $('.next').val(),
         neck_speed: 5000,
         left_arm: true,
-        left_arm_to: 1000,
-        left_arm_speed: 3000,
+        left_arm_to: $('.left-arm').val(),
+        left_arm_speed: 5000,
         right_arm: true,
-        right_arm_to: 300,
-        right_arm_speed: 3000,
-
+        right_arm_to: $('.right-arm').val(),
+        right_arm_speed: 5000
     });
     limbMovementPublisher.publish(joint_movement);
 }
