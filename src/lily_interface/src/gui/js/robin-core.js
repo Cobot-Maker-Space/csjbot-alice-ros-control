@@ -61,12 +61,6 @@ var limbMovementPublisher = new ROSLIB.Topic({
     latch: true
 });
 
-var limbMovementSubscriber = new ROSLIB.Topic({
-    ros : ros,
-    name : '/move_joints',
-    messageType : 'csjbot_alice/JointMovement',
-});
-
 var limbResetPublisher = new ROSLIB.Topic({
     ros : ros,
     name : '/reset_joints',
@@ -82,19 +76,12 @@ var videoSubscriber = new ROSLIB.Topic({
 videoSubscriber.subscribe(function(message) {
     console.log('Received message on ' + videoSubscriber.name + ': ' + message.data);
     if (message.data == true) {
-        console.log('read as true')
         $('.visuals').removeClass('alert-danger');
         $('.visuals').addClass('alert alert-success');
     } else { 
         $('.visuals').removeClass('alert-success');
         $('.visuals').addClass('alert alert-danger');
     }
-});
-
-limbMovementSubscriber.subscribe(function(message) {
-    console.log('Received message on ' + limbMovementSubscriber.name);
-    console.log(message);
-
 });
 
 $('.publish-speech').on('click', function(){
@@ -179,7 +166,7 @@ function moveLimbs(limb_to_move) {
  
 $('.reset-limbs').on('click', function() {
     console.log('Resetting all limbs.');
-    limbResetPublisher.publish({});
+    limbResetPublisher.publish();
 });
 
 
