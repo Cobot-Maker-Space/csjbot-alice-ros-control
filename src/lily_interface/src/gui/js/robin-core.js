@@ -1,6 +1,9 @@
-socket_url = 'ws://' + window.location.hostname + ':9090';
 
-var ros = new ROSLIB.Ros({uri : socket_url});
+ws_url = 'ws://' + window.location.hostname + ':9090';
+
+var ros = new ROSLIB.Ros({
+    url : ws_url
+});
 
 ros.on('connection', function() {
     console.log('Connected to websocket server.');
@@ -24,7 +27,7 @@ ros.on('close', function() {
 });
 
 $('.connection-status').on('click', function(){
-    ros.connect({uri : socket_url});
+    ros.connect(ws_url);
 });
 
 var speechText = new ROSLIB.Topic({
@@ -92,7 +95,7 @@ $(".appendix-movement").on("input change", function() {
 });
 
 $(".reset-limbs").on("input change", function() { 
-    //Code here to publish to joint reset topic
+    //Code here to publish to joint reset
 });
 
 function speak(message) {
