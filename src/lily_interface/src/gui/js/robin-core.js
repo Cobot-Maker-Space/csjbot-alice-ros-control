@@ -92,8 +92,8 @@ videoSubscriber.subscribe(function(message) {
 });
 
 limbMovementSubscriber.subscribe(function(message) {
-    console.log('Received message on ' + limbMovementSubscriber.name + ': ' + message.data);
-    
+    console.log('Received message on ' + limbMovementSubscriber.name + ': ' + message);
+
 });
 
 $('.publish-speech').on('click', function(){
