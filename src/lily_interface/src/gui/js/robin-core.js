@@ -166,6 +166,7 @@ function moveLimbs(limb_to_move) {
  
 $('.reset-limbs').on('click', function() {
     console.log('Resetting all limbs.');
+    $('.appendix-movement').val(0);
     limbResetPublisher.publish();
 });
 
