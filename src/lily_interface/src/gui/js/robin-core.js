@@ -92,7 +92,8 @@ videoSubscriber.subscribe(function(message) {
 });
 
 limbMovementSubscriber.subscribe(function(message) {
-    console.log('Received message on ' + limbMovementSubscriber.name + ': ' + message);
+    console.log('Received message on ' + limbMovementSubscriber.name);
+    console.log(message);
 
 });
 
