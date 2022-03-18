@@ -57,7 +57,14 @@ var movementPublisher = new ROSLIB.Topic({
 var limbMovementPublisher = new ROSLIB.Topic({
     ros : ros,
     name : '/move_joints',
-    messageType : 'csjbot_alice/JointMovement'
+    messageType : 'csjbot_alice/JointMovement',
+    latch: true
+});
+
+var limbMovementSubscriber = new ROSLIB.Topic({
+    ros : ros,
+    name : '/move_joints',
+    messageType : 'csjbot_alice/JointMovement',
 });
 
 var limbResetPublisher = new ROSLIB.Topic({
@@ -82,6 +89,11 @@ videoSubscriber.subscribe(function(message) {
         $('.visuals').removeClass('alert-success');
         $('.visuals').addClass('alert alert-danger');
     }
+});
+
+limbMovementSubscriber.subscribe(function(message) {
+    console.log('Received message on ' + limbMovementSubscriber.name + ': ' + message.data);
+    
 });
 
 $('.publish-speech').on('click', function(){
