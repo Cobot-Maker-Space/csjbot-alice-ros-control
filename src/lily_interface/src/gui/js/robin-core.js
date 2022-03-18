@@ -1,6 +1,6 @@
 
 var ros = new ROSLIB.Ros({
-    url : 'ws://' + window.location.host + ':9090'
+    url : 'ws://' + window.location.hostname + ':9090'
 });
 
 ros.on('connection', function() {
