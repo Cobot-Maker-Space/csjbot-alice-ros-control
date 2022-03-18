@@ -169,7 +169,7 @@ function moveLimbs(limb_to_move) {
             if ($('.link-arms').data('state') == "on") {
                 left_arm_move = true;
                 left_arm_pos = -right_arm_pos;
-                $('.left-arm').val(right_arm_pos)
+                $('.left-arm').val(-right_arm_pos)
             }
             break;
 
