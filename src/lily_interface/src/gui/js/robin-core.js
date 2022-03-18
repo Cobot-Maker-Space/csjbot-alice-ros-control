@@ -153,7 +153,7 @@ function moveLimbs(neck_to, left_to, right_to) {
         left_arm_speed: 3000,
         right_arm: false,
         right_arm_to: parseInt(right_to),
-        right_arm_speed: 5000
+        right_arm_speed: 3000
     });
     limbMovementPublisher.publish(joint_movement);
 }
