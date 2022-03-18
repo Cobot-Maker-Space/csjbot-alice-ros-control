@@ -134,7 +134,7 @@ function moveLimbs(limb_to_move) {
     switch (limb_to_move){
         case 'neck':
             neck_move = true;
-            console.log(limb_to_move + ': ' + parseInt($('.neck').val()));
+            console.log(limb_to_move + ': ' + parseInt(-$('.neck').val()));
             break;
 
         case 'left_arm':
@@ -151,7 +151,7 @@ function moveLimbs(limb_to_move) {
 
     var joint_movement = new ROSLIB.Message({
         neck: neck_move,
-        neck_to: parseInt($('.neck').val()),
+        neck_to: parseInt(-$('.neck').val()),
         neck_speed: 5000,
         left_arm: left_arm_move,
         left_arm_to: parseInt($('.left-arm').val()),
