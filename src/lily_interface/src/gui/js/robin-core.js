@@ -136,13 +136,16 @@ function moveLimbs(limb_to_move) {
     switch (limb_to_move){
         case 'neck':
             neck_move = true;
+            console.log(limb_to_move + ': ' + parseInt($('.neck').val()));
             break;
 
         case 'left_arm':
+            console.log(limb_to_move + ': ' + parseInt($('.left-arm').val()));
             left_arm_move = true;
             break;
     
         case 'right_arm':
+            console.log(limb_to_move + ': ' + parseInt($('.right-arm').val()));
             right_arm_move = true;
             break;
 
