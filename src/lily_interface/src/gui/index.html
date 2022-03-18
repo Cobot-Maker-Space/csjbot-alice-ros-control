@@ -2,6 +2,7 @@
     <head>
         <script type="text/javascript" src="js/roslib.min.js"></script>
         <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="js/throttle-debounce.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="js/roslib.min.js"></script>
         <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -37,19 +38,19 @@
                                         <div class="row">
                                             <div class="col-3 pt-3 text-right pr-0">Left:</div>
                                             <div class="col-9 text-center pt-4">
-                                                <input class="appendix-movement left-arm" min="0" max="4000" type="range" />
+                                                <input class="appendix-movement left-arm" data-limb="left_arm" min="0" max="4000" type="range" />
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-3 pt-3 text-right pr-0">Neck:</div>
                                             <div class="col-9 text-center pt-4">
-                                                <input class="appendix-movement neck" min="-380" max="960" type="range" />
+                                                <input class="appendix-movement neck" data-limb="neck" min="-380" max="960" type="range" />
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-3 pt-3 text-right pr-0">Right:</div>
                                             <div class="col-9 text-center pt-4">
-                                                <input class="appendix-movement right-arm" min="0" max="4000" type="range" />
+                                                <input class="appendix-movement right-arm" data-limb="right_arm"  min="0" max="4000" type="range" />
                                             </div>
                                         </div>
                                         <div class="row pt-3">

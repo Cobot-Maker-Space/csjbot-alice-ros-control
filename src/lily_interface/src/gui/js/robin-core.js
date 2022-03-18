@@ -94,22 +94,9 @@ $(".voice-option").click(function(){
     change_voice($(this).data('voice'));
 });
 
-// $(".appendix-movement").on("input change", function() { 
-//     //Code here to dig into Arduino movement.
-//     moveLimbs();
-// });
-
-$('input[type=range]').on("change", function() { 
-    moveLimbs(
-        $('.neck').val(), 
-        $('.left-arm').val(),
-        $('.right-arm').val()
-    );
-});
-
-$('input[type=range]').on('input', function () {
-    $(this).trigger('change');
-});
+$('input[type=range]').on("change", $.throttle(1000, function() { 
+    moveLimbs($(this).data('limb'));
+}));
 
 function speak(message) {
     speechText.publish(new ROSLIB.Message({data:message}));
@@ -141,20 +128,43 @@ function move(linear, angular) {
 }
 
 
+function moveLimbs(limb_to_move) {
+    neck_move = false;
+    left_arm_move = false;
+    right_arm_move = false;
 
-function moveLimbs(neck_to, left_to, right_to) {
-    console.log(neck_to, left_to, right_to);
+    switch (limb_to_move){
+        case 'neck':
+            neck_move = true;
+            break;
+
+        case 'left_arm':
+            left_arm_move = true;
+            break;
+    
+        case 'right_arm':
+            right_arm_move = true;
+            break;
+
+        case 'all':
+            neck_move = true;
+            left_arm_move = true;
+            right_arm_move = true;
+            break;
+    }
+
     var joint_movement = new ROSLIB.Message({
-        neck: true,
-        neck_to: parseInt(neck_to),
+        neck: neck_move,
+        neck_to: parseInt($('.neck').val()),
         neck_speed: 5000,
-        left_arm: true,
-        left_arm_to: parseInt(left_to),
+        left_arm: left_arm_move,
+        left_arm_to: parseInt($('.left-arm').val()),
         left_arm_speed: 3000,
-        right_arm: true,
-        right_arm_to: parseInt(right_to),
+        right_arm: right_arm_move,
+        right_arm_to: parseInt($('.right-arm').val()),
         right_arm_speed: 3000
     });
+
     limbMovementPublisher.publish(joint_movement);
 }
 
