@@ -100,7 +100,11 @@ $(".voice-option").click(function(){
 // });
 
 $('input[type=range]').on("change", function() { 
-    moveLimbs();
+    moveLimbs(
+        $('.neck').val(), 
+        $('.left-arm').val(),
+        $('.right-arm').val()
+    );
 });
 
 $('input[type=range]').on('input', function () {
@@ -136,20 +140,26 @@ function move(linear, angular) {
     movementPublisher.publish(twist);
 }
 
-function moveLimbs() {
+
+
+function moveLimbs(neck_to, left_to, right_to) {
     var joint_movement = new ROSLIB.Message({
         neck: true,
-        neck_to: $('.next').val(),
+        neck_to: parseInt(neck_to),
         neck_speed: 5000,
         left_arm: true,
-        left_arm_to: $('.left-arm').val(),
+        left_arm_to: parseInt(left_to),
         left_arm_speed: 5000,
         right_arm: true,
-        right_arm_to: $('.right-arm').val(),
+        right_arm_to: parseInt(right_to),
         right_arm_speed: 5000
     });
     limbMovementPublisher.publish(joint_movement);
 }
+
+$('.reset-limbs').on('click', function() {
+    moveLimbs(0, 0, 0);
+});
 
 
 change_voice($('.voice-default').data('voice'));
