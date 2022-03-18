@@ -104,6 +104,18 @@ $('input[type=range]').on("change", $.throttle(250, function() {
     moveLimbs($(this).data('limb'));
 }));
 
+$('.link-arms').on('click', function(){
+    if ($(this).data('state') == "off") {
+        $(this).removeClass('btn-secondary');
+        $(this).addClass('btn-success');
+        $(this).data('state', 'on');
+    } else { 
+        $(this).removeClass('btn-success');
+        $(this).addClass('btn-secondary');
+        $(this).data('state', 'off');
+    }
+});
+
 function speak(message) {
     speechText.publish(new ROSLIB.Message({data:message}));
 }
@@ -131,6 +143,10 @@ function moveLimbs(limb_to_move) {
     left_arm_move = false;
     right_arm_move = false;
 
+    neck_pos = parseInt(-$('.neck').val());
+    left_arm_pos = parseInt($('.left-arm').val());
+    right_arm_pos = parseInt(-$('.right-arm').val());
+
     switch (limb_to_move){
         case 'neck':
             neck_move = true;
@@ -140,24 +156,32 @@ function moveLimbs(limb_to_move) {
         case 'left_arm':
             console.log(limb_to_move + ': ' + parseInt($('.left-arm').val()));
             left_arm_move = true;
+            if ($('.link-arms').data('state') == "on") {
+                right_arm_move = true;
+                right_arm_pos = -left_arm_pos;
+            }
             break;
     
         case 'right_arm':
             console.log(limb_to_move + ': ' + parseInt(-$('.right-arm').val()));
             right_arm_move = true;
+            if ($('.link-arms').data('state') == "on") {
+                left_arm_move = true;
+                left_arm_pos = -right_arm_pos;
+            }
             break;
 
     }
 
     var joint_movement = new ROSLIB.Message({
         neck: neck_move,
-        neck_to: parseInt(-$('.neck').val()),
+        neck_to: neck_pos,
         neck_speed: 5000,
         left_arm: left_arm_move,
-        left_arm_to: parseInt($('.left-arm').val()),
+        left_arm_to: left_arm_pos,
         left_arm_speed: 3000,
         right_arm: right_arm_move,
-        right_arm_to: parseInt(-$('.right-arm').val()),
+        right_arm_to: right_arm_pos,
         right_arm_speed: 3000
     });
 
