@@ -60,6 +60,12 @@ var limbMovementPublisher = new ROSLIB.Topic({
     messageType : 'csjbot_alice/JointMovement'
 });
 
+var limbResetPublisher = new ROSLIB.Topic({
+    ros : ros,
+    name : '/reset_joints',
+    messageType : 'std_msg/Empty'
+});
+
 var videoSubscriber = new ROSLIB.Topic({
     ros : ros,
     name : '/video_on',
@@ -113,16 +119,8 @@ function move(linear, angular) {
     if(angular < -1) angular = -1;
 
     var twist = new ROSLIB.Message({
-        linear: {
-            x: linear,
-            y: 0,
-            z: 0
-        },
-        angular: {
-            x: 0,
-            y: 0,
-            z: angular
-        }
+        linear: { x: linear, y: 0, z: 0 },
+        angular: { x: 0, y: 0, z: angular}
     });
     movementPublisher.publish(twist);
 }
@@ -149,17 +147,6 @@ function moveLimbs(limb_to_move) {
             right_arm_move = true;
             break;
 
-        case 'all':
-            console.log(limb_to_move + ': ' 
-                + parseInt($('.neck').val())
-                + parseInt($('.left-arm').val())
-                + parseInt($('.right-arm').val())
-            );
-            
-            neck_move = true;
-            left_arm_move = true;
-            right_arm_move = true;
-            break;
     }
 
     var joint_movement = new ROSLIB.Message({
@@ -178,10 +165,7 @@ function moveLimbs(limb_to_move) {
 }
 
 $('.reset-limbs').on('click', function() {
-    $('.neck').val(0);
-    $('.left-arm').val(0);
-    $('.right-arm').val(0);
-    moveLimbs('all');
+    limbResetPublisher.publish({});
 });
 
 
