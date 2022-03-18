@@ -1,8 +1,6 @@
-socket_url = {
-    url : 'ws://' + window.location.hostname + ':9090'
-};
+socket_url = 'ws://' + window.location.hostname + ':9090';
 
-var ros = new ROSLIB.Ros(socket_url);
+var ros = new ROSLIB.Ros({uri : socket_url});
 
 ros.on('connection', function() {
     console.log('Connected to websocket server.');
@@ -26,7 +24,7 @@ ros.on('close', function() {
 });
 
 $('.connection-status').on('click', function(){
-    ros.connect(socket_url);
+    ros.connect({uri : socket_url});
 });
 
 var speechText = new ROSLIB.Topic({
