@@ -145,13 +145,13 @@ function move(linear, angular) {
 function moveLimbs(neck_to, left_to, right_to) {
     console.log(neck_to, left_to, right_to);
     var joint_movement = new ROSLIB.Message({
-        neck: false,
+        neck: true,
         neck_to: parseInt(neck_to),
         neck_speed: 5000,
         left_arm: true,
         left_arm_to: parseInt(left_to),
         left_arm_speed: 3000,
-        right_arm: false,
+        right_arm: true,
         right_arm_to: parseInt(right_to),
         right_arm_speed: 3000
     });
