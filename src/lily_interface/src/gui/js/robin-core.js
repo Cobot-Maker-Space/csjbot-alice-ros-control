@@ -163,8 +163,9 @@ function moveLimbs(limb_to_move) {
 
     limbMovementPublisher.publish(joint_movement);
 }
-
+ 
 $('.reset-limbs').on('click', function() {
+    console.log('Resetting all limbs.');
     limbResetPublisher.publish({});
 });
 
