@@ -6,19 +6,28 @@
         <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="js/roslib.min.js"></script>
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
         <link rel="stylesheet" href="css/custom.css">
 
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.7.3/nipplejs.js"></script>
         <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+        </style>
+
     </head>
 <body>
     <div class="container-fluid">
         <div class="row">
             <div class="col-2 header p5 bg-dark text-white text-center"></div>
-            <div class="col-8 header p5 bg-dark text-white text-center"><h1>Robin - WOZ</h1></div>
+            <div class="col-8 header p5 bg-dark text-white text-center">
+                <h1>Robin <i class="fas fa-robot robot pr-4 pl-4 mb-2"></i> W.O.Z.</h1>
+            </div>
             <div class="col-2 header p5 bg-dark text-white text-center">
                 <button type="button" class="btn btn-dark">
-                    Status: <span class="connection-status badge badge-danger">Offline</span>
+                    <i class="fa-solid fa-computer pr-2"></i>
+                    Status: <span class="ml-2 connection-status badge badge-danger">Offline</span>
                 </button>
             </div>
         </div>
@@ -32,33 +41,54 @@
                         <div class="row">
                             <div class="col">
                                 <div class="card mt-2">
-                                    <div class="card-header text-center">Movement Control</div>
-                                    <div class="card-body p-0 pt-3 pb-3"><div id="zone_joystick" style="position: relative;"></div></div>
+                                    <div class="card-header text-center">
+                                        <i class="fa-solid fa-up-down-left-right pr-2"></i>
+                                        Movement Control
+                                    </div>
+                                    <div class="card-body p-0 pt-3 pb-3">
+                                        <div id="zone_joystick" style="position: relative;"></div>
+                                    </div>
                                     <div class="card-footer">
                                         <div class="row">
-                                            <div class="col-3 pt-3 text-right pr-0">Left:</div>
-                                            <div class="col-9 text-center pt-4">
+                                            <div class="col text-center">
+                                                Limb Movement
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-2 pt-2 text-center pr-0">
+                                                <i class="fa-regular fa-hand-point-left pt-2"></i>
+                                            </div>
+                                            <div class="col-10 text-center pt-3">
                                                 <input class="appendix-movement left-arm" data-limb="left_arm" min="0" max="4000" value="0" type="range" />
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-3 pt-3 text-right pr-0">Neck:</div>
-                                            <div class="col-9 text-center pt-4">
+                                            <div class="col-2 pt-3 text-center pr-0">
+                                                <i class="fa-regular fa-face-flushed pt-2"></i>
+                                            </div>
+                                            <div class="col-10 text-center pt-4">
                                                 <input class="appendix-movement neck" data-limb="neck" min="-1200" max="500" value="0" type="range" />
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-3 pt-3 text-right pr-0">Right:</div>
-                                            <div class="col-9 text-center pt-4">
+                                            <div class="col-2 pt-3 text-center pr-0">
+                                                <i class="fa-regular fa-hand-point-right pt-2"></i>
+                                            </div>
+                                            <div class="col-10 text-center pt-4">
                                                 <input class="appendix-movement right-arm" data-limb="right_arm"  min="0" max="4000" value="0" type="range" />
                                             </div>
                                         </div>
                                         <div class="row pt-3">
-                                            <div class="col-3 pt-3 text-right pr-0">
-                                                <button type="button" class="btn btn-sm btn-secondary link-arms" data-state="off">Link Arms</button>
+                                            <div class="col-6 pt-3 text-center">
+                                                <button type="button" class="btn btn-sm btn-secondary link-arms" data-state="off">
+                                                    <i class="fa-solid fa-link pr-1"></i>Link Arms
+                                                </button>
                                             </div>
-                                            <div class="col-9 pt-3 text-center">
-                                                <button type="button" class="btn btn-sm btn-secondary reset-limbs">Reset Limbs</button>
+                                            <div class="col-6 pt-3 text-center">
+                                                <button type="button" class="btn btn-sm btn-secondary reset-limbs">
+                                                    <i class="fa-solid fa-arrows-rotate pr-1"></i>
+                                                    Reset Limbs
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -71,7 +101,10 @@
             </div>
             <div class="col-4">
                 <div class="card mt-2">
-                    <div class="card-header visuals text-center">Visualisation</div>
+                    <div class="card-header visuals text-center">
+                        <i class="fa-solid fa-video pr-2"></i>
+                        Visualisation
+                    </div>
                     <div class="card-body">
                         <div class="video-frame"></div>
                     </div>
@@ -79,14 +112,14 @@
             </div>
             <div class="col-4">
                 <div class="card mt-2">
-                    <div class="card-header text-center">Speech Center</div>
+                    <div class="card-header text-center"><i class="fa-regular fa-comments pr-3"></i>Speech Center</div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col p-3">
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control custom-text-to-speak" placeholder="Text to speak" aria-label="Text to speak" aria-describedby="basic-addon2">
                                     <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary publish-speech" type="button">Speak</button>
+                                    <button class="btn btn-secondary publish-speech" type="button"><i class="fa-regular fa-comment-dots pr-2"></i>Speak</button>
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +140,8 @@
                             <div class="col">
                                 <div class="dropdown show big-speech pl-1">
                                     <a class="btn btn-success btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                     Longer Speeches
+                                        <i class="fa-regular fa-message pr-2"></i>
+                                        Longer Speeches
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                       <a class="dropdown-item long-speak" href="#">Welcome to the Co Maker Space. Feel free to have a look round.</a>
@@ -123,7 +157,8 @@
                             <div class="col">
                                 <div class="dropdown show voice-select pl-1">
                                     <a class="btn btn-secondary btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                     Change Voice
+                                        <i class="fa-solid fa-person-harassing pr-2"></i>
+                                        Change Voice
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                       <a class="dropdown-item voice-option voice-default" href="#" data-voice="catherine">Catherine</a>

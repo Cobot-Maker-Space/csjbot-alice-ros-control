@@ -1,5 +1,9 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
 .header h1 {
-    font-size: 60pt;
+    font-size: 50pt;
+    text-transform: uppercase;
 }
 
 div {
@@ -13,5 +17,17 @@ div {
 
 .appendix-movement {
     width: 95%;
+}
 
+.robot {
+    font-size: 0.6em;
+}
+
+.video-frame {
+    min-height: 195px;
+    border: 1pt #999 solid;
+    background-color: #eee;
+}
+.vertical-joy-align, .vertical-joy-align i {
+    line-height: 200px;
 }
