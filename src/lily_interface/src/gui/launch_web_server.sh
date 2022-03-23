@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cd ~/catkin_ws/src/lily_interface/src/gui/
+cd `dirname ${BASH_SOURCE[0]}`
 python -m http.server
