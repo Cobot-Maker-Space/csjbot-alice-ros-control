@@ -3,7 +3,7 @@
 from handlers.speech import SpeechHandler
 import rospy
 from std_msgs.msg import String
-from lily_interface.msg import SpeechSettings
+from csjbot_alice.msg import SpeechSettings
 
 class LilySpeech(object):
 
@@ -16,7 +16,7 @@ class LilySpeech(object):
         rospy.Subscriber("/speech_settings/voice_name", String, self.update_voice)
 
         rospy.spin()
-    
+
     def process_speech(self, msg):
         resp = self.speech_handler.speak(msg)
         print(resp)
@@ -31,6 +31,6 @@ class LilySpeech(object):
         resp = self.speech_handler.update_settings(voice=msg.data)
         print(resp)
         # TODO - handle errors here (response code, etc)
-        
+
 if __name__ == '__main__':
     LilySpeech()

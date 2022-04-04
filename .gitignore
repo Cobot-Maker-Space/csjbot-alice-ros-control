@@ -4,7 +4,7 @@ logs/
 build/
 .catkin_tools/
 
-#IDE 
+#IDE
 .vscode/
 robin.code-workspace
 
@@ -12,3 +12,6 @@ robin.code-workspace
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Docker
+docker-compose.override.yml
