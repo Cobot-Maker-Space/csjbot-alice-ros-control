@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from config.loader import ConfigLoader 
+from config.loader import ConfigLoader
 import asyncio
 import websockets
 import io, sys
@@ -28,11 +28,11 @@ class SocketListenerHandler(object):
             async with websockets.connect(uri) as websocket:
                 while True:
                     self.handle_data(await websocket.recv())
-            
+
         except asyncio.exceptions.TimeoutError as e:
             rospy.logerr('Error connecting to web sockets. Timeout exceeded. Check the status of Alice.')
             sys.exit(-1)
-        
+
     def handle_data(self, data):
         payload = json.loads(data)
         msg_id = payload['msg_id']
@@ -46,8 +46,8 @@ class SocketListenerHandler(object):
             self.pub_video_state.publish(Bool(False))
 
 
-        rospy.loginfo(payload)        
- 
+        rospy.loginfo(payload)
+
 if __name__ == "__main__":
     slh = SocketListenerHandler()
     slh.start_listening()
