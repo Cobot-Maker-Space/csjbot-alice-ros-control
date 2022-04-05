@@ -30,10 +30,10 @@ To access docker container once running (e.g. to run catkin build, etc)...
 ## Useful commands
 
 Start Pseudo Server:
-`python src/lily_interface/src/pseudo_lily_server.py`
+`python src/csjbot_alice/src/pseudo_lily_server.py`
 
 Movement:
-`rosrun lily_interface subscriber_movement.py`
+`rosrun csjbot_alice subscriber_movement.py`
 `rosrun teleop_twist_keyboard teleop_twist_keyboard.py`
 
 TODO: 
@@ -41,11 +41,11 @@ TODO:
 - Look at MPO's speech research - https://github.com/MixedRealityLab/nottreal
 
 Speech:
-`rosrun lily_interface subscriber_speech.py`
+`rosrun csjbot_alice subscriber_speech.py`
 `rostopic pub /speech std_msgs/String "Hello"`
 
 Video:
-`rosrun lily_interface subscriber_video.py`
+`rosrun csjbot_alice subscriber_video.py`
 `rostopic pub /video_enable std_msgs/Bool "true"` 
 `rostopic pub /video_enable std_msgs/Bool "false"`
 <!-- https://stackoverflow.com/questions/59587166/send-webcam-stream-from-server-in-python-using-sockets -->
@@ -59,7 +59,7 @@ Currently:
 
 First enable the video service. Launch:
 
-`rosrun lily_interface subscriber_video.py`
+`rosrun csjbot_alice subscriber_video.py`
 
 Send a boolean message to active/enable the video socket:
 
@@ -67,11 +67,11 @@ Send a boolean message to active/enable the video socket:
 
 Then run the publisher (which retrieves the image from the web socket and republishes it over ROS):
 
-`rosrun lily_interface publisher_video.py`
+`rosrun csjbot_alice publisher_video.py`
 
 publishes the images to the /camera/image topic. However, can only seem to pick it up using: 
 
-`rosrun lily_interface subscriber_testimage.py`
+`rosrun csjbot_alice subscriber_testimage.py`
 
 Which writes the received image to an image (test2.jpg) which is viewable. Unable to get image viewer on an alternative machine from being able to receive the image. Not sure why, possibly a multi-node ros configuration issue. 
 
@@ -80,7 +80,7 @@ Which writes the received image to an image (test2.jpg) which is viewable. Unabl
 
 To launch the GUI, currently (until integrated into a launch file):
 
-`cd ~/your-project-folder/src/lily_interface/gui && python -m http.server`
+`cd ~/your-project-folder/src/csjbot_alice/gui && python -m http.server`
 
 In a web browser on the laptop:
 

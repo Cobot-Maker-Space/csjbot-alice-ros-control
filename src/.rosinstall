@@ -1,4 +1,0 @@
-- git:
-    local-name: csjbot-alice-ros-master
-    uri: https://github.com/Cobot-Maker-Space/csjbot-alice-ros-master.git
-    version: main

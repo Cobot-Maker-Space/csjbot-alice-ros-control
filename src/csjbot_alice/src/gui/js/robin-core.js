@@ -78,7 +78,7 @@ videoSubscriber.subscribe(function(message) {
     if (message.data == true) {
         $('.visuals').removeClass('alert-danger');
         $('.visuals').addClass('alert alert-success');
-    } else { 
+    } else {
         $('.visuals').removeClass('alert-success');
         $('.visuals').addClass('alert alert-danger');
     }
@@ -100,7 +100,7 @@ $(".voice-option").click(function(){
     change_voice($(this).data('voice'));
 });
 
-$('input[type=range]').on("change", $.throttle(250, function() { 
+$('input[type=range]').on("change", $.throttle(250, function() {
     moveLimbs($(this).data('limb'));
 }));
 
@@ -109,7 +109,7 @@ $('.link-arms').on('click', function(){
         $(this).removeClass('btn-secondary');
         $(this).addClass('btn-success');
         $(this).data('state', 'on');
-    } else { 
+    } else {
         $(this).removeClass('btn-success');
         $(this).addClass('btn-secondary');
         $(this).data('state', 'off');
@@ -145,7 +145,7 @@ function moveLimbs(limb_to_move) {
 
     neck_pos = parseInt(-$('.neck').val());
     left_arm_pos = parseInt($('.left-arm').val());
-    right_arm_pos = parseInt(-$('.right-arm').val());
+    right_arm_pos = parseInt($('.right-arm').val());
 
     switch (limb_to_move){
         case 'neck':
@@ -158,18 +158,18 @@ function moveLimbs(limb_to_move) {
             left_arm_move = true;
             if ($('.link-arms').data('state') == "on") {
                 right_arm_move = true;
-                right_arm_pos = -left_arm_pos;
+                right_arm_pos = left_arm_pos;
                 $('.right-arm').val(left_arm_pos)
             }
             break;
-    
+
         case 'right_arm':
-            console.log(limb_to_move + ': ' + parseInt(-$('.right-arm').val()));
+            console.log(limb_to_move + ': ' + parseInt($('.right-arm').val()));
             right_arm_move = true;
             if ($('.link-arms').data('state') == "on") {
                 left_arm_move = true;
-                left_arm_pos = -right_arm_pos;
-                $('.left-arm').val(-right_arm_pos)
+                left_arm_pos = right_arm_pos;
+                $('.left-arm').val(right_arm_pos)
             }
             break;
 
@@ -189,7 +189,7 @@ function moveLimbs(limb_to_move) {
 
     limbMovementPublisher.publish(joint_movement);
 }
- 
+
 $('.reset-limbs').on('click', function() {
     $('.appendix-movement').val(0);
     limbResetPublisher.publish();

@@ -1,0 +1,9 @@
+bool neck
+int16 neck_to
+int16 neck_speed
+bool left_arm
+int16 left_arm_to
+int16 left_arm_speed
+bool right_arm
+int16 right_arm_to
+int16 right_arm_speed
