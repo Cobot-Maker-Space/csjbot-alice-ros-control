@@ -44,6 +44,6 @@ class ExpressionHandler(BaseHandler):
             return self.EXP_SMILE
 
         if expression == 'angry':                            
-            return self.EXP_ORDINARY
+            return self.EXP_ANGRY
 
         return self.EXP_ORDINARY

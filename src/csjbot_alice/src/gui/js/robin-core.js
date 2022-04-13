@@ -67,6 +67,12 @@ var limbResetPublisher = new ROSLIB.Topic({
     messageType : 'std_msg/Empty'
 });
 
+var expressionPublisher = new ROSLIB.Topic({
+    ros : ros,
+    name : '/expression',
+    messageType : 'csjbot_alice/Expression'
+});
+
 var videoSubscriber = new ROSLIB.Topic({
     ros : ros,
     name : '/video_on',
@@ -86,6 +92,7 @@ videoSubscriber.subscribe(function(message) {
 
 $('.publish-speech').on('click', function(){
     speak($('.custom-text-to-speak').val());
+    $('.custom-text-to-speak').val('');
 });
 
 $('.quick-speak, .long-speak').on('click', function(){
@@ -195,5 +202,8 @@ $('.reset-limbs').on('click', function() {
     limbResetPublisher.publish();
 });
 
-
 change_voice($('.voice-default').data('voice'));
+
+$('.quick-expression').on('click', function(){
+    expressionPublisher.publish(new ROSLIB.Message({expression:$(this).data('expression')}))
+});
