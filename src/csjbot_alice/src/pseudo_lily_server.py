@@ -25,6 +25,13 @@ def process_message(message):
             "error_code": 0,
         }
     
+    if message['msg_id'] == 'SET_ROBOT_EXPRESSION_REQ':
+        payload = {
+            "msg_id": "SET_ROBOT_EXPRESSION_RSP",
+            "expression": message['expression'],
+            "error_code": 0,
+        }
+
     return payload
 
 async def echo(websocket, path):
