@@ -14,9 +14,10 @@ class ExpressionHandler(BaseHandler):
         self.EXP_ANGRY = 5005
 
     def _action(self, expression, time):
-        once = 1
-        if not time == 0:
-            once = 0
+        once = 0
+        
+        # if not time == 0:
+        #     once = 0
         
         payload = {
             "msg_id": self.MSG_ID,
