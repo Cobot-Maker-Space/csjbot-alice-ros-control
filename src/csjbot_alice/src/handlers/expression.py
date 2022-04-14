@@ -8,8 +8,6 @@ class ExpressionHandler(BaseHandler):
         self.MSG_ID = "SET_ROBOT_EXPRESSION_REQ"
         self.EXP_HAPPY = 5000
         self.EXP_SAD = 5001
-        # self.EXP_SURPRISE = 5002
-        # self.EXP_SMILE = 5003
         self.EXP_ORDINARY = 5004
         self.EXP_ANGRY = 5005
         self.EXP_LIGHTING = 5006
@@ -17,7 +15,10 @@ class ExpressionHandler(BaseHandler):
 
     def _action(self, expression, time):
         once = 0
-        
+
+        if time == 0:
+            once = 1
+
         payload = {
             "msg_id": self.MSG_ID,
             "expression": expression,
