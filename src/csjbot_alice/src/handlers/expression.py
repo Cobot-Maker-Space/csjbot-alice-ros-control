@@ -15,14 +15,6 @@ class ExpressionHandler(BaseHandler):
         self.EXP_LIGHTING = 5006
         self.EXP_DOUBLE_BLINK = 5007
 
-        # EXPRESSION_TEARS = 5001
-        # EXPRESSION_HEART = 5000
-        # EXPRESSION_BLINK = 5004
-        # EXPRESSION_FLAME = 5005
-        # EXPRESSION_LIGHTNING = 5006
-        # EXPRESSION_DOUBLE_BLINK = 5007
-
-
     def _action(self, expression, time):
         once = 0
         
@@ -55,11 +47,3 @@ class ExpressionHandler(BaseHandler):
             return self.EXP_ANGRY
 
         return self.EXP_ORDINARY
-
-
-         # EXPRESSION_TEARS = 5001 - SAD
-        # EXPRESSION_HEART = 5000 - HAPPY
-        # EXPRESSION_BLINK = 5004 - ORDINARY
-        # EXPRESSION_FLAME = 5005 - ANGRY
-        # EXPRESSION_LIGHTNING = 5006 - SURPRISE
-        # EXPRESSION_DOUBLE_BLINK = 5007 - 
