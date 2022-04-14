@@ -8,20 +8,29 @@ class ExpressionHandler(BaseHandler):
         self.MSG_ID = "SET_ROBOT_EXPRESSION_REQ"
         self.EXP_HAPPY = 5000
         self.EXP_SAD = 5001
-        self.EXP_SURPRISE = 5002
-        self.EXP_SMILE = 5003
+        # self.EXP_SURPRISE = 5002
+        # self.EXP_SMILE = 5003
         self.EXP_ORDINARY = 5004
         self.EXP_ANGRY = 5005
+        self.EXP_LIGHTING = 5006
+        self.EXP_DOUBLE_BLINK = 5007
+
+        # EXPRESSION_TEARS = 5001
+        # EXPRESSION_HEART = 5000
+        # EXPRESSION_BLINK = 5004
+        # EXPRESSION_FLAME = 5005
+        # EXPRESSION_LIGHTNING = 5006
+        # EXPRESSION_DOUBLE_BLINK = 5007
+
 
     def _action(self, expression, time):
-        once = 0
-        
+        once = 1
         # if not time == 0:
         #     once = 0
         
         payload = {
             "msg_id": self.MSG_ID,
-            "expression": expression,
+            "expression": 5007,
             "once": once,
             "time": time
         }
@@ -29,7 +38,7 @@ class ExpressionHandler(BaseHandler):
 
     def express(self, expression, time=0):
         exp_code = self.get_exp_code(expression)
-        return self._action(5006, time)
+        return self._action(exp_code, time)
     
     def get_exp_code(self, expression):
         if expression == 'happy':
@@ -48,3 +57,11 @@ class ExpressionHandler(BaseHandler):
             return self.EXP_ANGRY
 
         return self.EXP_ORDINARY
+
+
+        # self.EXP_SURPRISE = 5002
+        # self.EXP_SMILE = 5003
+        self.EXP_ORDINARY = 5004
+        self.EXP_ANGRY = 5005
+        self.EXP_LIGHTING = 5006
+        self.EXP_DOUBLE_BLINK = 500
