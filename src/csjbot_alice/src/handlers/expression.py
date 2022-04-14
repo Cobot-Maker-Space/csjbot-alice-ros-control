@@ -29,7 +29,7 @@ class ExpressionHandler(BaseHandler):
 
     def express(self, expression, time=0):
         exp_code = self.get_exp_code(expression)
-        return self._action(exp_code, time)
+        return self._action(5007, time)
     
     def get_exp_code(self, expression):
         if expression == 'happy':
@@ -39,7 +39,7 @@ class ExpressionHandler(BaseHandler):
             return self.EXP_SAD
 
         if expression == 'surprise':    
-            self.EXP_SURPRISE = 5002
+            return self.EXP_SURPRISE
 
         if expression == 'smile':                
             return self.EXP_SMILE
