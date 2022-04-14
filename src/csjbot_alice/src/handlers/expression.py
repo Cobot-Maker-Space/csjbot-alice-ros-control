@@ -46,10 +46,10 @@ class ExpressionHandler(BaseHandler):
             return self.EXP_SAD
 
         if expression == 'surprise':    
-            return self.EXP_SURPRISE
+            return self.EXP_LIGHTING
 
         if expression == 'smile':                
-            return self.EXP_SMILE
+            return self.EXP_DOUBLE_BLINK
 
         if expression == 'angry':                            
             return self.EXP_ANGRY
@@ -57,9 +57,9 @@ class ExpressionHandler(BaseHandler):
         return self.EXP_ORDINARY
 
 
-        # self.EXP_SURPRISE = 5002
-        # self.EXP_SMILE = 5003
-        self.EXP_ORDINARY = 5004
-        self.EXP_ANGRY = 5005
-        self.EXP_LIGHTING = 5006
-        self.EXP_DOUBLE_BLINK = 500
+         # EXPRESSION_TEARS = 5001 - SAD
+        # EXPRESSION_HEART = 5000 - HAPPY
+        # EXPRESSION_BLINK = 5004 - ORDINARY
+        # EXPRESSION_FLAME = 5005 - ANGRY
+        # EXPRESSION_LIGHTNING = 5006 - SURPRISE
+        # EXPRESSION_DOUBLE_BLINK = 5007 - 
