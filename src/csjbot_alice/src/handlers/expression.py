@@ -24,13 +24,11 @@ class ExpressionHandler(BaseHandler):
 
 
     def _action(self, expression, time):
-        once = 1
-        # if not time == 0:
-        #     once = 0
+        once = 0
         
         payload = {
             "msg_id": self.MSG_ID,
-            "expression": 5007,
+            "expression": expression,
             "once": once,
             "time": time
         }
