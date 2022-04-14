@@ -18,7 +18,7 @@ class LilyExpression(object):
         rospy.spin()
         
     def process_expression(self, msg):
-        resp = self.expression_handler.express(msg)
+        resp = self.expression_handler.express(msg.data)
         print(resp)
 
         self.rate.sleep()
