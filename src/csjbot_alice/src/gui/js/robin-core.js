@@ -205,5 +205,6 @@ $('.reset-limbs').on('click', function() {
 change_voice($('.voice-default').data('voice'));
 
 $('.quick-expression').on('click', function(){
-    expressionPublisher.publish(new ROSLIB.Message({expression:$(this).data('expression')}))
+    console.log($(this).data('expression'));
+    expressionPublisher.publish(new ROSLIB.Message({data:$(this).data('expression')}))
 });
