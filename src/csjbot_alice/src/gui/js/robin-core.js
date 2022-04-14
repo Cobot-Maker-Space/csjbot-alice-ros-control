@@ -157,11 +157,9 @@ function moveLimbs(limb_to_move) {
     switch (limb_to_move){
         case 'neck':
             neck_move = true;
-            console.log(limb_to_move + ': ' + parseInt(-$('.neck').val()));
             break;
 
         case 'left_arm':
-            console.log(limb_to_move + ': ' + parseInt($('.left-arm').val()));
             left_arm_move = true;
             if ($('.link-arms').data('state') == "on") {
                 right_arm_move = true;
@@ -171,7 +169,6 @@ function moveLimbs(limb_to_move) {
             break;
 
         case 'right_arm':
-            console.log(limb_to_move + ': ' + parseInt($('.right-arm').val()));
             right_arm_move = true;
             if ($('.link-arms').data('state') == "on") {
                 left_arm_move = true;
@@ -205,6 +202,5 @@ $('.reset-limbs').on('click', function() {
 change_voice($('.voice-default').data('voice'));
 
 $('.quick-expression').on('click', function(){
-    console.log($(this).data('expression'));
     expressionPublisher.publish(new ROSLIB.Message({data:$(this).data('expression')}))
 });
