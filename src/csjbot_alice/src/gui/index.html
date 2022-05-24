@@ -109,6 +109,40 @@
                         <div class="video-frame"></div>
                     </div>
                 </div>
+                <div class="card mt-2">
+                    <div class="card-header visuals text-center">
+                        <i class="fa-solid fa-cubes-stacked pr-2"></i>
+                        Parts Database
+                    </div>
+                    <div class="parts-db mt-2 m0 p0 text-center">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#warehouse"><i class="fa-solid fa-warehouse"></i>&nbsp; Warehouse (<span class="count" data-type="warehouse"></span>)</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#in-transit"><i class="fa-solid fa-dolly"></i>&nbsp;In Transit (<span class="count" data-type="in-transit"></span>)</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#workshop"><i class="fa-solid fa-wrench"></i>&nbsp;Workshop (<span class="count" data-type="workshop"></span>)</a>
+                            </li>
+                        </ul>
+                        
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div id="warehouse" class="container parts-list tab-pane active" data-type="warehouse"><br>
+                                <ul class="list-group list-group-flush"></ul>
+                            </div>
+                            <div id="in-transit" class="container parts-list tab-pane fade" data-type="in-transit"><br>
+                                <button type="button" class="btn btn-success btn-sm btn-confirm-parts mb-2"><i class="fa-regular fa-comment-dots pr-2"></i>Confirm Parts</button>
+                                <ul class="list-group list-group-flush"></ul>
+                            </div>
+                            <div id="workshop" class="container parts-list tab-pane fade" data-type="workshop"><br>
+                                <ul class="list-group list-group-flush"></ul>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
             </div>
             <div class="col-4">
                 <div class="card mt-2">
@@ -193,6 +227,24 @@
 
     <script type="text/javascript" src="js/robin-core.js"></script>
     <script type="text/javascript" src="js/robin-joystick.js"></script>
+    <script type="text/javascript" src="js/robin-parts.js"></script>
+
+    <div class="d-none templates">
+        <li class="list-group-item part" data-type="">
+            <div class="container">
+                <div class="row">
+                  <div class="col text-left p-0 parts-name">
+                  </div>
+                  <div class="colm-0 p-0 pl-1 transfer-buttons">
+                    <a href="#" class="btn btn-sm btn-primary btn-lg btn-parts-action" data-btntype="warehouse" role="button" aria-pressed="true"><i class="fa-solid fa-warehouse"></i></a>
+                    <a href="#" class="btn btn-sm btn-primary btn-lg btn-parts-action" data-btntype="in-transit" role="button" aria-pressed="true"><i class="fa-solid fa-dolly"></i></a>
+                    <a href="#" class="btn btn-sm btn-primary btn-lg btn-parts-action" data-btntype="workshop" role="button" aria-pressed="true"><i class="fa-solid fa-wrench"></i></a>
+                  </div>
+                </div>
+            </div>
+        </li>
+    </div>
+
 </body>
 
 </html>

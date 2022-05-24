@@ -31,3 +31,8 @@ div {
 .vertical-joy-align, .vertical-joy-align i {
     line-height: 200px;
 }
+
+.container.parts-list {
+    height: 200px;
+    overflow-y: auto;
+}

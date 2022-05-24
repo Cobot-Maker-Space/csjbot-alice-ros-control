@@ -1,126 +1,140 @@
+$( document ).ready(function() {
 
-ws_url = 'ws://' + window.location.hostname + ':9090';
+    ws_url = 'ws://' + window.location.hostname + ':9090';
 
-var ros = new ROSLIB.Ros({
-    url : ws_url
-});
+    var ros = new ROSLIB.Ros({
+        url : ws_url
+    });
 
-ros.on('connection', function() {
-    console.log('Connected to websocket server.');
-    $('.connection-status').addClass('badge-success')
-    $('.connection-status').removeClass('badge-danger')
-    $('.connection-status').html('Connected');
-});
+    ros.on('connection', function() {
+        console.log('Connected to websocket server.');
+        $('.connection-status').addClass('badge-success')
+        $('.connection-status').removeClass('badge-danger')
+        $('.connection-status').html('Connected');
+    });
 
-ros.on('error', function(error) {
-    console.log('Error connecting to websocket server: ', error);
-    $('.connection-status').addClass('badge-danger')
-    $('.connection-status').removeClass('badge-success')
-    $('.connection-status').html('Offline');
-});
+    ros.on('error', function(error) {
+        console.log('Error connecting to websocket server: ', error);
+        $('.connection-status').addClass('badge-danger')
+        $('.connection-status').removeClass('badge-success')
+        $('.connection-status').html('Offline');
+    });
 
-ros.on('close', function() {
-    console.log('Connection to websocket server closed.');
-    $('.connection-status').addClass('badge-danger')
-    $('.connection-status').removeClass('badge-success')
-    $('.connection-status').html('Offline');
-});
+    ros.on('close', function() {
+        console.log('Connection to websocket server closed.');
+        $('.connection-status').addClass('badge-danger')
+        $('.connection-status').removeClass('badge-success')
+        $('.connection-status').html('Offline');
+    });
 
-$('.connection-status').on('click', function(){
-    ros.connect(ws_url);
-});
+    $('.connection-status').on('click', function(){
+        ros.connect(ws_url);
+    });
 
-var speechText = new ROSLIB.Topic({
-    ros : ros,
-    name : '/speech',
-    messageType : 'std_msgs/String'
-});
+    var speechText = new ROSLIB.Topic({
+        ros : ros,
+        name : '/speech',
+        messageType : 'std_msgs/String'
+    });
 
-var jointsTest = new ROSLIB.Topic({
-    ros : ros,
-    name : '/reset_joints',
-    messageType : 'std_msgs/Empty'
-});
+    var jointsTest = new ROSLIB.Topic({
+        ros : ros,
+        name : '/reset_joints',
+        messageType : 'std_msgs/Empty'
+    });
 
-var speechVoiceName = new ROSLIB.Topic({
-    ros : ros,
-    name : '/speech_settings/voice_name',
-    messageType : 'std_msgs/String'
-});
+    var speechVoiceName = new ROSLIB.Topic({
+        ros : ros,
+        name : '/speech_settings/voice_name',
+        messageType : 'std_msgs/String'
+    });
 
-var movementPublisher = new ROSLIB.Topic({
-    ros : ros,
-    name : '/cmd_vel',
-    messageType : 'geometry_msgs/Twist'
-});
+    var movementPublisher = new ROSLIB.Topic({
+        ros : ros,
+        name : '/cmd_vel',
+        messageType : 'geometry_msgs/Twist'
+    });
 
-var limbMovementPublisher = new ROSLIB.Topic({
-    ros : ros,
-    name : '/move_joints',
-    messageType : 'csjbot_alice/JointMovement',
-    latch: true
-});
+    var limbMovementPublisher = new ROSLIB.Topic({
+        ros : ros,
+        name : '/move_joints',
+        messageType : 'csjbot_alice/JointMovement',
+        latch: true
+    });
 
-var limbResetPublisher = new ROSLIB.Topic({
-    ros : ros,
-    name : '/reset_joints',
-    messageType : 'std_msg/Empty'
-});
+    var limbResetPublisher = new ROSLIB.Topic({
+        ros : ros,
+        name : '/reset_joints',
+        messageType : 'std_msg/Empty'
+    });
 
-var expressionPublisher = new ROSLIB.Topic({
-    ros : ros,
-    name : '/expression',
-    messageType : 'csjbot_alice/Expression'
-});
+    var expressionPublisher = new ROSLIB.Topic({
+        ros : ros,
+        name : '/expression',
+        messageType : 'csjbot_alice/Expression'
+    });
 
-var videoSubscriber = new ROSLIB.Topic({
-    ros : ros,
-    name : '/video_on',
-    messageType : 'std_msgs/Bool'
-});
+    var videoSubscriber = new ROSLIB.Topic({
+        ros : ros,
+        name : '/video_on',
+        messageType : 'std_msgs/Bool'
+    });
 
-videoSubscriber.subscribe(function(message) {
-    console.log('Received message on ' + videoSubscriber.name + ': ' + message.data);
-    if (message.data == true) {
-        $('.visuals').removeClass('alert-danger');
-        $('.visuals').addClass('alert alert-success');
-    } else {
-        $('.visuals').removeClass('alert-success');
-        $('.visuals').addClass('alert alert-danger');
-    }
-});
+    videoSubscriber.subscribe(function(message) {
+        console.log('Received message on ' + videoSubscriber.name + ': ' + message.data);
+        if (message.data == true) {
+            $('.visuals').removeClass('alert-danger');
+            $('.visuals').addClass('alert alert-success');
+        } else {
+            $('.visuals').removeClass('alert-success');
+            $('.visuals').addClass('alert alert-danger');
+        }
+    });
 
-$('.publish-speech').on('click', function(){
-    speak($('.custom-text-to-speak').val());
-    $('.custom-text-to-speak').val('');
-});
+    $('.publish-speech').on('click', function(){
+        speak($('.custom-text-to-speak').val());
+        $('.custom-text-to-speak').val('');
+    });
 
-$('.quick-speak, .long-speak').on('click', function(){
-    speak($(this).html());
-});
+    $('.quick-speak, .long-speak').on('click', function(){
+        speak($(this).html());
+    });
 
-$('.movement').on('click', function() {
-    move($(this).data('linear'), $(this).data('angular'));
-});
+    $('.movement').on('click', function() {
+        move($(this).data('linear'), $(this).data('angular'));
+    });
 
-$(".voice-option").click(function(){
-    change_voice($(this).data('voice'));
-});
+    $(".voice-option").click(function(){
+        change_voice($(this).data('voice'));
+    });
 
-$('input[type=range]').on("change", $.throttle(250, function() {
-    moveLimbs($(this).data('limb'));
-}));
+    $('input[type=range]').on("change", $.throttle(250, function() {
+        moveLimbs($(this).data('limb'));
+    }));
 
-$('.link-arms').on('click', function(){
-    if ($(this).data('state') == "off") {
-        $(this).removeClass('btn-secondary');
-        $(this).addClass('btn-success');
-        $(this).data('state', 'on');
-    } else {
-        $(this).removeClass('btn-success');
-        $(this).addClass('btn-secondary');
-        $(this).data('state', 'off');
-    }
+    $('.link-arms').on('click', function(){
+        if ($(this).data('state') == "off") {
+            $(this).removeClass('btn-secondary');
+            $(this).addClass('btn-success');
+            $(this).data('state', 'on');
+        } else {
+            $(this).removeClass('btn-success');
+            $(this).addClass('btn-secondary');
+            $(this).data('state', 'off');
+        }
+    });
+
+    $('.reset-limbs').on('click', function() {
+        $('.appendix-movement').val(0);
+        limbResetPublisher.publish();
+    });
+
+    change_voice($('.voice-default').data('voice'));
+
+    $('.quick-expression').on('click', function(){
+        expressionPublisher.publish(new ROSLIB.Message({data:$(this).data('expression')}));
+    });
+
 });
 
 function speak(message) {
@@ -193,14 +207,3 @@ function moveLimbs(limb_to_move) {
 
     limbMovementPublisher.publish(joint_movement);
 }
-
-$('.reset-limbs').on('click', function() {
-    $('.appendix-movement').val(0);
-    limbResetPublisher.publish();
-});
-
-change_voice($('.voice-default').data('voice'));
-
-$('.quick-expression').on('click', function(){
-    expressionPublisher.publish(new ROSLIB.Message({data:$(this).data('expression')}))
-});
