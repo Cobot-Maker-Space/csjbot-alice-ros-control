@@ -80,6 +80,110 @@ $( document ).ready(function() {
         messageType : 'std_msgs/Bool'
     });
 
+    /*** PARTS */
+
+    var partsListUpdatedSubscriber = new ROSLIB.Topic({
+        ros : ros,
+        name : '/alice/parts/updated',
+        messageType : 'csjbot_alice/PartsListUpdate'
+    });
+
+    var partTransferPublisher = new ROSLIB.Topic({
+        ros : ros,
+        name : '/alice/parts/transfer',
+        messageType : 'csjbot_alice/PartTransfer'
+    });
+
+    var parts_workshop = new ROSLIB.Param({
+        ros : ros,
+        name :  '/alice/parts/workshop'
+    });
+
+    var parts_intransit = new ROSLIB.Param({
+        ros : ros,
+        name :  '/alice/parts/intransit'
+    });
+
+    var parts_warehouse = new ROSLIB.Param({
+        ros : ros,
+        name :  '/alice/parts/warehouse'
+    });
+
+    partsListUpdatedSubscriber.subscribe(function(message) {
+        update_parts_list(message.location_name);
+    });
+    
+    update_parts_list('warehouse');
+    update_parts_list('intransit');
+    update_parts_list('workshop');
+
+    function update_parts_list(location) {
+        if (location == 'warehouse'){
+            location_param = parts_warehouse;
+        }
+        if (location == 'intransit'){
+            location_param = parts_intransit;
+        }
+        if (location == 'workshop'){
+            location_param = parts_workshop;
+        }
+        retrieve_parts(location_param, location);
+    }
+
+    function retrieve_parts(location_param, location) {
+        $('#' + location).find('ul').empty();
+        location_param.get(function(value){
+            $.each(value, function( index, part ){
+                part_obj = $( ".templates .part" ).clone()
+                part_obj.find('.parts-name').html(part.name)
+                part_obj.find('.parts-qty').html(part.qty)
+                part_obj.data('id', part.id)
+                part_obj.data('model', part.model)
+                part_obj.data('qty', part.qty)
+                part_obj.find('[data-btntype="' + location + '"]').addClass('disabled')
+                part_obj.appendTo( "#" + location + " ul" );
+            });
+            update_counts();
+        });
+    }
+
+    function update_counts() {
+        $('.count').each(function(){
+            count = 0;
+            lis = $('#' + $(this).data('type') + ' ul').find('li');
+            lis.each(function(){
+                count += $(this).data('qty');
+            });
+            $(this).html(count);
+        });
+    }
+
+    $(document).on('click', '.btn-parts-action', function(){
+        source = $(this).parents('.parts-list').data("type");
+        target = $(this).data('btntype');
+        id = $(this).parents('.part').data('id');
+
+        partTransferPublisher.publish(
+            new ROSLIB.Message({
+                id: id,
+                location_source: source,
+                location_target: target,
+            })
+        );
+    });
+
+    $(document).on('click', '.btn-confirm-parts', function(){
+        var parts_speech = "I have the following parts on my tray. "
+        $('#intransit').find('li').each(function() {
+            parts_speech += $(this).find('.parts-qty').html() + " " + $(this).find('.parts-name').html() + ". ";
+        });  
+
+        console.log(parts_speech);
+    });
+
+    
+    /*** END PARTS */
+
     videoSubscriber.subscribe(function(message) {
         console.log('Received message on ' + videoSubscriber.name + ': ' + message.data);
         if (message.data == true) {
@@ -142,7 +246,8 @@ function speak(message) {
 }
 
 function change_voice(voicename) {
-    speechVoiceName.publish(new ROSLIB.Message({data:voicename}))
+    // TODO - fix undeclared vcar error in console - DO NOT COMMIT
+    // speechVoiceName.publish(new ROSLIB.Message({data:voicename}))
 }
 
 function move(linear, angular) {

@@ -56,6 +56,8 @@ add_message_files(
     JointPosition.msg
     SpeechSettings.msg
     SpeechSettingVoice.msg
+    PartTransfer.msg
+    PartsListUpdate.msg
 )
 
 ## Generate services in the 'srv' folder

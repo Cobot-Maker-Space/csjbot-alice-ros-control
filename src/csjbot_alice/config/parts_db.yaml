@@ -1,0 +1,123 @@
+parts:
+  warehouse:
+    - id: 1
+      model: Grabber
+      name: Beam 3 x 5 L-Shape Thick
+      qty: 2
+    - id: 2
+      model: Grabber
+      name: Axle 2 Notched
+      qty: 3
+    - id: 3
+      model: Grabber
+      name: Axle 5
+      qty: 1
+    - id: 4
+      model: Grabber
+      name: Axle and Pin Connector Perpendicular Double Split
+      qty: 2
+    - id: 5
+      model: Grabber
+      name: Axle and Pin Connector Perpendicular Double
+      qty: 2
+    - id: 6
+      model: Grabber
+      name: Axle 3
+      qty: 2
+    - id: 7
+      model: Grabber
+      name: Axle Connector
+      qty: 3
+    - id: 8
+      model: Grabber
+      name: Bush
+      qty: 2
+    - id: 9
+      model: Grabber
+      name: Pin
+      qty: 10
+    - id: 10
+      model: Grabber
+      name: Axle 6
+      qty: 2
+    - id: 11
+      model: Grabber
+      name: Beam 3 x 3 T-Shape Thick
+      qty: 2
+    - id: 12
+      model: Grabber
+      name: Angular Wheel
+      qty: 2
+    - id: 13
+      model: Grabber
+      name: Pin Long and Stop Bush
+      qty: 4
+    - id: 14
+      model: Grabber
+      name: Axle 7
+      qty: 1
+    - id: 15
+      model: Grabber
+      name: EV3 Medium Servo Motor
+      qty: 1
+    - id: 16
+      model: Grabber
+      name: Cross Block 1 x 3
+      qty: 2
+    - id: 17
+      model: Grabber
+      name: Beam 3 x 3.8 x 7 Beam Bent 45 Double
+      qty: 2
+    - id: 18
+      model: Gyroboy
+      name: Cross Block Beam 3 with Four Pins
+      qty: 1
+    - id: 19
+      model: Gyroboy
+      name: Pin Long
+      qty: 3
+    - id: 16
+      model: Gyroboy
+      name: Cross Block 1 x 3
+      qty: 2
+    - id: 20
+      model: Gyroboy
+      name: 'Panel Fairing # 2 Small Smooth Short, Side B'
+      qty: 1
+    - id: 21
+      model: Gyroboy
+      name: Beam 1 x 5 Thick
+      qty: 2
+    - id: 22
+      model: Gyroboy
+      name: Long Pin with Center Hole
+      qty: 1
+    - id: 23
+      model: Gyroboy
+      name: EV3 Ultrasonic Sensor
+      qty: 1
+    - id: 24
+      model: Gyroboy
+      name: Link Tread Wide with Two Pin Holes
+      qty: 1
+    - id: 25
+      model: Gyroboy
+      name: Technic Axle Pin
+      qty: 5
+    - id: 26
+      model: Gyroboy
+      name: Beam 1 x 9 Bent (6 – 4) Thick
+      qty: 1
+    - id: 27
+      model: Gyroboy
+      name: Beam 1 x 1 Thick
+      qty: 1
+    - id: 28
+      model: Gyroboy
+      name: EV3 Sensor Colour
+      qty: 1
+    - id: 29
+      model: Gyroboy
+      name: Beam 1 x 7 Bent (4 – 4) Thick
+      qty: 1
+  
