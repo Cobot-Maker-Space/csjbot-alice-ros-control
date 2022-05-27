@@ -177,8 +177,7 @@ $( document ).ready(function() {
         $('#intransit').find('li').each(function() {
             parts_speech += $(this).find('.parts-qty').html() + " " + $(this).find('.parts-name').html() + ". ";
         });  
-
-        console.log(parts_speech);
+        speak(parts_speech);
     });
 
     
