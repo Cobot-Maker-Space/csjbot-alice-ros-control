@@ -173,16 +173,16 @@ $( document ).ready(function() {
     });
 
     $(document).on('click', '.btn-confirm-parts', function(){
-        var parts_speech = "I have the following parts on my tray. "
+        var parts_speech = "";
         $('#intransit').find('li').each(function() {
             parts_speech += $(this).find('.parts-qty').html() + " " + $(this).find('.parts-name').html() + ". ";
         });  
         if (parts_speech == '') {
             parts_speech = 'My tray is empty. I have no parts.';
         } else {
-            parts_speech = "I have the following parts on my tray. " + parts_speech
+            parts_speech = "I have the following parts on my tray. " + parts_speech;
         }
-        
+
         speak(parts_speech);
     });
 
