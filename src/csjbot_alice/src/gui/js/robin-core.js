@@ -239,16 +239,15 @@ $( document ).ready(function() {
         expressionPublisher.publish(new ROSLIB.Message({data:$(this).data('expression')}));
     });
 
+    function speak(message) {
+        speechText.publish(new ROSLIB.Message({data:message}));
+    }
+    
+    function change_voice(voicename) {
+        speechVoiceName.publish(new ROSLIB.Message({data:voicename}))
+    }
+
 });
-
-function speak(message) {
-    speechText.publish(new ROSLIB.Message({data:message}));
-}
-
-function change_voice(voicename) {
-    // TODO - fix undeclared vcar error in console - DO NOT COMMIT
-    // speechVoiceName.publish(new ROSLIB.Message({data:voicename}))
-}
 
 function move(linear, angular) {
     if(linear > 0.5) linear = 0.5;
