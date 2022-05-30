@@ -95,7 +95,7 @@ $( document ).ready(function() {
                 $.each(item, function( name, speechset ){
                     if (name == "short") {
                         $.each(speechset, function(i, phrase){
-                            $( ".templates .quick-speak" ).clone().html(phrase).appendTo(".speech-options-short");
+                            $( ".templates .quick-speak" ).clone().html(phrase).data('phrase', phrase).appendTo(".speech-options-short");
                         });
                     }
                     if (name == "long") {
@@ -238,6 +238,7 @@ $( document ).ready(function() {
     });
 
     $(document).on('click', '.quick-speak, .long-speak', function(){
+        console.log('hit');
         speak($(this).data('phrase'));
     });
 
