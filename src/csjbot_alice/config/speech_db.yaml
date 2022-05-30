@@ -1,0 +1,38 @@
+#split each config sub set into contexts (e.g. an event, an experiment, etc).
+speechsets: 
+  general:
+      - name: "General Speech"
+      - short:
+        - Hello
+        - Hello I'm Robin
+        - I'm pleased to meet you
+        - I'm sorry I don't understand
+        - Yes please
+        - No thanks
+        - Goodbye
+        - Have a great day
+      - long: 
+        - "Here is the food that you ordered"
+        - "Let me check. It contains 492 calories"
+        - "I hope you enjoy it. Have a great day"
+        - "Welcome to the Co Maker Space. Feel free to have a look round"
+        - "Hi I'm Robin and I welcome you to the Co Maker Space"
+        - "Welcome. My name is Robin. Ask me if you have any questions"
+        - "I was born in China, but I was made in Nottingham"
+
+  hri:
+      - name: "Human-Robot Interaction"
+      - short:
+        - Can I help with anything? 
+        - I'll take that through
+        - How can I help?
+        - Yes please
+        - No thanks
+        - Thank you
+        - I'm sorry I don't understand
+      - long: 
+        - "Hello. My name is Robin. I am a service robot. I am here to move parts around for you as you need. You can place up to 6 parts on the tray in front of me and then ask me to take them between the Warehouse and the Workshop. To get my attention, make sure you say my name first, Robin, so I know that you are talking to me."
+        - "Parts Team, please follow me to the Warehouse"
+        - "I can take parts through, I can get the Facilitator, I can check parts, I can take a message to the other team, etc…"
+        - "I cannot help with that, I will get the researcher "
+        - "There are <6> parts on this tray, would you like me to check them before I take them through?"

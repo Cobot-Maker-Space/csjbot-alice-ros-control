@@ -80,6 +80,38 @@ $( document ).ready(function() {
         messageType : 'std_msgs/Bool'
     });
 
+    /*** SPEECH */
+    retrieve_speechset('hri'); //TODO - remove hard coding and add dropdown option to allow changing subset
+
+    function retrieve_speechset(set) {
+        var speechset_short_param = new ROSLIB.Param({
+            ros : ros,
+            name :  '/alice/speech/' + set
+        });
+
+        $('.speech-options-long, .speech-options-short').html("");
+        speechset_short_param.get(function(value){
+            $.each(value, function( index, item ){
+                $.each(item, function( name, speechset ){
+                    if (name == "short") {
+                        $.each(speechset, function(i, phrase){
+                            $( ".templates .quick-speak" ).clone().html(phrase).appendTo(".speech-options-short");
+                        });
+                    }
+                    if (name == "long") {
+                        $.each(speechset, function(i, phrase){
+                            display_phrase = phrase;
+                            if (phrase.length > 60) {
+                                display_phrase = phrase.substring(0, 60) + "...";
+                            }
+                            $( ".templates .long-speak" ).clone().html(display_phrase).data('phrase', phrase).appendTo(".speech-options-long");
+                        });
+                    }
+                });
+            });
+        });
+    }
+
     /*** PARTS */
 
     var partsListUpdatedSubscriber = new ROSLIB.Topic({
@@ -205,8 +237,8 @@ $( document ).ready(function() {
         $('.custom-text-to-speak').val('');
     });
 
-    $('.quick-speak, .long-speak').on('click', function(){
-        speak($(this).html());
+    $(document).on('click', '.quick-speak, .long-speak', function(){
+        speak($(this).data('phrase'));
     });
 
     $('.movement').on('click', function() {
