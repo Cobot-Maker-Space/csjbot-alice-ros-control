@@ -285,67 +285,66 @@ $( document ).ready(function() {
         speechVoiceName.publish(new ROSLIB.Message({data:voicename}))
     }
 
+    function move(linear, angular) {
+        if(linear > 0.5) linear = 0.5;
+        if(linear < -0.5) linear = -0.5;
+        if(angular > 1) angular = 1;
+        if(angular < -1) angular = -1;
+    
+        var twist = new ROSLIB.Message({
+            linear: { x: linear, y: 0, z: 0 },
+            angular: { x: 0, y: 0, z: angular}
+        });
+        movementPublisher.publish(twist);
+    }
+    
+    function moveLimbs(limb_to_move) {
+        neck_move = false;
+        left_arm_move = false;
+        right_arm_move = false;
+    
+        neck_pos = parseInt(-$('.neck').val());
+        left_arm_pos = parseInt($('.left-arm').val());
+        right_arm_pos = parseInt($('.right-arm').val());
+    
+        switch (limb_to_move){
+            case 'neck':
+                neck_move = true;
+                break;
+    
+            case 'left_arm':
+                left_arm_move = true;
+                if ($('.link-arms').data('state') == "on") {
+                    right_arm_move = true;
+                    right_arm_pos = left_arm_pos;
+                    $('.right-arm').val(left_arm_pos)
+                }
+                break;
+    
+            case 'right_arm':
+                right_arm_move = true;
+                if ($('.link-arms').data('state') == "on") {
+                    left_arm_move = true;
+                    left_arm_pos = right_arm_pos;
+                    $('.left-arm').val(right_arm_pos)
+                }
+                break;
+    
+        }
+    
+        var joint_movement = new ROSLIB.Message({
+            neck: neck_move,
+            neck_to: neck_pos,
+            neck_speed: 5000,
+            left_arm: left_arm_move,
+            left_arm_to: left_arm_pos,
+            left_arm_speed: 3000,
+            right_arm: right_arm_move,
+            right_arm_to: right_arm_pos,
+            right_arm_speed: 3000
+        });
+    
+        limbMovementPublisher.publish(joint_movement);
+    }
 });
 
-function move(linear, angular) {
-    if(linear > 0.5) linear = 0.5;
-    if(linear < -0.5) linear = -0.5;
-    if(angular > 1) angular = 1;
-    if(angular < -1) angular = -1;
-
-    var twist = new ROSLIB.Message({
-        linear: { x: linear, y: 0, z: 0 },
-        angular: { x: 0, y: 0, z: angular}
-    });
-    movementPublisher.publish(twist);
-}
-
-
-function moveLimbs(limb_to_move) {
-    neck_move = false;
-    left_arm_move = false;
-    right_arm_move = false;
-
-    neck_pos = parseInt(-$('.neck').val());
-    left_arm_pos = parseInt($('.left-arm').val());
-    right_arm_pos = parseInt($('.right-arm').val());
-
-    switch (limb_to_move){
-        case 'neck':
-            neck_move = true;
-            break;
-
-        case 'left_arm':
-            left_arm_move = true;
-            if ($('.link-arms').data('state') == "on") {
-                right_arm_move = true;
-                right_arm_pos = left_arm_pos;
-                $('.right-arm').val(left_arm_pos)
-            }
-            break;
-
-        case 'right_arm':
-            right_arm_move = true;
-            if ($('.link-arms').data('state') == "on") {
-                left_arm_move = true;
-                left_arm_pos = right_arm_pos;
-                $('.left-arm').val(right_arm_pos)
-            }
-            break;
-
-    }
-
-    var joint_movement = new ROSLIB.Message({
-        neck: neck_move,
-        neck_to: neck_pos,
-        neck_speed: 5000,
-        left_arm: left_arm_move,
-        left_arm_to: left_arm_pos,
-        left_arm_speed: 3000,
-        right_arm: right_arm_move,
-        right_arm_to: right_arm_pos,
-        right_arm_speed: 3000
-    });
-
-    limbMovementPublisher.publish(joint_movement);
-}
