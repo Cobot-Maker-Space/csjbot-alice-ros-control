@@ -2,7 +2,7 @@ $( document ).ready(function() {
 
     ws_url = 'ws://' + window.location.hostname + ':9090';
 
-    var ros = new ROSLIB.Ros({
+    window.ros = new ROSLIB.Ros({
         url : ws_url
     });
 
@@ -28,120 +28,88 @@ $( document ).ready(function() {
     });
 
     $('.connection-status').on('click', function(){
-        ros.connect(ws_url);
+        window.ros.connect(ws_url);
     });
 
-    var speechText = new ROSLIB.Topic({
-        ros : ros,
+    window.speechText = new ROSLIB.Topic({
+        ros : window.ros,
         name : '/speech',
         messageType : 'std_msgs/String'
     });
 
-    var jointsTest = new ROSLIB.Topic({
-        ros : ros,
+    window.jointsTest = new ROSLIB.Topic({
+        ros : window.ros,
         name : '/reset_joints',
         messageType : 'std_msgs/Empty'
     });
 
-    var speechVoiceName = new ROSLIB.Topic({
-        ros : ros,
+    window.speechVoiceName = new ROSLIB.Topic({
+        ros : window.ros,
         name : '/speech_settings/voice_name',
         messageType : 'std_msgs/String'
     });
 
-    var movementPublisher = new ROSLIB.Topic({
-        ros : ros,
+    window.movementPublisher = new ROSLIB.Topic({
+        ros : window.ros,
         name : '/cmd_vel',
         messageType : 'geometry_msgs/Twist'
     });
 
-    var limbMovementPublisher = new ROSLIB.Topic({
-        ros : ros,
+    window.limbMovementPublisher = new ROSLIB.Topic({
+        ros : window.ros,
         name : '/move_joints',
         messageType : 'csjbot_alice/JointMovement',
         latch: true
     });
 
-    var limbResetPublisher = new ROSLIB.Topic({
-        ros : ros,
+    window.limbResetPublisher = new ROSLIB.Topic({
+        ros : window.ros,
         name : '/reset_joints',
         messageType : 'std_msg/Empty'
     });
 
-    var expressionPublisher = new ROSLIB.Topic({
-        ros : ros,
+    window.expressionPublisher = new ROSLIB.Topic({
+        ros : window.ros,
         name : '/expression',
         messageType : 'csjbot_alice/Expression'
     });
 
-    var videoSubscriber = new ROSLIB.Topic({
-        ros : ros,
+    window.videoSubscriber = new ROSLIB.Topic({
+        ros : window.ros,
         name : '/video_on',
         messageType : 'std_msgs/Bool'
     });
 
-    /*** SPEECH */
     retrieve_speechset('hri'); //TODO - remove hard coding and add dropdown option to allow changing subset
 
-    function retrieve_speechset(set) {
-        var speechset_short_param = new ROSLIB.Param({
-            ros : ros,
-            name :  '/alice/speechsets/' + set
-        });
-
-        $('.speech-options-long, .speech-options-short').html("");
-        speechset_short_param.get(function(value){
-            $.each(value, function( index, item ){
-                $.each(item, function( name, speechset ){
-                    if (name == "short") {
-                        $.each(speechset, function(i, phrase){
-                            $( ".templates .quick-speak" ).clone().html(phrase).data('phrase', phrase).appendTo(".speech-options-short");
-                        });
-                    }
-                    if (name == "long") {
-                        $.each(speechset, function(i, phrase){
-                            display_phrase = phrase;
-                            if (phrase.length > 60) {
-                                display_phrase = phrase.substring(0, 60) + "...";
-                            }
-                            $( ".templates .long-speak" ).clone().html(display_phrase).data('phrase', phrase).appendTo(".speech-options-long");
-                        });
-                    }
-                });
-            });
-        });
-    }
-
-    /*** PARTS */
-
-    var partsListUpdatedSubscriber = new ROSLIB.Topic({
-        ros : ros,
+    window.partsListUpdatedSubscriber = new ROSLIB.Topic({
+        ros : window.ros,
         name : '/alice/parts/updated',
         messageType : 'csjbot_alice/PartsListUpdate'
     });
 
-    var partTransferPublisher = new ROSLIB.Topic({
-        ros : ros,
+    window.partTransferPublisher = new ROSLIB.Topic({
+        ros : window.ros,
         name : '/alice/parts/transfer',
         messageType : 'csjbot_alice/PartTransfer'
     });
 
-    var parts_workshop = new ROSLIB.Param({
-        ros : ros,
+    window.parts_workshop = new ROSLIB.Param({
+        ros : window.ros,
         name :  '/alice/parts/workshop'
     });
 
-    var parts_intransit = new ROSLIB.Param({
-        ros : ros,
+    window.parts_intransit = new ROSLIB.Param({
+        ros : window.ros,
         name :  '/alice/parts/intransit'
     });
 
-    var parts_warehouse = new ROSLIB.Param({
-        ros : ros,
+    window.parts_warehouse = new ROSLIB.Param({
+        ros : window.ros,
         name :  '/alice/parts/warehouse'
     });
 
-    partsListUpdatedSubscriber.subscribe(function(message) {
+    window.partsListUpdatedSubscriber.subscribe(function(message) {
         update_parts_list(message.location_name);
     });
     
@@ -149,53 +117,12 @@ $( document ).ready(function() {
     update_parts_list('intransit');
     update_parts_list('workshop');
 
-    function update_parts_list(location) {
-        if (location == 'warehouse'){
-            location_param = parts_warehouse;
-        }
-        if (location == 'intransit'){
-            location_param = parts_intransit;
-        }
-        if (location == 'workshop'){
-            location_param = parts_workshop;
-        }
-        retrieve_parts(location_param, location);
-    }
-
-    function retrieve_parts(location_param, location) {
-        $('#' + location).find('ul').empty();
-        location_param.get(function(value){
-            $.each(value, function( index, part ){
-                part_obj = $( ".templates .part" ).clone()
-                part_obj.find('.parts-name').html(part.name)
-                part_obj.find('.parts-qty').html(part.qty)
-                part_obj.data('id', part.id)
-                part_obj.data('model', part.model)
-                part_obj.data('qty', part.qty)
-                part_obj.find('[data-btntype="' + location + '"]').addClass('disabled')
-                part_obj.appendTo( "#" + location + " ul" );
-            });
-            update_counts();
-        });
-    }
-
-    function update_counts() {
-        $('.count').each(function(){
-            count = 0;
-            lis = $('#' + $(this).data('type') + ' ul').find('li');
-            lis.each(function(){
-                count += $(this).data('qty');
-            });
-            $(this).html(count);
-        });
-    }
-
     $(document).on('click', '.btn-parts-action', function(){
         source = $(this).parents('.parts-list').data("type");
         target = $(this).data('btntype');
         id = $(this).parents('.part').data('id');
 
-        partTransferPublisher.publish(
+        window.partTransferPublisher.publish(
             new ROSLIB.Message({
                 id: id,
                 location_source: source,
@@ -218,11 +145,8 @@ $( document ).ready(function() {
         speak(parts_speech);
     });
 
-    
-    /*** END PARTS */
-
-    videoSubscriber.subscribe(function(message) {
-        console.log('Received message on ' + videoSubscriber.name + ': ' + message.data);
+    window.videoSubscriber.subscribe(function(message) {
+        console.log('Received message on ' + window.videoSubscriber.name + ': ' + message.data);
         if (message.data == true) {
             $('.visuals').removeClass('alert-danger');
             $('.visuals').addClass('alert alert-success');
@@ -238,7 +162,6 @@ $( document ).ready(function() {
     });
 
     $(document).on('click', '.quick-speak, .long-speak', function(){
-        console.log('hit');
         speak($(this).data('phrase'));
     });
 
@@ -268,83 +191,154 @@ $( document ).ready(function() {
 
     $('.reset-limbs').on('click', function() {
         $('.appendix-movement').val(0);
-        limbResetPublisher.publish();
+        window.limbResetPublisher.publish();
     });
 
     change_voice($('.voice-default').data('voice'));
 
     $('.quick-expression').on('click', function(){
-        expressionPublisher.publish(new ROSLIB.Message({data:$(this).data('expression')}));
+        window.expressionPublisher.publish(new ROSLIB.Message({data:$(this).data('expression')}));
     });
 
-    function speak(message) {
-        speechText.publish(new ROSLIB.Message({data:message}));
-    }
     
-    function change_voice(voicename) {
-        speechVoiceName.publish(new ROSLIB.Message({data:voicename}))
-    }
-
-    function move(linear, angular) {
-        if(linear > 0.5) linear = 0.5;
-        if(linear < -0.5) linear = -0.5;
-        if(angular > 1) angular = 1;
-        if(angular < -1) angular = -1;
-    
-        var twist = new ROSLIB.Message({
-            linear: { x: linear, y: 0, z: 0 },
-            angular: { x: 0, y: 0, z: angular}
-        });
-        movementPublisher.publish(twist);
-    }
-    
-    function moveLimbs(limb_to_move) {
-        neck_move = false;
-        left_arm_move = false;
-        right_arm_move = false;
-    
-        neck_pos = parseInt(-$('.neck').val());
-        left_arm_pos = parseInt($('.left-arm').val());
-        right_arm_pos = parseInt($('.right-arm').val());
-    
-        switch (limb_to_move){
-            case 'neck':
-                neck_move = true;
-                break;
-    
-            case 'left_arm':
-                left_arm_move = true;
-                if ($('.link-arms').data('state') == "on") {
-                    right_arm_move = true;
-                    right_arm_pos = left_arm_pos;
-                    $('.right-arm').val(left_arm_pos)
-                }
-                break;
-    
-            case 'right_arm':
-                right_arm_move = true;
-                if ($('.link-arms').data('state') == "on") {
-                    left_arm_move = true;
-                    left_arm_pos = right_arm_pos;
-                    $('.left-arm').val(right_arm_pos)
-                }
-                break;
-    
-        }
-    
-        var joint_movement = new ROSLIB.Message({
-            neck: neck_move,
-            neck_to: neck_pos,
-            neck_speed: 5000,
-            left_arm: left_arm_move,
-            left_arm_to: left_arm_pos,
-            left_arm_speed: 3000,
-            right_arm: right_arm_move,
-            right_arm_to: right_arm_pos,
-            right_arm_speed: 3000
-        });
-    
-        limbMovementPublisher.publish(joint_movement);
-    }
 });
 
+function retrieve_speechset(set) {
+    var speechset_short_param = new ROSLIB.Param({
+        ros : ros,
+        name :  '/alice/speechsets/' + set
+    });
+
+    $('.speech-options-long, .speech-options-short').html("");
+    speechset_short_param.get(function(value){
+        $.each(value, function( index, item ){
+            $.each(item, function( name, speechset ){
+                if (name == "short") {
+                    $.each(speechset, function(i, phrase){
+                        $( ".templates .quick-speak" ).clone().html(phrase).data('phrase', phrase).appendTo(".speech-options-short");
+                    });
+                }
+                if (name == "long") {
+                    $.each(speechset, function(i, phrase){
+                        display_phrase = phrase;
+                        if (phrase.length > 60) {
+                            display_phrase = phrase.substring(0, 60) + "...";
+                        }
+                        $( ".templates .long-speak" ).clone().html(display_phrase).data('phrase', phrase).appendTo(".speech-options-long");
+                    });
+                }
+            });
+        });
+    });
+}
+
+function update_parts_list(location) {
+    if (location == 'warehouse'){
+        location_param = parts_warehouse;
+    }
+    if (location == 'intransit'){
+        location_param = parts_intransit;
+    }
+    if (location == 'workshop'){
+        location_param = parts_workshop;
+    }
+    retrieve_parts(location_param, location);
+}
+
+function retrieve_parts(location_param, location) {
+    $('#' + location).find('ul').empty();
+    location_param.get(function(value){
+        $.each(value, function( index, part ){
+            part_obj = $( ".templates .part" ).clone()
+            part_obj.find('.parts-name').html(part.name)
+            part_obj.find('.parts-qty').html(part.qty)
+            part_obj.data('id', part.id)
+            part_obj.data('model', part.model)
+            part_obj.data('qty', part.qty)
+            part_obj.find('[data-btntype="' + location + '"]').addClass('disabled')
+            part_obj.appendTo( "#" + location + " ul" );
+        });
+        update_counts();
+    });
+}
+
+function update_counts() {
+    $('.count').each(function(){
+        count = 0;
+        lis = $('#' + $(this).data('type') + ' ul').find('li');
+        lis.each(function(){
+            count += $(this).data('qty');
+        });
+        $(this).html(count);
+    });
+}
+
+function speak(message) {
+    window.speechText.publish(new ROSLIB.Message({data:message}));
+}
+
+function change_voice(voicename) {
+    window.speechVoiceName.publish(new ROSLIB.Message({data:voicename}))
+}
+
+function moveLimbs(limb_to_move) {
+    neck_move = false;
+    left_arm_move = false;
+    right_arm_move = false;
+
+    neck_pos = parseInt(-$('.neck').val());
+    left_arm_pos = parseInt($('.left-arm').val());
+    right_arm_pos = parseInt($('.right-arm').val());
+
+    switch (limb_to_move){
+        case 'neck':
+            neck_move = true;
+            break;
+
+        case 'left_arm':
+            left_arm_move = true;
+            if ($('.link-arms').data('state') == "on") {
+                right_arm_move = true;
+                right_arm_pos = left_arm_pos;
+                $('.right-arm').val(left_arm_pos)
+            }
+            break;
+
+        case 'right_arm':
+            right_arm_move = true;
+            if ($('.link-arms').data('state') == "on") {
+                left_arm_move = true;
+                left_arm_pos = right_arm_pos;
+                $('.left-arm').val(right_arm_pos)
+            }
+            break;
+
+    }
+
+    var joint_movement = new ROSLIB.Message({
+        neck: neck_move,
+        neck_to: neck_pos,
+        neck_speed: 5000,
+        left_arm: left_arm_move,
+        left_arm_to: left_arm_pos,
+        left_arm_speed: 3000,
+        right_arm: right_arm_move,
+        right_arm_to: right_arm_pos,
+        right_arm_speed: 3000
+    });
+
+    window.limbMovementPublisher.publish(joint_movement);
+}
+
+function move(linear, angular) {
+    if(linear > 0.5) linear = 0.5;
+    if(linear < -0.5) linear = -0.5;
+    if(angular > 1) angular = 1;
+    if(angular < -1) angular = -1;
+
+    var twist = new ROSLIB.Message({
+        linear: { x: linear, y: 0, z: 0 },
+        angular: { x: 0, y: 0, z: angular}
+    });
+    window.movementPublisher.publish(twist);
+}
