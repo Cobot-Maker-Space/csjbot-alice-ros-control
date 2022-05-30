@@ -55,7 +55,7 @@ class VideoHandler(BaseHandler):
         asyncio.run(self.receive_stream())
 
     async def receive_stream(self):
-        print("Starting stream")
+        rospy.loginfo("Starting video stream")
         reader, writer = await asyncio.open_connection(self.video_host, self.video_port)
 
         header_bytes = bytearray(b'\xff\xfe\xfd\xfc\xfb\xfa\xd8')
@@ -105,7 +105,7 @@ class VideoHandler(BaseHandler):
                     end_pos = -1
                     data = b""
             
-        print('Close the connection')
+        rospy.loginfo('Close the connection')
         writer.close()
         await writer.wait_closed()
 
