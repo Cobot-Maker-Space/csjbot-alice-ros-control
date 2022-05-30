@@ -86,7 +86,7 @@ $( document ).ready(function() {
     function retrieve_speechset(set) {
         var speechset_short_param = new ROSLIB.Param({
             ros : ros,
-            name :  '/alice/speech/' + set
+            name :  '/alice/speechsets/' + set
         });
 
         $('.speech-options-long, .speech-options-short').html("");
