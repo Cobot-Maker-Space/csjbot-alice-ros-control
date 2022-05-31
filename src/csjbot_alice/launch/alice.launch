@@ -22,6 +22,10 @@
         <param name="baud" value="$(arg serial_speed)" />
     </node>
 
+    <node name="web_video_server" pkg="web_video_server" type="web_video_server">
+        <param name="topic" value="/camera/image" />
+    </node>
+    
     <group ns="alice">
         <rosparam file="$(find csjbot_alice)/config/speech_db.yaml" />
         <rosparam file="$(find csjbot_alice)/config/parts_db.yaml" />
