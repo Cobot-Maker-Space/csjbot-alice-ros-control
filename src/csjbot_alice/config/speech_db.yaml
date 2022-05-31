@@ -20,7 +20,7 @@ speechsets:
         - "Welcome. My name is Robin. Ask me if you have any questions"
         - "I was born in China, but I was made in Nottingham"
 
-  hri:
+  rmi:
       - name: "Human-Robot Interaction"
       - short:
         - Can I help with anything? 

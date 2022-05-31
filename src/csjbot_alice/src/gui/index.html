@@ -27,18 +27,26 @@
             <div class="col-8 header p5 bg-dark text-white text-center">
                 <h1>Robin <i class="fas fa-robot robot pr-4 pl-4 mb-2"></i> W.O.Z.</h1>
             </div>
-            <div class="col-2 header p5 bg-dark text-white text-center">
+            <div class="col-2 header p5 bg-dark text-white text-left">
                 <button type="button" class="btn btn-dark">
                     <i class="fa-solid fa-computer pr-2"></i>
                     Status: <span class="ml-2 connection-status badge badge-danger">Offline</span>
                 </button>
+                <div class="dropdown ml-2">
+                    <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Context
+                    </button>
+                    <div class="dropdown-menu contexts small" aria-labelledby="dropdownMenuButton">
+                     
+                    </div>
+                  </div>
             </div>
         </div>
     </div>
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-4 p-1">
+            <div class="col-4 p-1 panel-movement">
                 <div class="row">
                     <div class="col-12">
                         <div class="row">
@@ -103,7 +111,7 @@
                 </div>
             </div>
             <div class="col-4 p-1">
-                <div class="card mt-2">
+                <div class="card mt-2 panel-visualise">
                     <div class="card-header visuals text-center">
                         <i class="fa-solid fa-video pr-2"></i>
                         Visualisation
@@ -112,7 +120,7 @@
                         <div class="video-frame" id="mjpeg"></div>
                     </div>
                 </div>
-                <div class="card mt-2">
+                <div class="card mt-2 panel-parts">
                     <div class="card-header visuals text-center">
                         <i class="fa-solid fa-cubes-stacked pr-2"></i>
                         Parts Database
@@ -148,7 +156,7 @@
                 </div>
             </div>
             <div class="col-4 p-1">
-                <div class="card mt-2">
+                <div class="card mt-2 panel-speech">
                     <div class="card-header text-center"><i class="fa-regular fa-comments pr-3"></i>Speech Center</div>
                     <div class="card-body">
                         <div class="row">
@@ -196,7 +204,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card mt-2">
+                <div class="card mt-2 panel-expressions">
                     <div class="card-header text-center"><i class="fa-regular fa-face-grimace pr-3"></i>Expressions</div>
                     <div class="card-body">
                         <div class="row">
@@ -238,6 +246,7 @@
         </li>
         <button type="button" class="quick-speak btn btn-primary btn-sm m-1" data-phrase=""></button>
         <a class="dropdown-item long-speak" data-phrase="" href="#"></a>                                          
+        <a class="dropdown-item context" data-id="" href="#"></a>
     </div>
 
 </body>
