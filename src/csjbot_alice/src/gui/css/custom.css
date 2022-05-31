@@ -25,8 +25,6 @@ div {
 
 .video-frame {
     min-height: 195px;
-    border: 1pt #999 solid;
-    background-color: #eee;
 }
 .vertical-joy-align, .vertical-joy-align i {
     line-height: 200px;
