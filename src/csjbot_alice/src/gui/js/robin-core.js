@@ -234,6 +234,8 @@ function retrieve_speechset(set) {
             });
         });
     });
+
+    init_video_stream();
 }
 
 function update_parts_list(location) {
@@ -345,4 +347,15 @@ function move(linear, angular) {
         angular: { x: 0, y: 0, z: angular}
     });
     window.movementPublisher.publish(twist);
+}
+
+function init_video_stream() {
+    console.log("koading");
+    var viewer = new MJPEGCANVAS.Viewer({
+        divID : 'mjpeg',
+        host : window.location.hostname,
+        width : 320,
+        height : 240,
+        topic : '/camera/image'
+    });
 }

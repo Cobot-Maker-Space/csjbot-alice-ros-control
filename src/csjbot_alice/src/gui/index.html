@@ -5,13 +5,16 @@
         <script type="text/javascript" src="js/throttle-debounce.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="js/roslib.min.js"></script>
+        <script type="text/javascript" src="js/eventemitter2.min.js"></script>
+        <script type="text/javascript" src="js/mjpegcanvas.min.js"></script>
+
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
         <link rel="stylesheet" href="css/custom.css">
 
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.7.3/nipplejs.js"></script>
         <meta name="apple-mobile-web-app-capable" content="yes">
-
+        
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
         </style>
@@ -106,7 +109,7 @@
                         Visualisation
                     </div>
                     <div class="card-body">
-                        <div class="video-frame"></div>
+                        <div class="video-frame" id="mjpeg"></div>
                     </div>
                 </div>
                 <div class="card mt-2">
