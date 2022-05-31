@@ -1,0 +1,17 @@
+contexts:
+  general:
+    name: General Demo
+    panels: 
+      - speech
+      - visualise
+      - movement
+      - expressions
+  rmi:
+    name: Robots Mediating Interaction
+    panels:
+      - parts
+      - speech
+      - visualise
+      - movement
+
+  

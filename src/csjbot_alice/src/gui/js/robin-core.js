@@ -79,9 +79,7 @@ $( document ).ready(function() {
         name : '/video_on',
         messageType : 'std_msgs/Bool'
     });
-
-    retrieve_speechset('hri'); //TODO - remove hard coding and add dropdown option to allow changing subset
-
+ 
     window.partsListUpdatedSubscriber = new ROSLIB.Topic({
         ros : window.ros,
         name : '/alice/parts/updated',
@@ -113,10 +111,6 @@ $( document ).ready(function() {
         update_parts_list(message.location_name);
     });
     
-    update_parts_list('warehouse');
-    update_parts_list('intransit');
-    update_parts_list('workshop');
-
     $(document).on('click', '.btn-parts-action', function(){
         source = $(this).parents('.parts-list').data("type");
         target = $(this).data('btntype');
@@ -198,14 +192,63 @@ $( document ).ready(function() {
         window.limbResetPublisher.publish();
     });
 
-    change_voice($('.voice-default').data('voice'));
-
     $('.quick-expression').on('click', function(){
         window.expressionPublisher.publish(new ROSLIB.Message({data:$(this).data('expression')}));
     });
 
+    $(document).on('click', '.context', function(){
+        // Clear up UI in prep
+        $('.context').removeClass('active');
+        $(this).addClass('active');
+
+        $('.panel-visualise, .panel-parts, .panel-speech, .panel-expressions, .panel-movement').addClass('d-none');
+
+        context = $(this).data('id');
+        var contexts_details = new ROSLIB.Param({
+            ros : ros,
+            name :  '/alice/contexts/' + context
+        });
     
+        contexts_details.get(function(value){
+            $.each(value, function( index, item ){
+                if (index == 'panels') {
+                    $.each(item, function( panelid, panel ){
+                        $('.panel-' + panel).removeClass('d-none');
+                    });
+                }
+            });
+        });
+
+        retrieve_speechset(context); 
+    });
+
+    retrieve_contexts();
+
+    update_parts_list('warehouse');
+    update_parts_list('intransit');
+    update_parts_list('workshop');
+
+    change_voice($('.voice-default').data('voice'));
+    init_video_stream();
 });
+
+function retrieve_contexts() {
+    var contexts_param = new ROSLIB.Param({
+        ros : ros,
+        name :  '/alice/contexts/'
+    });
+
+    $('.contexts').html("");
+    contexts_param.get(function(value){
+        $.each(value, function( index, item ){
+            context_option = $('.templates .context').clone();
+            context_option.data('id', index);
+            context_option.html(item.name);
+            context_option.appendTo(".contexts");
+        });
+        $('.contexts .context').first().trigger('click');
+    });
+}
 
 function retrieve_speechset(set) {
     var speechset_short_param = new ROSLIB.Param({
@@ -234,8 +277,6 @@ function retrieve_speechset(set) {
             });
         });
     });
-
-    init_video_stream();
 }
 
 function update_parts_list(location) {
