@@ -1,20 +1,35 @@
 parts:
   warehouse:
-    - id: 1
+    - id: 15
       model: Grabber
-      # name: Beam 3 x 5 L-Shape Thick
-      name: Grey 7 Hole L-shape
-      qty: 2
+      # name: EV3 Medium Servo Motor
+      name: Servo Motor
+      qty: 1
+    - id: 9
+      model: Grabber
+      # name: Pin
+      name: Black Pin
+      qty: 10
     - id: 2
       model: Grabber
       # name: Axle 2 Notched
       name: Red Notched Axle
       qty: 3
-    - id: 3
+    - id: 12
       model: Grabber
-      # name: Axle 5
-      name: Medium Grey Axle 
+      # name: Angular Wheel
+      name: Black Angular Wheel
+      qty: 2
+    - id: 14
+      model: Grabber
+      # name: Axle 7
+      name: Long Grey Axle
       qty: 1
+    - id: 16
+      model: Grabber
+      # name: Cross Block 1 x 3
+      name: Dark Grey 2 Hole Cross Block
+      qty: 2
     - id: 4
       model: Grabber
       # name: Axle and Pin Connector Perpendicular Double Split
@@ -30,6 +45,21 @@ parts:
       # name: Axle 3
       name: Short Grey Axle 
       qty: 2
+    - id: 11
+      model: Grabber
+      # name: Beam 3 x 3 T-Shape Thick
+      name: Black 5 Hole T-shape 
+      qty: 2
+    - id: 1
+      model: Grabber
+      # name: Beam 3 x 5 L-Shape Thick
+      name: Grey 7 Hole L-shape
+      qty: 2
+    - id: 3
+      model: Grabber
+      # name: Axle 5
+      name: Medium Grey Axle 
+      qty: 1
     - id: 7
       model: Grabber
       # name: Axle Connector
@@ -40,86 +70,36 @@ parts:
       # name: Bush
       name: Yellow Bush
       qty: 2
-    - id: 9
-      model: Grabber
-      # name: Pin
-      name: Black Pin
-      qty: 10
     - id: 10
       model: Grabber
       # name: Axle 6
       name: Long Black Axle
-      qty: 2
-    - id: 11
-      model: Grabber
-      # name: Beam 3 x 3 T-Shape Thick
-      name: Black 5 Hole T-shape 
-      qty: 2
-    - id: 12
-      model: Grabber
-      # name: Angular Wheel
-      name: Black Angular Wheel
-      qty: 2
-    - id: 13
-      model: Grabber
-      # name: Pin Long and Stop Bush
-      name: Red Long Pin and Bush
-      qty: 4
-    - id: 14
-      model: Grabber
-      # name: Axle 7
-      name: Long Grey Axle
-      qty: 1
-    - id: 15
-      model: Grabber
-      # name: EV3 Medium Servo Motor
-      name: Servo Motor
-      qty: 1
-    - id: 16
-      model: Grabber
-      # name: Cross Block 1 x 3
-      name: Dark Grey 2 Hole Cross Block
       qty: 2
     - id: 17
       model: Grabber
       # name: Beam 3 x 3.8 x 7 Beam Bent 45 Double
       name: Grey 9 Hole Double Bend Beam
       qty: 2
-    - id: 18
-      model: Gyroboy
-      # name: Cross Block Beam 3 with Four Pins
-      name: Grey 4 Pin Cross Beam
-      qty: 1
+    - id: 13
+      model: Grabber
+      # name: Pin Long and Stop Bush
+      name: Red Long Pin and Bush
+      qty: 4
     - id: 19
       model: Gyroboy
       # name: Pin Long
       name: Long Blue Pin
       qty: 3
-    - id: 20
+    - id: 29
       model: Gyroboy
-      # name: 'Panel Fairing # 2 Small Smooth Short, Side B'
-      name: Black Fairing
+      # name: Beam 1 x 7 Bent (4 – 4) Thick
+      name: Grey 5 Hole Bent Beam
       qty: 1
     - id: 21
       model: Gyroboy
       # name: Beam 1 x 5 Thick
       name: Grey 5 Hole Beam
       qty: 2
-    - id: 22
-      model: Gyroboy
-      # name: Long Pin with Center Hole
-      name: Grey Pin with Center Hole
-      qty: 1
-    - id: 23
-      model: Gyroboy
-      # name: EV3 Ultrasonic Sensor
-      name: Ultrasonic Sensor
-      qty: 1
-    - id: 24
-      model: Gyroboy
-      # name: Link Tread Wide with Two Pin Holes
-      name: Black 2 Pin Link Tread
-      qty: 1
     - id: 25
       model: Gyroboy
       name: Blue Short Axle Pin
@@ -129,19 +109,38 @@ parts:
       # name: Beam 1 x 9 Bent (6 – 4) Thick
       name: Black 7 Hole Bent Beam
       qty: 1
+    - id: 22
+      model: Gyroboy
+      # name: Long Pin with Center Hole
+      name: Grey Pin with Center Hole
+      qty: 1
+    - id: 18
+      model: Gyroboy
+      # name: Cross Block Beam 3 with Four Pins
+      name: Grey 4 Pin Cross Beam
+      qty: 1
     - id: 27
       model: Gyroboy
       # name: Beam 1 x 1 Thick
       name: Black 1 Hole Beam
+      qty: 1
+    - id: 24
+      model: Gyroboy
+      # name: Link Tread Wide with Two Pin Holes
+      name: Black 2 Pin Link Tread
+      qty: 1
+    - id: 23
+      model: Gyroboy
+      # name: EV3 Ultrasonic Sensor
+      name: Ultrasonic Sensor
+      qty: 1
+    - id: 20
+      model: Gyroboy
+      # name: 'Panel Fairing # 2 Small Smooth Short, Side B'
+      name: Black Fairing
       qty: 1
     - id: 28
       model: Gyroboy
       # name: EV3 Sensor Colour
       name: Colour Sensor
       qty: 1
-    - id: 29
-      model: Gyroboy
-      # name: Beam 1 x 7 Bent (4 – 4) Thick
-      name: Grey 5 Hole Bent Beam
-      qty: 1
-  
