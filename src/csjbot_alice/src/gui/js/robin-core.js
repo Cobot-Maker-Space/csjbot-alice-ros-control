@@ -165,6 +165,10 @@ $( document ).ready(function() {
         speak($(this).data('phrase'));
     });
 
+    $(document).on('click', '.cancel-speech', function() {
+        speak('');
+    });
+
     $('.movement').on('click', function() {
         move($(this).data('linear'), $(this).data('angular'));
     });
