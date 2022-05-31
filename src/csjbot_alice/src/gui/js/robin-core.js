@@ -351,7 +351,6 @@ function move(linear, angular) {
 }
 
 function init_video_stream() {
-    console.log("koading");
     var viewer = new MJPEGCANVAS.Viewer({
         divID : 'mjpeg',
         host : window.location.hostname,
