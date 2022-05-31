@@ -258,6 +258,7 @@ function retrieve_parts(location_param, location) {
             part_obj = $( ".templates .part" ).clone()
             part_obj.find('.parts-name').html(part.name)
             part_obj.find('.parts-qty').html(part.qty)
+            part_obj.find('.parts-img').attr("src", "media/parts/" + part.id + ".png")
             part_obj.data('id', part.id)
             part_obj.data('model', part.model)
             part_obj.data('qty', part.qty)
