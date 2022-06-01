@@ -139,8 +139,3 @@ parts:
       # name: 'Panel Fairing # 2 Small Smooth Short, Side B'
       name: Black Fairing
       qty: 1
-    - id: 28
-      model: Gyroboy
-      # name: EV3 Sensor Colour
-      name: Colour Sensor
-      qty: 1
