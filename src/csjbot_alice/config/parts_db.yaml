@@ -53,7 +53,7 @@ parts:
     - id: 1
       model: Grabber
       # name: Beam 3 x 5 L-Shape Thick
-      name: Grey 7 Hole L-shape
+      name: White 7 Hole L-shape
       qty: 2
     - id: 3
       model: Grabber
@@ -78,7 +78,7 @@ parts:
     - id: 17
       model: Grabber
       # name: Beam 3 x 3.8 x 7 Beam Bent 45 Double
-      name: Grey 9 Hole Double Bend Beam
+      name: White 9 Hole Double Bend Beam
       qty: 2
     - id: 13
       model: Grabber
@@ -93,7 +93,7 @@ parts:
     - id: 29
       model: Gyroboy
       # name: Beam 1 x 7 Bent (4 – 4) Thick
-      name: Grey 5 Hole Bent Beam
+      name: White 5 Hole Bent Beam
       qty: 1
     - id: 21
       model: Gyroboy
