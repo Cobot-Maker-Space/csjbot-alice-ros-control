@@ -3,5 +3,6 @@ services:
   alice:
     build: .
     privileged: true
+    restart: always
     volumes:
       - .:/root/catkin_ws
