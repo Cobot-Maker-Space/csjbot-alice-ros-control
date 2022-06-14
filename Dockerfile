@@ -5,6 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y ros-noetic-desktop-full \
     ros-noetic-catkin ros-noetic-teleop-twist-keyboard ros-noetic-teleop-twist-joy \
     ros-noetic-roslib ros-noetic-rosbridge-server ros-noetic-rosserial-python \
+    ros-noetic-web-video-server \
     netcat \
     telnet \
     git build-essential curl wget \
