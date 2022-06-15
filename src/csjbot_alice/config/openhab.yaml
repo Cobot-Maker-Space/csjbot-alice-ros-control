@@ -7,15 +7,15 @@ openhab:
       speech-state-CLOSED: "Cupboard 1 has now been closed" 
       turn-state-direction-OPEN: "LEFT"
       turn-state-duration-OPEN: 1
-      turn-state-direction-OPEN: "RIGHT"
-      turn-state-duration-OPEN: 1
+      turn-state-direction-CLOSED: "RIGHT"
+      turn-state-duration-CLOSED: 1
     CupboardGSensor_SensorDoor:
       speech-state-OPEN: "Cupboard 2 has just been opened" 
       speech-state-CLOSED: "Cupboard 2 has now been closed" 
       turn-state-direction-OPEN: "LEFT"
       turn-state-duration-OPEN: 2
-      turn-state-direction-OPEN: "RIGHT"
-      turn-state-duration-OPEN: 2
+      turn-state-direction-CLOSED: "RIGHT"
+      turn-state-duration-CLOSED: 2
     FrontDoorSensor_SensorDoor:
       speech-state-OPEN: "Someone has entered the room" 
       speech-state-CLOSED: "The door has been closed" 
