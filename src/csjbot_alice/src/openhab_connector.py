@@ -73,9 +73,10 @@ class OpenHABConnector(object):
     def turn(self, direction, time):
         msg = Twist()
         if direction == 'LEFT':
-            msg.angular.z = 0.99
+            msg.angular.z = -0.50
+        
         if direction == "RIGHT":
-            msg.angular.z = -0.99 
+            msg.angular.z = 0.50 
 
         # Save current time and set publish rate at 10 Hz
         now = rospy.Time.now()
