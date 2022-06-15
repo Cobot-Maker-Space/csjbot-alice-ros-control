@@ -44,9 +44,13 @@ class OpenHABConnector(object):
         return speech
 
     def fetch_sensor_turn_state(self, sensor, state):
-        param_topic = "/alice/openhab/sensors/" + sensor + "/turn-state-" + state
+        param_topic = "/alice/openhab/sensors/" + sensor + "/turn-state-direction-" + state
         turn = rospy.get_param(param_topic, None)
-        return turn
+
+        param_topic = "/alice/openhab/sensors/" + sensor + "/turn-state-duration-" + state
+        time = rospy.get_param(param_topic, 0)
+
+        return turn, time
 
     def listen(self):
         while not rospy.is_shutdown():
@@ -60,14 +64,13 @@ class OpenHABConnector(object):
                         if speech is not None:
                             self.pub_speech.publish(speech)
 
-                        turn = self.fetch_sensor_turn_state(sensor, new_state)
+                        turn, time = self.fetch_sensor_turn_state(sensor, new_state)
                         if turn is not None:
-                            self.turn(turn)
-                            self.pub_movement.publish(turn)
+                            self.turn(turn, time)
                             
             rospy.sleep(0.5)    
 
-    def turn(self, direction):
+    def turn(self, direction, time):
         msg = Twist()
         if direction == 'LEFT':
             msg.z = 0.99
@@ -78,8 +81,7 @@ class OpenHABConnector(object):
         now = rospy.Time.now()
         rate = rospy.Rate(10)
 
-        # For the next 6 seconds publish cmd_vel move commands to Turtlesim
-        while rospy.Time.now() < now + rospy.Duration.from_sec(10.5):
+        while rospy.Time.now() < now + rospy.Duration.from_sec(time):
             self.pub_movement.publish(msg)
             rate.sleep()
            
@@ -92,9 +94,3 @@ class OpenHABConnector(object):
         
 if __name__ == '__main__':
     OpenHABConnector()
-
-
-#  var twist = new ROSLIB.Message({
-#         linear: { x: linear, y: 0, z: 0 },
-#         angular: { x: 0, y: 0, z: angular}
-#     });
