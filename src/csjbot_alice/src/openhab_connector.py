@@ -73,8 +73,8 @@ class OpenHABConnector(object):
     def turn(self, direction, time):
         msg = Twist()
         if direction == 'LEFT':
-            msg.z = 0.99
-        elif direction == "RIGHT":
+            msg.angular.z = 0.99
+        if direction == "RIGHT":
             msg.angular.z = -0.99 
 
         # Save current time and set publish rate at 10 Hz
