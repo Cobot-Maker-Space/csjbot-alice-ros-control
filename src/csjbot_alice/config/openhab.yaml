@@ -1,0 +1,16 @@
+openhab:
+  state: off
+  base_url: 'http://10.0.3.1:8080/rest'
+  sensors: 
+    CupboardASensor_SensorDoor:
+      speech-state-OPEN: "Cupboard 1 has just been opened" 
+      speech-state-CLOSED: "Cupboard 1 has just been opened" 
+    CupboardGSensor_SensorDoor:
+      speech-state-OPEN: "Cupboard 2 has just been opened" 
+      speech-state-CLOSED: "Cupboard 2 has just been opened" 
+    FrontDoorSensor_SensorDoor:
+      speech-state-OPEN: "Someone has entered the room" 
+      speech-state-CLOSED: "The door has been closed" 
+    WindowBSensor_SensorDoor:
+      speech-state-OPEN: "There is a lovely breeze coming in through the window." 
+      speech-state-CLOSED: "Thats nice and warm now" 

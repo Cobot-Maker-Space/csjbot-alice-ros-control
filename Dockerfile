@@ -21,7 +21,7 @@ WORKDIR /root/catkin_ws
 # RUN ln -s /usr/bin/pip3 /usr/bin/pip
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
-RUN pip install websockets asyncio
+RUN pip install websockets asyncio python-openhab
 
 RUN echo "source /opt/ros/$ROS_DISTRO/setup.sh" >> /root/.bashrc
 RUN echo "source /root/catkin_ws/devel/setup.bash" >> /root/.bashrc
