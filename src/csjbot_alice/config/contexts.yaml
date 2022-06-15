@@ -6,6 +6,8 @@ contexts:
       - visualise
       - movement
       - expressions
+      - limbs
+      - openhab
   rmi:
     name: Robots Mediating Interaction
     panels:
