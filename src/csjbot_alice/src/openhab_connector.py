@@ -52,11 +52,13 @@ class OpenHABConnector(object):
                         speech = self.fetch_sensor_speech_state(sensor, new_state)
                         if speech is not None:
                             self.pub_speech.publish(speech)
-                    
+                    print(f"{sensor}, {current_state}, {new_state}")
+            else:
+                print("not active")
             rospy.sleep(0.5)    
 
     def switch_state(self, msg):
-        self.openhab_active = msg.data
+        self.openhab_connection_active = msg.data
 
     def retrieve_openhab_item_state(self, sensor_id):
         item = self.openhab.get_item(sensor_id)
