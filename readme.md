@@ -86,6 +86,12 @@ In a web browser on the laptop:
 
 http://localhost:8000/
 
+## Acknowledgements
+This work was developed as part of the the [Robots Mediating Interaction project][1],
+ supported by [UK Engineering and Physical Sciences Research Council][2]
+(EPSRC) through [Horizon: Trusted Data-Driven Products][3] ([EP/T022493/1][4]).
 
-
-
+[1]: https://www.horizon.ac.uk/project/robots-mediating-interaction/
+[2]: https://www.ukri.org/councils/epsrc/
+[3]: https://www.horizon.ac.uk/
+[4]: https://gtr.ukri.org/projects?ref=EP%2FT022493%2F1

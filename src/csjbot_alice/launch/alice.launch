@@ -23,6 +23,8 @@
     </node>
     <node name="openhab_connector" pkg="csjbot_alice" type="openhab_connector.py" output="screen" />
 
+    <node name="openhab_connector" pkg="csjbot_alice" type="openhab_connector.py" output="screen" />
+
     <node name="web_video_server" pkg="web_video_server" type="web_video_server">
         <param name="topic" value="/camera/image" />
     </node>
@@ -31,5 +33,6 @@
         <rosparam file="$(find csjbot_alice)/config/contexts.yaml" />
         <rosparam file="$(find csjbot_alice)/config/speech_db.yaml" />
         <rosparam file="$(find csjbot_alice)/config/parts_db.yaml" />
+        <rosparam file="$(find csjbot_alice)/config/openhab.yaml" />
     </group>
 </launch>

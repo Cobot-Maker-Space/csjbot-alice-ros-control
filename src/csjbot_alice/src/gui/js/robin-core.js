@@ -211,7 +211,7 @@ $( document ).ready(function() {
         $('.context').removeClass('active');
         $(this).addClass('active');
 
-        $('.panel-visualise, .panel-parts, .panel-speech, .panel-expressions, .panel-movement, .panel-limbs').addClass('d-none');
+        $('.panel').addClass('d-none');
 
         context = $(this).data('id');
         var contexts_details = new ROSLIB.Param({
