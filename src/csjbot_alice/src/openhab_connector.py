@@ -3,6 +3,7 @@
 from xmlrpc.client import Boolean
 import rospy
 from std_msgs.msg import String, Bool
+from geometry_msgs.msg import Twist
 from openhab import openHAB
 
 class OpenHABConnector(object):
@@ -12,6 +13,7 @@ class OpenHABConnector(object):
         rospy.Subscriber("/alice/openhab/state/", Bool, self.switch_state)
 
         self.pub_speech = rospy.Publisher("/speech/", String, queue_size=10, latch=False)
+        self.pub_movement = rospy.Publisher("/cmd_vel/", Twist, queue_size=10, latch=False)
         
         self.openhab_base_url = rospy.get_param("/alice/openhab/base_url", None)
         self.openhab = openHAB(self.openhab_base_url)
@@ -41,6 +43,11 @@ class OpenHABConnector(object):
         speech = rospy.get_param(param_topic, None)
         return speech
 
+    def fetch_sensor_turn_state(self, sensor, state):
+        param_topic = "/alice/openhab/sensors/" + sensor + "/turn-state-" + state
+        turn = rospy.get_param(param_topic, None)
+        return turn
+
     def listen(self):
         while not rospy.is_shutdown():
             if self.openhab_connection_active:
@@ -52,11 +59,30 @@ class OpenHABConnector(object):
                         speech = self.fetch_sensor_speech_state(sensor, new_state)
                         if speech is not None:
                             self.pub_speech.publish(speech)
-                    print(f"{sensor}, {current_state}, {new_state}")
-            else:
-                print("not active")
+
+                        turn = self.fetch_sensor_turn_state(sensor, new_state)
+                        if turn is not None:
+                            self.turn(turn)
+                            self.pub_movement.publish(turn)
+                            
             rospy.sleep(0.5)    
 
+    def turn(self, direction):
+        msg = Twist()
+        if direction == 'LEFT':
+            msg.z = 0.99
+        elif direction == "RIGHT":
+            msg.angular.z = -0.99 
+
+        # Save current time and set publish rate at 10 Hz
+        now = rospy.Time.now()
+        rate = rospy.Rate(10)
+
+        # For the next 6 seconds publish cmd_vel move commands to Turtlesim
+        while rospy.Time.now() < now + rospy.Duration.from_sec(10.5):
+            self.pub_movement.publish(msg)
+            rate.sleep()
+           
     def switch_state(self, msg):
         self.openhab_connection_active = msg.data
 
@@ -67,3 +93,8 @@ class OpenHABConnector(object):
 if __name__ == '__main__':
     OpenHABConnector()
 
+
+#  var twist = new ROSLIB.Message({
+#         linear: { x: linear, y: 0, z: 0 },
+#         angular: { x: 0, y: 0, z: angular}
+#     });

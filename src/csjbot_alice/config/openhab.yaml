@@ -4,13 +4,18 @@ openhab:
   sensors: 
     CupboardASensor_SensorDoor:
       speech-state-OPEN: "Cupboard 1 has just been opened" 
-      speech-state-CLOSED: "Cupboard 1 has just been opened" 
+      speech-state-CLOSED: "Cupboard 1 has now been closed" 
+      turn-state-OPEN: "LEFT" 
+      turn-state-CLOSED: "RIGHT" 
     CupboardGSensor_SensorDoor:
       speech-state-OPEN: "Cupboard 2 has just been opened" 
-      speech-state-CLOSED: "Cupboard 2 has just been opened" 
+      speech-state-CLOSED: "Cupboard 2 has now been closed" 
+      turn-state-OPEN: "LEFT" 
+      turn-state-CLOSED: "RIGHT" 
     FrontDoorSensor_SensorDoor:
       speech-state-OPEN: "Someone has entered the room" 
       speech-state-CLOSED: "The door has been closed" 
     WindowBSensor_SensorDoor:
       speech-state-OPEN: "There is a lovely breeze coming in through the window." 
       speech-state-CLOSED: "Thats nice and warm now" 
+      
