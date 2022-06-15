@@ -125,6 +125,16 @@ $( document ).ready(function() {
         );
     });
 
+    window.openHabStatePublisher = new ROSLIB.Topic({
+        ros : window.ros,
+        name : '/alice/openhab/state/',
+        messageType : 'std_msgs/Bool'
+    });
+
+    $(document).on('change', '.openhab-state-switch', function(){ 
+        window.openHabStatePublisher.publish(new ROSLIB.Message({data:$(this).is(':checked')}));
+    });
+
     $(document).on('click', '.btn-confirm-parts', function(){
         var parts_speech = "";
         $('#intransit').find('li').each(function() {

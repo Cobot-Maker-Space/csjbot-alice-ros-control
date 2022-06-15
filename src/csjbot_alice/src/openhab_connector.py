@@ -15,9 +15,8 @@ class OpenHABConnector(object):
         
         self.openhab_base_url = rospy.get_param("/alice/openhab/base_url", None)
         self.openhab = openHAB(self.openhab_base_url)
-        self.openhab_connection_active = True
+        self.openhab_connection_active = False
 
-        #get interesting sensors from yaml
         self.sensor_list = rospy.get_param("/alice/openhab/sensors/", None)
         self.initialise_sensor_states()
     
