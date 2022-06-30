@@ -3,15 +3,15 @@ openhab:
   base_url: 'http://10.0.3.1:8080/rest'
   sensors: 
     CupboardASensor_SensorDoor:
-      speech-state-OPEN: "Are you accessing the first aid kit?" 
-      speech-state-CLOSED: "The cupboard has been closed" 
+      speech-state-OPEN: "You are getting the first aid kit? Are you ok?" 
+      speech-state-CLOSED: "Thanks for closing the cupboard" 
       turn-state-direction-OPEN: "LEFT"
       turn-state-duration-OPEN: 1
       turn-state-direction-CLOSED: "RIGHT"
       turn-state-duration-CLOSED: 1
     CupboardGSensor_SensorDoor:
-      speech-state-OPEN: "Does something need cleaning?" 
-      speech-state-CLOSED: "The cupboard has now been closed" 
+      speech-state-OPEN: "You are in the cleaning cupboard. Did you spill something?" 
+      speech-state-CLOSED: "Thanks for closing the cupboard" 
       turn-state-direction-OPEN: "LEFT"
       turn-state-duration-OPEN: 1
       turn-state-direction-CLOSED: "RIGHT"
