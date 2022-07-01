@@ -97,6 +97,11 @@ $( document ).ready(function() {
         name :  '/alice/parts/workshop'
     });
 
+    window.parts_requested = new ROSLIB.Param({
+        ros : window.ros,
+        name :  '/alice/parts/requested'
+    });
+
     window.parts_intransit = new ROSLIB.Param({
         ros : window.ros,
         name :  '/alice/parts/intransit'
@@ -133,6 +138,20 @@ $( document ).ready(function() {
 
     $(document).on('change', '.openhab-state-switch', function(){ 
         window.openHabStatePublisher.publish(new ROSLIB.Message({data:$(this).is(':checked')}));
+    });
+
+    $(document).on('click', '.btn-confirm-requested', function(){
+        var parts_speech = "";
+        $('#requested').find('li').each(function() {
+            parts_speech += $(this).find('.parts-qty').html() + " " + $(this).find('.parts-name').html() + ". ";
+        });  
+        if (parts_speech == '') {
+            parts_speech = 'No parts have been requested.';
+        } else {
+            parts_speech = "The following parts have been requested. " + parts_speech;
+        }
+
+        speak(parts_speech);
     });
 
     $(document).on('click', '.btn-confirm-parts', function(){
@@ -235,6 +254,7 @@ $( document ).ready(function() {
     retrieve_contexts();
 
     update_parts_list('warehouse');
+    update_parts_list('requested');
     update_parts_list('intransit');
     update_parts_list('workshop');
 
@@ -292,6 +312,9 @@ function retrieve_speechset(set) {
 function update_parts_list(location) {
     if (location == 'warehouse'){
         location_param = parts_warehouse;
+    }
+    if (location == 'requested'){
+        location_param = parts_requested;
     }
     if (location == 'intransit'){
         location_param = parts_intransit;
