@@ -60,6 +60,11 @@ parts:
       code: blue-short-axle-pin
       name: Blue Short Axle Pin
       qty: 5
+    - id: 30
+      model: Gyroboy
+      code: cream-short-axle-pin
+      name: Cream Short Axle Pin
+      qty: 5
     - id: 22
       model: Gyroboy
       code: grey-pin-center-hole
