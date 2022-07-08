@@ -1,6 +1,6 @@
 <launch>
 
-    <arg name="serial_port" default="/dev/ttyUSB0" />
+    <arg name="serial_port" default="/dev/arduino" />
     <arg name="serial_speed" default="115200" />
 
     <node name="subscriber_movement" pkg="csjbot_alice" type="subscriber_movement.py" />
