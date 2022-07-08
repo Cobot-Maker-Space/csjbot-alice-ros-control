@@ -38,7 +38,7 @@ speechsets:
         - "There are <6> parts on this tray, would you like me to check them before I take them through?"
 
   tas:
-    - name: "TAS"
+      - name: "TAS"
       - short:
         - Hello I'm Robin
         - Pleased to meet you
