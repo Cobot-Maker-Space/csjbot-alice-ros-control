@@ -5,5 +5,7 @@ services:
     network_mode: host
     privileged: true
     restart: always
+    devices:
+      - "/dev/csjbot/arduino:/dev/arduino"
     volumes:
       - .:/root/catkin_ws
