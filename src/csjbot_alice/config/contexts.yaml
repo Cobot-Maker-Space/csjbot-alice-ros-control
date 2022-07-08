@@ -15,5 +15,13 @@ contexts:
       - speech
       - visualise
       - movement
+  tas:
+    name: Trust in Autonomous Systems
+    panels:
+      - speech
+      - visualise
+      - movement
+      - expressions
+      - limbs
 
   

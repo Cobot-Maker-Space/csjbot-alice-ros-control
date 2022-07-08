@@ -36,3 +36,16 @@ speechsets:
         - "I can take parts through, I can get the Facilitator, I can check parts, I can take a message to the other team, etc…"
         - "I cannot help with that, I will get the researcher "
         - "There are <6> parts on this tray, would you like me to check them before I take them through?"
+
+  tas:
+    - name: "TAS"
+      - short:
+        - Hello I'm Robin
+        - Pleased to meet you
+        - It's hot out there today
+        - Are you enjoying the all hands meeting?
+        - Have a TAS-tastic day!
+        - I'm autonomous, do you trust me?
+        - Where's Gopal? I haven't been paid!
+      - long: 
+        - "Hi I'm Robin and I welcome you to the Co Maker Space"
