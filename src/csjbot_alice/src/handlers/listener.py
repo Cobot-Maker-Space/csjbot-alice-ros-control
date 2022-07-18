@@ -7,7 +7,7 @@ import io, sys
 import json
 import rospy
 import datetime
-from std_msgs.msg import Bool
+from std_msgs.msg import String, Bool
 
 class SocketListenerHandler(object):
     def __init__(self):
@@ -17,6 +17,11 @@ class SocketListenerHandler(object):
         self.host = self.config_loader.fetch_value('host')
 
         self.pub_video_state = rospy.Publisher('/video_on', Bool, queue_size=10, latch=True)
+        self.pub_video_state = rospy.Publisher('/auditory/message', String, queue_size=10, latch=True)
+
+        self.FACE_DETECT_OPEN_RESPONSE = "FACE_DETECT_OPEN_VIDEO_RSP"
+        self.FACE_DETECT_CLOSE_RESPONSE = "FACE_DETECT_OPEN_VIDEO_RSP"
+        self.SPEECH_DETECTION = "SPEECH_ISR_ONLY_RESULT_NTF"
 
     def start_listening(self):
         uri = f'ws://{self.host}:{self.port}'
@@ -37,14 +42,19 @@ class SocketListenerHandler(object):
         payload = json.loads(data)
         msg_id = payload['msg_id']
 
-        if msg_id == "FACE_DETECT_OPEN_VIDEO_RSP":
-            # face detect on
+        if msg_id == self.FACE_DETECT_OPEN_RESPONSE:
+            # face detect on 
             self.pub_video_state.publish(Bool(True))
+            # TODO - WHAT IS GOING ON HERE???
 
-        if msg_id == "FACE_DETECT_CLOSE_VIDEO_RSP":
+        if msg_id == self.FACE_DETECT_CLOSE_RESPONSE:
             # face detect on
             self.pub_video_state.publish(Bool(False))
+            # TODO - WHAT IS GOING ON HERE???
 
+        if msg_id == self.SPEECH_DETECTION:
+            # speech detection
+            self.pub_auditory.publish(payload['text'])
 
         rospy.loginfo(payload)
 
