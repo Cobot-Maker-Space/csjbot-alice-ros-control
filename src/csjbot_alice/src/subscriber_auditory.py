@@ -20,7 +20,7 @@ class LilyAuditory(object):
         rospy.loginfo("Enabling Auditory listening function: {msg.data}")
         resp = self.auditory_handler.enable(msg.data)
         print(resp)        
-        rospy.loging(resp)
+        rospy.loginfo(resp)
    
 if __name__ == '__main__':
     LilyAuditory()

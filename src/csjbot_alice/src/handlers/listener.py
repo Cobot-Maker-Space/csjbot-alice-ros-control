@@ -17,11 +17,12 @@ class SocketListenerHandler(object):
         self.host = self.config_loader.fetch_value('host')
 
         self.pub_video_state = rospy.Publisher('/video_on', Bool, queue_size=10, latch=True)
-        self.pub_video_state = rospy.Publisher('/auditory/message', String, queue_size=10, latch=True)
+        self.pub_auditory = rospy.Publisher('/auditory/message', String, queue_size=10, latch=True)
 
         self.FACE_DETECT_OPEN_RESPONSE = "FACE_DETECT_OPEN_VIDEO_RSP"
         self.FACE_DETECT_CLOSE_RESPONSE = "FACE_DETECT_OPEN_VIDEO_RSP"
-        self.SPEECH_DETECTION = "SPEECH_ISR_ONLY_RESULT_NTF"
+        self.SPEECH_DETECTION_ONCE = "SPEECH_ISR_ONLY_RESULT_NTF"
+        self.SPEECH_DETECTION_LAST = "SPEECH_ISR_LAST_RESULT_NTF"
 
     def start_listening(self):
         uri = f'ws://{self.host}:{self.port}'
@@ -41,6 +42,7 @@ class SocketListenerHandler(object):
     def handle_data(self, data):
         payload = json.loads(data)
         msg_id = payload['msg_id']
+        rospy.loginfo(payload)
 
         if msg_id == self.FACE_DETECT_OPEN_RESPONSE:
             # face detect on 
@@ -52,11 +54,15 @@ class SocketListenerHandler(object):
             self.pub_video_state.publish(Bool(False))
             # TODO - WHAT IS GOING ON HERE???
 
-        if msg_id == self.SPEECH_DETECTION:
+        if msg_id == self.SPEECH_DETECTION_ONCE:
             # speech detection
             self.pub_auditory.publish(payload['text'])
 
-        rospy.loginfo(payload)
+        if msg_id == self.SPEECH_DETECTION_LAST:
+            # speech detection
+            self.pub_auditory.publish(payload['text'])
+
+       
 
 if __name__ == "__main__":
     slh = SocketListenerHandler()
