@@ -5,6 +5,7 @@
 
     <node name="subscriber_movement" pkg="csjbot_alice" type="subscriber_movement.py" />
     <node name="subscriber_speech" pkg="csjbot_alice" type="subscriber_speech.py" />
+    <node name="subscriber_auditory" pkg="csjbot_alice" type="subscriber_auditory.py" />
     <node name="subscriber_expression" pkg="csjbot_alice" type="subscriber_expression.py" />
 
     <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
