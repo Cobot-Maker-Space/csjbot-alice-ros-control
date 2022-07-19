@@ -80,6 +80,12 @@ $( document ).ready(function() {
         messageType : 'std_msgs/Bool'
     });
  
+    window.requestScan = new ROSLIB.Topic({
+        ros : window.ros,
+        name : '/alice/parts/scan',
+        messageType : 'std_msgs/Empty'
+    });
+
     window.partsListUpdatedSubscriber = new ROSLIB.Topic({
         ros : window.ros,
         name : '/alice/parts/updated',
@@ -138,6 +144,10 @@ $( document ).ready(function() {
 
     $(document).on('change', '.openhab-state-switch', function(){ 
         window.openHabStatePublisher.publish(new ROSLIB.Message({data:$(this).is(':checked')}));
+    });
+
+    $(document).on('click', '.btn-scan-tray', function(){
+        window.requestScan().publish()
     });
 
     $(document).on('click', '.btn-confirm-requested', function(){
