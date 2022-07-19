@@ -16,6 +16,7 @@ class LilyAuditory(object):
         rospy.spin()
     
     def process_auditory_state(self, msg):
+        print(f"Enabling Auditory listening function: {msg.data}")
         resp = self.auditory_handler.enable(msg.data)
         print(resp)        
    
