@@ -1,0 +1,20 @@
+# YOLOv5 🚀 by Ultralytics https://ultralytics.com, licensed under GNU GPL v3.0
+# Panicle dataset from UoN CVL
+# Example usage: python train.py --data coco.yaml
+# parent
+# ├── yolov5
+# └── data
+#     └── train/annotated/
+
+#FROM CVL GPU CLUSTER - DOES NOT MATCH LOCAL FS HERE. FOR REFERENCE ONLY
+
+# Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
+path: /db/psxsc12/lego/  # dataset root dir
+
+train: images/train
+val: images/val
+test: images/test
+
+# Classes
+nc: 35  # number of classes
+names: ['black-pin', 'black-angular-wheel', 'red-long-pin-and-bush', 'servo-motor', 'medium-grey-axle', 'black-7-hole-bent-beam', 'dark-grey-2-hole-cross-block', 'white-9-hole-double-bend-beam', 'black-2-hole-2-cross-connector', 'cream-short-axle-pin', 'grey-5-hole-beam', 'black-5-hole-t-shape', 'short-red-axle-connector', 'black-1-hole-beam', 'long-blue-pin', 'grey-4-pin-cross-beam', 'dark-grey-2-hole-cross-block', 'grey-pin-with-center-hole', 'white-7-hole-l-shape', 'long-black-axle', 'blue-short-axle-pin', 'black-fairing', 'yellow-bush', 'grey-5-hole-beam', '', 'ultrasonic-sensor', 'blue-pin', 'black-2-pin-link-tread', 'short-grey-axle', 'grey-pin', 'black-2-hole-1-cross-connector', 'red-notched-axle', 'white-5-hole-bent-beam', 'long-grey-axle', 'blacks']
