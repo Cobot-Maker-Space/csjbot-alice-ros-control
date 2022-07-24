@@ -126,6 +126,7 @@ $( document ).ready(function() {
                 id: id,
                 location_source: source,
                 location_target: target,
+                trigger_update: true,
             })
         );
     });
