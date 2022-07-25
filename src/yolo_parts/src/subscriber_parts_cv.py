@@ -15,7 +15,6 @@ import os
 class LilyPartsRecognition(object):
 
     def __init__(self):
-        
         self.yolo = YoloParts(weights='weights/hri_parts_best_5s_phase2.pt', data='data/lego.yaml')
         self.image_store = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))) + "/image_store/"
 
@@ -29,22 +28,21 @@ class LilyPartsRecognition(object):
         rospy.spin()
     
     def process_image(self, msg):
-        # image_msg = rospy.wait_for_message("/camera/image", Image, timeout=5)
+        image_msg = rospy.wait_for_message("/camera/image", Image, timeout=5)
 
-        # bridge = CvBridge()
-        # original_image = bridge.imgmsg_to_cv2(image_msg, "bgr8")
-        # cv2.imwrite(self.image_store + "parts_on_tray.jpg", original_image)
+        bridge = CvBridge()
+        original_image = bridge.imgmsg_to_cv2(image_msg, "bgr8")
+        cv2.imwrite(self.image_store + "parts_on_tray.jpg", original_image)
 
         # Get existing list of tray parts and move back to warehouse
         tray_parts = self.get_parts_by_location('intransit')
-        print(tray_parts)
+        
         if tray_parts is not None:
             for part in tray_parts:
                 self.transfer_part(part['id'], 'intransit', 'warehouse')
 
         # Run yolo model on the image and retrieve the parts list
         result = self.yolo.detect_image(self.image_store + "parts_on_tray.jpg")
-        print("Processing result")
 
         for part in result:
             part_id = self.part_id_from_code(part['id'])
