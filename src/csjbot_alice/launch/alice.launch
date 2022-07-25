@@ -17,6 +17,8 @@
 
     <node name="parts_management" pkg="csjbot_alice" type="parts_management.py" output="screen" />
 
+    <node name="cv_tray" pkg="yolo_parts" type="subscriber_parts_cv.py" output="screen" />
+
     <node name="rosserial_python" pkg="rosserial_python" type="serial_node.py">
         <param name="port" value="$(arg serial_port)" />
         <param name="baud" value="$(arg serial_speed)" />
