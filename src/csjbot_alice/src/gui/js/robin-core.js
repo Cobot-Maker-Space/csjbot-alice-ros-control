@@ -149,6 +149,7 @@ $( document ).ready(function() {
     });
 
     $(document).on('click', '.btn-scan-tray', function(){
+        $('.scan-loading').removeClass('d-none');
         window.requestScan.publish();
     });
 
@@ -330,6 +331,7 @@ function update_parts_list(location) {
     }
     if (location == 'intransit'){
         location_param = parts_intransit;
+        $('.scan-loading').addClass('d-none');
     }
     if (location == 'workshop'){
         location_param = parts_workshop;

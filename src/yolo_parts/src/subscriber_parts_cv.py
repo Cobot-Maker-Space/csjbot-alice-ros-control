@@ -28,7 +28,6 @@ class LilyPartsRecognition(object):
         rospy.spin()
     
     def process_image(self, msg):
-	print("Request received")
         image_msg = rospy.wait_for_message("/camera/image", Image, timeout=5)
 
         bridge = CvBridge()
@@ -50,10 +49,8 @@ class LilyPartsRecognition(object):
             if part_id is not None:
                 self.transfer_part(part_id, 'warehouse', 'intransit')
                 
-        rospy.sleep(2.) 
         self.pub_updated_parts_list.publish(PartsListUpdate('warehouse'))
         self.pub_updated_parts_list.publish(PartsListUpdate('intransit'))
-        
 
     def transfer_part(self, id, source, target):
         part_transfer = PartTransfer()
