@@ -92,8 +92,11 @@ class YoloParts(object):
                 p = Path(p)  # to Path
                 save_path = self.outputs + '/inferred.jpg' 
                 if self.save_txt:
-                    os.remove(self.txt_path + '.txt')
-
+                    try:
+                        os.remove(self.txt_path + '.txt')
+                    except OSError:
+                        pass
+                    
                 ## txt_path = str(self.save_dir / 'labels' / p.stem) + ('' if dataset.mode == 'image' else f'_{frame}')  # im.txt
                 s += '%gx%g ' % im.shape[2:]  # print string
                 gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
@@ -120,7 +123,7 @@ class YoloParts(object):
                         if self.save_txt:  # Write to file
                             xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
                             line = (cls, *xywh, conf) if self.save_conf else (cls, *xywh)  # label format
-                            with open(f'{self.txt_path}.txt', 'a') as f:
+                            with open(f'{self.txt_path}.txt', 'w+') as f:
                                 f.write(('%g ' * len(line)).rstrip() % line + '\n')
 
                         if self.save_img or self.save_crop or self.view_img:  # Add bbox to image

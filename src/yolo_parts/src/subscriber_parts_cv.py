@@ -28,6 +28,7 @@ class LilyPartsRecognition(object):
         rospy.spin()
     
     def process_image(self, msg):
+	print("Request received")
         image_msg = rospy.wait_for_message("/camera/image", Image, timeout=5)
 
         bridge = CvBridge()
