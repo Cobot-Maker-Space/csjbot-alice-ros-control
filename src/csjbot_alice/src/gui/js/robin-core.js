@@ -120,7 +120,7 @@ $( document ).ready(function() {
         source = $(this).parents('.parts-list').data("type");
         target = $(this).data('btntype');
         id = $(this).parents('.part').data('id');
-
+        
         window.partTransferPublisher.publish(
             new ROSLIB.Message({
                 id: id,
