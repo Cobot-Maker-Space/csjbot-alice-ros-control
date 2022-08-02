@@ -57,7 +57,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-4 p-1 panel panel-movement">
+            <div class="col-3 p-1 panel panel-movement">
                 <div class="row">
                     <div class="col-12">
                         <div class="row">
@@ -121,14 +121,21 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4 p-1">
+            <div class="col-6 p-1">
                 <div class="card mt-2 panel panel-visualise">
                     <div class="card-header visuals text-center">
                         <i class="fa-solid fa-video pr-2"></i>
                         Visualisation
                     </div>
-                    <div class="text-center p-0 m-0">
-                        <div class="video-frame" id="mjpeg"></div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="text-center p-0 m-0">
+                                <div class="video-frame" id="mjpeg"></div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="inferred-frame d-none"><img src="output/inferred.jpg" /></div>
+                        </div>
                     </div>
                 </div>
                 <div class="card mt-2 panel panel-parts">
@@ -165,7 +172,11 @@
                             <div id="intransit" class="container parts-list tab-pane fade" data-type="intransit"><br>
                                 <button type="button" class="btn btn-success btn-sm btn-scan-tray mb-2"><i class="fa-solid fa-barcode pr-2"></i>Scan Tray</button>
                                 <button type="button" class="btn btn-success btn-sm btn-confirm-parts mb-2"><i class="fa-regular fa-comment-dots pr-2"></i>Confirm Parts</button>
-                                <span class="scan-loading d-none"><img src="media/loading.gif" /></span>
+                                <div class="row scan-loading d-none">
+                                    <div class="col p-3 text-center">
+                                        <img src="media/loading.gif" />
+                                    </div>
+                                </div>
                                 <ul class="list-group list-group-flush"></ul>
                             </div>
                             <div id="workshop" class="container parts-list tab-pane fade" data-type="workshop"><br>
@@ -175,7 +186,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4 p-1">
+            <div class="col-3 p-1">
                 <div class="card mt-2 panel panel-speech">
                     <div class="card-header text-center"><i class="fa-regular fa-comments pr-3"></i>Speech Center</div>
                     <div class="card-body">

@@ -150,6 +150,8 @@ $( document ).ready(function() {
 
     $(document).on('click', '.btn-scan-tray', function(){
         $('.scan-loading').removeClass('d-none');
+        $('#intransit .list-group').addClass('d-none');
+        $('.inferred-frame').addClass('d-none');
         window.requestScan.publish();
     });
 
@@ -331,7 +333,9 @@ function update_parts_list(location) {
     }
     if (location == 'intransit'){
         location_param = parts_intransit;
+        $('#intransit .list-group').removeClass('d-none');
         $('.scan-loading').addClass('d-none');
+        $('.inferred-frame').removeClass('d-none');
     }
     if (location == 'workshop'){
         location_param = parts_workshop;
