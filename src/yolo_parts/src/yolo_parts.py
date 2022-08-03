@@ -39,6 +39,7 @@ class YoloParts(object):
         self.data = self.root + data
         self.outputs = self.root + 'outputs'
         self.txt_path = self.outputs + '/lego_parts'
+        self.inferred_path = '/root/catkin_ws/src/csjbot_alice/src/gui/media'
         
     def detect_image(self, filename):
         device = select_device('')
@@ -90,7 +91,7 @@ class YoloParts(object):
                     p, im0, frame = path, im0s.copy(), getattr(dataset, 'frame', 0)
 
                 p = Path(p)  # to Path
-                save_path = self.outputs + '/inferred.jpg' 
+                save_path = self.inferred_path + '/inferred.jpg' 
                 if self.save_txt:
                     try:
                         os.remove(self.txt_path + '.txt')
