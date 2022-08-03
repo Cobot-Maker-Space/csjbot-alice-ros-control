@@ -9,6 +9,7 @@ import os
 import torch
 import torch.backends.cudnn as cudnn
 from pathlib import Path
+import rospy
 
 class YoloParts(object):
 
@@ -147,6 +148,7 @@ class YoloParts(object):
                 # Save results (image with detections)
                 if self.save_img:
                     if dataset.mode == 'image':
+                        rospy.loginfo(f"Saving inferred image to: {save_path}")
                         cv2.imwrite(save_path, im0)
                     else:  # 'video' or 'stream'
                         if vid_path[i] != save_path:  # new video
