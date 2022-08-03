@@ -97,3 +97,8 @@ div {
   .slider.round:before {
     border-radius: 50%;
   }
+
+  .inferred-image {
+    max-width: 320px;
+    max-height: 240px;
+  }
