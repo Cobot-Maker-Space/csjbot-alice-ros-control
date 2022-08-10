@@ -18,7 +18,7 @@ class YoloParts(object):
         self.half=False  # use FP16 half-precision inference
         self.dnn=False  # use OpenCV DNN for ONNX inference
 
-        self.conf_thres=0.25  # confidence threshold
+        self.conf_thres=0.70  # confidence threshold
         self.iou_thres=0.45  # NMS IOU threshold
         self.max_det=1000
         self.classes=None
