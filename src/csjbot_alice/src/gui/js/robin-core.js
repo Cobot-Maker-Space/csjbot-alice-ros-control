@@ -335,8 +335,9 @@ function update_parts_list(location) {
         location_param = parts_intransit;
         $('#intransit .list-group').removeClass('d-none');
         $('.scan-loading').addClass('d-none');
-        d = new Date();
-        $('.inferred-frame').attr('src', 'media/inferred.jpg?' + d.getTime());
+        filename = 'media/inferred.jpg?' + Math.random();
+        console.log(filename);
+        $('.inferred-frame').attr('src', filename);
         $('.inferred-frame').removeClass('d-none');
     }
     if (location == 'workshop'){
