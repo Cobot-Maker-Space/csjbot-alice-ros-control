@@ -337,7 +337,7 @@ function update_parts_list(location) {
         $('.scan-loading').addClass('d-none');
         filename = 'media/inferred.jpg?' + Math.random();
         console.log(filename);
-        $('.inferred-frame').attr('src', filename);
+        $('.inferred-frame img').attr('src', filename);
         $('.inferred-frame').removeClass('d-none');
     }
     if (location == 'workshop'){
