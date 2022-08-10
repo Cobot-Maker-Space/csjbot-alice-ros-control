@@ -6,7 +6,7 @@ import rospy
 import cv2
 from yolo_parts import YoloParts
 from cv_bridge import CvBridge
-from std_msgs.msg import Empty
+from std_msgs.msg import Empty, String
 from sensor_msgs.msg import Image
 from csjbot_alice.msg import PartTransfer, PartsListUpdate
 
@@ -24,6 +24,7 @@ class LilyPartsRecognition(object):
         # self.pub_intransit_parts_list = rospy.Publisher("/alice/parts/intransit", PartTransfer, queue_size=10, latch=False)
         self.pub_updated_parts_list = rospy.Publisher("/alice/parts/updated/", PartsListUpdate, queue_size=10, latch=False)
         self.pub_parts_transfer = rospy.Publisher("/alice/parts/transfer/", PartTransfer, queue_size=10, latch=False)
+        self.pub_scan_result = rospy.Publisher("/alice/parts/scan_result/", String, queue_size=10, latch=False)
        
         rospy.spin()
     
@@ -48,9 +49,14 @@ class LilyPartsRecognition(object):
             part_id = self.part_id_from_code(part['id'])
             if part_id is not None:
                 self.transfer_part(part_id, 'warehouse', 'intransit')
+                conf = int(round(part['conf'], 2) * 100)
+                self.publish_scan_result(f"{part['id']}: {conf}%")
                 
         self.pub_updated_parts_list.publish(PartsListUpdate('warehouse'))
         self.pub_updated_parts_list.publish(PartsListUpdate('intransit'))
+
+    def publish_scan_result(self, result):
+        self.pub_scan_result.publish(result)
 
     def transfer_part(self, id, source, target):
         part_transfer = PartTransfer()

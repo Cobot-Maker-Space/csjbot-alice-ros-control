@@ -86,6 +86,12 @@ $( document ).ready(function() {
         messageType : 'csjbot_alice/PartsListUpdate'
     });
 
+    window.scanResultSubscriber = new ROSLIB.Topic({
+        ros : window.ros,
+        name : '/alice/parts/scan_result',
+        messageType : 'std_msgs/String'
+    });
+
     window.partTransferPublisher = new ROSLIB.Topic({
         ros : window.ros,
         name : '/alice/parts/transfer',
@@ -152,6 +158,7 @@ $( document ).ready(function() {
         $('.scan-loading').removeClass('d-none');
         $('#intransit .list-group').addClass('d-none');
         $('.inferred-frame').addClass('d-none');
+        $('.scan-result-list ul').empty();
         window.requestScan.publish();
     });
 
@@ -192,6 +199,11 @@ $( document ).ready(function() {
             $('.visuals').removeClass('alert-success');
             $('.visuals').addClass('alert alert-danger');
         }
+    });
+
+    window.scanResultSubscriber.subscribe(function(message) {
+        console.log('Received message on ' + window.scanResultSubscriber.name + ': ' + message.data);
+        $('.scan-result-list ul').append('<li>' + message.data + '</li>');
     });
 
     $('.publish-speech').on('click', function(){
