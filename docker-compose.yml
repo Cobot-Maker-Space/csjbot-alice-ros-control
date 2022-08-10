@@ -9,3 +9,5 @@ services:
       - "/dev/csjbot/arduino:/dev/arduino"
     volumes:
       - .:/root/catkin_ws
+    logging:
+      driver: "none"
