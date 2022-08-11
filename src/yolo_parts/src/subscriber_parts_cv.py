@@ -40,7 +40,8 @@ class LilyPartsRecognition(object):
         
         if tray_parts is not None:
             for part in tray_parts:
-                self.transfer_part(part['id'], 'intransit', 'warehouse')
+                for i in range(0, part['qty']):
+                    self.transfer_part(part['id'], 'intransit', 'warehouse')
 
         # Run yolo model on the image and retrieve the parts list
         result = self.yolo.detect_image(self.image_store + "parts_on_tray.jpg")
