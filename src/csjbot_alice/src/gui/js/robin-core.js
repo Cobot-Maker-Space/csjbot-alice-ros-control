@@ -119,6 +119,7 @@ $( document ).ready(function() {
     });
 
     window.partsListUpdatedSubscriber.subscribe(function(message) {
+        console.log("received parts list update " + message.location_name);
         update_parts_list(message.location_name);
     });
     
@@ -348,7 +349,6 @@ function update_parts_list(location) {
         $('#intransit .list-group').removeClass('d-none');
         $('.scan-loading').addClass('d-none');
         filename = 'media/inferred.jpg?' + Math.random();
-        console.log(filename);
         $('.inferred-frame img').attr('src', filename);
         $('.inferred-frame').removeClass('d-none');
     }
@@ -361,6 +361,7 @@ function update_parts_list(location) {
 function retrieve_parts(location_param, location) {
     $('#' + location).find('ul').empty();
     location_param.get(function(value){
+        console.log(value);
         $.each(value, function( index, part ){
             part_obj = $( ".templates .part" ).clone()
             part_obj.find('.parts-name').html(part.name)
