@@ -15,7 +15,7 @@ import os
 class LilyPartsRecognition(object):
 
     def __init__(self):
-        self.yolo = YoloParts(weights='weights/hri_parts_best_5s_phase3.pt', data='data/lego.yaml')
+        self.yolo = YoloParts(weights='weights/hri_parts_best_5s_phase4.pt', data='data/lego.yaml')
         self.image_store = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__))) + "/image_store/"
 
         rospy.init_node('parts_recognition')
