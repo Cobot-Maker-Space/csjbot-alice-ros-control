@@ -53,11 +53,14 @@ class LilyPartsRecognition(object):
                 conf = int(round(part['conf'], 2) * 100)
                 self.publish_scan_result(f"{part['id']}: {conf}%")
                 
-        part_count_matches = False
-        while not part_count_matches:
-            tray_parts = rospy.get_param("/alice/parts/intransit")
-            if len(tray_parts) == len(result):
-                part_count_matches = True
+        # TODO - Need to come up with a mechanism to ensure that the param list os returning all parts before sending Parts List Update instruction       
+        # part_count_matches = False
+        # while not part_count_matches:
+        #     tray_parts = rospy.get_param("/alice/parts/intransit")
+        #     if len(tray_parts) == len(result):
+        #         part_count_matches = True
+        #         rospy.sleep(1)
+            
         self.pub_updated_parts_list.publish(PartsListUpdate('warehouse'))
         self.pub_updated_parts_list.publish(PartsListUpdate('intransit'))
 
