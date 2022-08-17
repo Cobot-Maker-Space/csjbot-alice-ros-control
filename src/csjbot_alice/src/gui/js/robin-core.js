@@ -98,13 +98,13 @@ $( document ).ready(function() {
         messageType : 'csjbot_alice/PartTransfer'
     });
 
-    window.movePoint = new ROSLIB.Topic({
+    window.slamMovePoint = new ROSLIB.Topic({
         ros : window.ros,
         name : '/slamware_ros_sdk_server_node/move_to',
         messageType : 'slamware_ros_sdk/MoveToR'
     });
 
-    window.rotatePoint = new ROSLIB.Topic({
+    window.slamRotatePoint = new ROSLIB.Topic({
         ros : window.ros,
         name : '/slamware_ros_sdk_server_node/rotate_to',
         messageType : 'slamware_ros_sdk/RotateToRequest'
@@ -298,7 +298,6 @@ $( document ).ready(function() {
         retrieve_speechset(context); 
     });
 
-
     /* Movement related */
     // var topic_cancel = new ROSLIB.Topic({
     //     ros: ros,
@@ -319,14 +318,14 @@ $( document ).ready(function() {
         console.log('slam point');
         x = $(this).data('slam-x');
         y = $(this).data('slam-y');
-        moveToPoint(x, y);
+        move_point(x, y);
     });  
 
     $(document).on('click', '.slam-rotate', function(){
         console.log('slam rotate');
         z = $(this).data('slam-z');
         w = $(this).data('slam-w');
-        rotateToPoint(z, w);
+        rotate_point(z, w);
     });   
 
     //   $("#btn_sofa").click(() => {
@@ -428,7 +427,7 @@ $( document ).ready(function() {
     init_video_stream();
 });
 
-function moveToPoint(x, y) {
+function move_point(x, y) {
     console.log('hitting move');
     var pos = {
         "x": x,
@@ -440,10 +439,10 @@ function moveToPoint(x, y) {
         orientation: pos,
         options: {}
     });
-    window.movePoint.publish(msg);
+    window.slamMovePoint.publish(msg);
 }
 
-function rotateToPoint(z, w) {
+function rotate_point(z, w) {
     console.log('hitting rotate');
     var pos = {
         "x": 0,
@@ -455,7 +454,7 @@ function rotateToPoint(z, w) {
         orientation: pos,
         options: {}
     });
-    window.rotatePoint.publish(msg);
+    window.slamRotatePoint.publish(msg);
 }
 
 
