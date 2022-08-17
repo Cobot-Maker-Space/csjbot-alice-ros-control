@@ -462,16 +462,27 @@ $( document ).ready(function() {
 
 function move_point(x, y) {
     console.log('hitting move ', x, y);
-    var pos = {
-        "x": x,
-        "y": y,
-        "z": 0,
-        "w": 0
+    // var pos = {
+    //     "x": x,
+    //     "y": y,
+    //     "z": 0
+    //   }
+    //   var msg = new ROSLIB.Message({
+    //     location: pos,
+    //     options: {},
+    //     yaw: 0
+    //   });
+
+      var pos = {
+        "x": -4.010227376076477,
+        "y": -4.59871246804222,
+        "z": 0
       }
-    var msg = new ROSLIB.Message({
-        orientation: pos,
-        options: {}
-    });
+      var msg = new ROSLIB.Message({
+        location: pos,
+        options: {},
+        yaw: 0
+      });
     window.slamMovePublisher.publish(msg);
 }
 
