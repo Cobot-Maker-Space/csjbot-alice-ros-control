@@ -416,6 +416,26 @@ $( document ).ready(function() {
 
       /* End Movement related */
 
+      var topic_go_to_point = new ROSLIB.Topic({
+        ros: ros,
+        name: '/slamware_ros_sdk_server_node/move_to',
+        messageType: 'slamware_ros_sdk/MoveToRequest'
+      });
+
+      $("#btn_sofa").click(() => {
+        var pos = {
+          "x": -4.010227376076477,
+          "y": -4.59871246804222,
+          "z": 0
+        }
+        var msg = new ROSLIB.Message({
+          location: pos,
+          options: {},
+          yaw: 0
+        });
+        topic_go_to_point.publish(msg);
+      });
+
     retrieve_contexts();
 
     update_parts_list('warehouse');
