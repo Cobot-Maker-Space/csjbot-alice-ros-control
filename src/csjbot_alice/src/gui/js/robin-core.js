@@ -416,6 +416,17 @@ $( document ).ready(function() {
 
       /* End Movement related */
 
+      var topic_cancel = new ROSLIB.Topic({
+        ros: ros,
+        name: '/slamware_ros_sdk_server_node/cancel_action',
+        messageType: 'slamware_ros_sdk/CancelActionRequest'
+      });
+
+      $(document).on('click', '.slam-stop', function(){
+        console.log("Clicked: STOP")
+        topic_cancel.publish(new ROSLIB.Message());
+      });
+
       var topic_go_to_point = new ROSLIB.Topic({
         ros: ros,
         name: '/slamware_ros_sdk_server_node/move_to',
