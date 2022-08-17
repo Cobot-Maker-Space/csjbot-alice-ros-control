@@ -461,7 +461,7 @@ $( document ).ready(function() {
 });
 
 function move_point(x, y) {
-    console.log('hitting move');
+    console.log('hitting move ', x, y);
     var pos = {
         "x": x,
         "y": y,
