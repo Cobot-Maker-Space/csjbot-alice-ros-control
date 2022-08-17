@@ -116,6 +116,11 @@ $( document ).ready(function() {
         messageType: 'slamware_ros_sdk/GoHomeRequest'
     });
 
+    window.slamCancelPublisher = new ROSLIB.Topic({
+        ros: ros,
+        name: '/slamware_ros_sdk_server_node/cancel_action',
+        messageType: 'slamware_ros_sdk/CancelActionRequest'
+    });
 
     window.parts_workshop = new ROSLIB.Param({
         ros : window.ros,
@@ -418,14 +423,7 @@ $( document ).ready(function() {
     // });
 
 
-      window.slamCancelPublisher = new ROSLIB.Topic({
-        ros: ros,
-        name: '/slamware_ros_sdk_server_node/cancel_action',
-        messageType: 'slamware_ros_sdk/CancelActionRequest'
-      });
-
       $(document).on('click', '.slam-stop', function(){
-        console.log("Clicked: STOP")
         window.slamCancelPublisher.publish(new ROSLIB.Message());
       });
 
@@ -490,7 +488,6 @@ function rotate_point(z, w) {
     });
     window.slamRotatePublisher.publish(msg);
 }
-
 
 function retrieve_contexts() {
     var contexts_param = new ROSLIB.Param({
