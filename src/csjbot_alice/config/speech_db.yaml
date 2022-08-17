@@ -12,14 +12,11 @@ speechsets:
         - Goodbye
         - Have a great day
       - long: 
-        - "Here is the food that you ordered"
-        - "Let me check. It contains 492 calories"
-        - "I hope you enjoy it. Have a great day"
-        - "Welcome to the Co Maker Space. Feel free to have a look round"
-        - "Hi I'm Robin and I welcome you to the Co Maker Space"
+        - "Welcome to the Cobot Maker Space. Feel free to have a look round"
+        - "Hi I'm Robin and I welcome you to the Cobot Maker Space"
         - "Welcome. My name is Robin. Ask me if you have any questions"
-        - "I was born in China, but I was made in Nottingham"
-
+        - "I hope you enjoy it. Have a great day"
+        
   rmi:
       - name: "Human-Robot Interaction"
       - short:
