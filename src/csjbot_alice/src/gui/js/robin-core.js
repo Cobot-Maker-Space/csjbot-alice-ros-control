@@ -444,7 +444,8 @@ $( document ).ready(function() {
           options: {},
           yaw: 0
         });
-        topic_go_to_point.publish(msg);
+        // topic_go_to_point.publish(msg);
+        window.slamMovePoint.publish(msg);
       });
 
     retrieve_contexts();
