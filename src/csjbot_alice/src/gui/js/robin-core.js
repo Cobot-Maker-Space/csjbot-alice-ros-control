@@ -98,18 +98,6 @@ $( document ).ready(function() {
         messageType : 'csjbot_alice/PartTransfer'
     });
 
-    window.slamMovePublisher = new ROSLIB.Topic({
-        ros : window.ros,
-        name : '/slamware_ros_sdk_server_node/move_to',
-        messageType : 'slamware_ros_sdk/MoveToR'
-    });
-
-    window.slamRotatePublisher = new ROSLIB.Topic({
-        ros : window.ros,
-        name : '/slamware_ros_sdk_server_node/rotate_to',
-        messageType : 'slamware_ros_sdk/RotateToRequest'
-    });
-
     window.moveHomePublisher = new ROSLIB.Topic({
         ros: window.ros,
         name: '/slamware_ros_sdk_server_node/go_home',
@@ -121,6 +109,19 @@ $( document ).ready(function() {
         name: '/slamware_ros_sdk_server_node/cancel_action',
         messageType: 'slamware_ros_sdk/CancelActionRequest'
     });
+
+    window.slamMovePublisher = new ROSLIB.Topic({
+        ros : window.ros,
+        name : '/slamware_ros_sdk_server_node/move_to',
+        messageType : 'slamware_ros_sdk/MoveToRequest'
+    });
+
+    window.slamRotatePublisher = new ROSLIB.Topic({
+        ros : window.ros,
+        name : '/slamware_ros_sdk_server_node/rotate_to',
+        messageType : 'slamware_ros_sdk/RotateToRequest'
+    });
+
 
     window.parts_workshop = new ROSLIB.Param({
         ros : window.ros,
@@ -444,8 +445,8 @@ $( document ).ready(function() {
           options: {},
           yaw: 0
         });
-        // topic_go_to_point.publish(msg);
-        window.slamMovePoint.publish(msg);
+        topic_go_to_point.publish(msg);
+        // window.slamMovePoint.publish(msg);
       });
 
     retrieve_contexts();
