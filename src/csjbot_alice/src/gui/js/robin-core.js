@@ -311,23 +311,19 @@ $( document ).ready(function() {
     //     topic_cancel.publish(new ROSLIB.Message());
     // });
 
-    $(document).on('click', '.slam-point', function(){
-        x = $(this).data('slam-x');
-        y = $(this).data('slam-y');
-        moveToPoint(x, y);
-    });  
-
     $(document).on('click', '.slam-home', function(){
         window.moveHome.publish(new ROSLIB.Message());
     });
 
     $(document).on('click', '.slam-point', function(){
+        console.log('slam point');
         x = $(this).data('slam-x');
         y = $(this).data('slam-y');
         moveToPoint(x, y);
     });  
 
     $(document).on('click', '.slam-rotate', function(){
+        console.log('slam rotate');
         z = $(this).data('slam-z');
         w = $(this).data('slam-w');
         rotateToPoint(z, w);
@@ -433,6 +429,7 @@ $( document ).ready(function() {
 });
 
 function moveToPoint(x, y) {
+    console.log('hitting move');
     var pos = {
         "x": x,
         "y": y,
@@ -447,6 +444,7 @@ function moveToPoint(x, y) {
 }
 
 function rotateToPoint(z, w) {
+    console.log('hitting rotate');
     var pos = {
         "x": 0,
         "y": 0,
