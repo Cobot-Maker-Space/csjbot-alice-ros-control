@@ -98,6 +98,25 @@ $( document ).ready(function() {
         messageType : 'csjbot_alice/PartTransfer'
     });
 
+    window.movePoint = new ROSLIB.Topic({
+        ros : window.ros,
+        name : '/slamware_ros_sdk_server_node/move_to',
+        messageType : 'slamware_ros_sdk/MoveToR'
+    });
+
+    window.rotatePoint = new ROSLIB.Topic({
+        ros : window.ros,
+        name : '/slamware_ros_sdk_server_node/rotate_to',
+        messageType : 'slamware_ros_sdk/RotateToRequest'
+    });
+
+    window.moveHome = new ROSLIB.Topic({
+        ros: window.ros,
+        name: '/slamware_ros_sdk_server_node/go_home',
+        messageType: 'slamware_ros_sdk/GoHomeRequest'
+    });
+
+
     window.parts_workshop = new ROSLIB.Param({
         ros : window.ros,
         name :  '/alice/parts/workshop'
@@ -122,7 +141,7 @@ $( document ).ready(function() {
         console.log("received parts list update " + message.location_name);
         update_parts_list(message.location_name);
     });
-    
+
     $(document).on('click', '.btn-parts-action', function(){
         source = $(this).parents('.parts-list').data("type");
         target = $(this).data('btntype');
@@ -279,6 +298,129 @@ $( document ).ready(function() {
         retrieve_speechset(context); 
     });
 
+
+    /* Movement related */
+    // var topic_cancel = new ROSLIB.Topic({
+    //     ros: ros,
+    //     name: '/slamware_ros_sdk_server_node/cancel_action',
+    //     messageType: 'slamware_ros_sdk/CancelActionRequest'
+    // });
+
+    // $("#btn_stop").click(() => {
+    //     console.log("Clicked: STOP")
+    //     topic_cancel.publish(new ROSLIB.Message());
+    // });
+
+    $(document).on('click', '.slam-point', function(){
+        x = $(this).data('slam-x');
+        y = $(this).data('slam-y');
+        moveToPoint(x, y);
+    });  
+
+    $(document).on('click', '.slam-home', function(){
+        window.moveHome.publish(new ROSLIB.Message());
+    });
+
+    $(document).on('click', '.slam-point', function(){
+        x = $(this).data('slam-x');
+        y = $(this).data('slam-y');
+        moveToPoint(x, y);
+    });  
+
+    $(document).on('click', '.slam-rotate', function(){
+        z = $(this).data('slam-z');
+        w = $(this).data('slam-w');
+        rotateToPoint(z, w);
+    });   
+
+    //   $("#btn_sofa").click(() => {
+    //     var pos = {
+    //       "x": -4.010227376076477,
+    //       "y": -4.59871246804222,
+    //       "z": 0
+    //     }
+    //     var msg = new ROSLIB.Message({
+    //       location: pos,
+    //       options: {},
+    //       yaw: 0
+    //     });
+    //     topic_go_to_point.publish(msg);
+    //   });
+
+    //   $("#btn_sink").click(() => {
+    //     var pos = {
+    //       "x": -9.04355159402913,
+    //       "y": -3.110122021038335,
+    //       "z": 0
+    //     }
+    //     var msg = new ROSLIB.Message({
+    //       location: pos,
+    //       options: {},
+    //       yaw: 0
+    //     });
+    //     topic_go_to_point.publish(msg);
+    //   });
+
+    //   $("#btn_table").click(() => {
+    //     var pos = {
+    //       "x": -8.853570443890588,
+    //       "y": -6.243380936112042,
+    //       "z": 0
+    //     }
+    //     var msg = new ROSLIB.Message({
+    //       location: pos,
+    //       options: {},
+    //       yaw: 0
+    //     });
+    //     topic_go_to_point.publish(msg);
+    //   });
+
+     
+
+    //   $("#btn_sofa_turn").click(() => {
+    //     var pos = {
+    //       "x": 0,
+    //       "y": 0,
+    //       "z": 0.5516594920380833,
+    //       "w": 0.8340694244751355
+    //     }
+    //     var msg = new ROSLIB.Message({
+    //       orientation: pos,
+    //       options: {}
+    //     });
+    //     topic_rotate_to.publish(msg);
+    //   });
+
+    //   $("#btn_sink_turn").click(() => {
+    //     var pos = {
+    //       "x": 0,
+    //       "y": 0,
+    //       "z": -0.00041863841229850045,
+    //       "w": 0.999999912370936
+    //     }
+    //     var msg = new ROSLIB.Message({
+    //       orientation: pos,
+    //       options: {}
+    //     });
+    //     topic_rotate_to.publish(msg);
+    //   });
+
+    //   $("#btn_table_turn").click(() => {
+    //     var pos = {
+    //       "x": 0,
+    //       "y": 0,
+    //       "z": 0.5516594920380833,
+    //       "w": 0.8340694244751355
+    //     }
+    //     var msg = new ROSLIB.Message({
+    //       orientation: pos,
+    //       options: {}
+    //     });
+    //     topic_rotate_to.publish(msg);
+    //   });
+
+      /* End Movement related */
+
     retrieve_contexts();
 
     update_parts_list('warehouse');
@@ -289,6 +431,35 @@ $( document ).ready(function() {
     change_voice($('.voice-default').data('voice'));
     init_video_stream();
 });
+
+function moveToPoint(x, y) {
+    var pos = {
+        "x": x,
+        "y": y,
+        "z": 0,
+        "w": 0
+      }
+    var msg = new ROSLIB.Message({
+        orientation: pos,
+        options: {}
+    });
+    window.movePoint.publish(msg);
+}
+
+function rotateToPoint(z, w) {
+    var pos = {
+        "x": 0,
+        "y": 0,
+        "z": z,
+        "w":w
+      }
+    var msg = new ROSLIB.Message({
+        orientation: pos,
+        options: {}
+    });
+    window.rotatePoint.publish(msg);
+}
+
 
 function retrieve_contexts() {
     var contexts_param = new ROSLIB.Param({
@@ -361,7 +532,6 @@ function update_parts_list(location) {
 function retrieve_parts(location_param, location) {
     $('#' + location).find('ul').empty();
     location_param.get(function(value){
-        console.log(value);
         $.each(value, function( index, part ){
             part_obj = $( ".templates .part" ).clone()
             part_obj.find('.parts-name').html(part.name)
