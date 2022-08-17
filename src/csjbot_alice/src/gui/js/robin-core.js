@@ -428,26 +428,26 @@ $( document ).ready(function() {
         window.slamCancelPublisher.publish(new ROSLIB.Message());
       });
 
-      var topic_go_to_point = new ROSLIB.Topic({
-        ros: ros,
-        name: '/slamware_ros_sdk_server_node/move_to',
-        messageType: 'slamware_ros_sdk/MoveToRequest'
-      });
+    //   var topic_go_to_point = new ROSLIB.Topic({
+    //     ros: ros,
+    //     name: '/slamware_ros_sdk_server_node/move_to',
+    //     messageType: 'slamware_ros_sdk/MoveToRequest'
+    //   });
 
-      $("#btn_sofa").click(() => {
-        var pos = {
-          "x": -4.010227376076477,
-          "y": -4.59871246804222,
-          "z": 0
-        }
-        var msg = new ROSLIB.Message({
-          location: pos,
-          options: {},
-          yaw: 0
-        });
-        topic_go_to_point.publish(msg);
-        // window.slamMovePoint.publish(msg);
-      });
+    //   $("#btn_sofa").click(() => {
+    //     var pos = {
+    //       "x": -4.010227376076477,
+    //       "y": -4.59871246804222,
+    //       "z": 0
+    //     }
+    //     var msg = new ROSLIB.Message({
+    //       location: pos,
+    //       options: {},
+    //       yaw: 0
+    //     });
+    //     topic_go_to_point.publish(msg);
+    //     // window.slamMovePoint.publish(msg);
+    //   });
 
     retrieve_contexts();
 
@@ -461,28 +461,16 @@ $( document ).ready(function() {
 });
 
 function move_point(x, y) {
-    console.log('hitting move ', x, y);
-    // var pos = {
-    //     "x": x,
-    //     "y": y,
-    //     "z": 0
-    //   }
-    //   var msg = new ROSLIB.Message({
-    //     location: pos,
-    //     options: {},
-    //     yaw: 0
-    //   });
-
-      var pos = {
-        "x": -4.010227376076477,
-        "y": -4.59871246804222,
+    var pos = {
+        "x": x,
+        "y": y,
         "z": 0
-      }
-      var msg = new ROSLIB.Message({
+    }
+    var msg = new ROSLIB.Message({
         location: pos,
         options: {},
         yaw: 0
-      });
+    });
     window.slamMovePublisher.publish(msg);
 }
 
