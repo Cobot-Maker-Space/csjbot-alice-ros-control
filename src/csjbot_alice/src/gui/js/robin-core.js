@@ -473,7 +473,7 @@ function move_point(x, y) {
         orientation: pos,
         options: {}
     });
-    window.slamMovePoint.publish(msg);
+    window.slamMovePublisher.publish(msg);
 }
 
 function rotate_point(z, w) {
@@ -488,7 +488,7 @@ function rotate_point(z, w) {
         orientation: pos,
         options: {}
     });
-    window.slamRotatePoint.publish(msg);
+    window.slamRotatePublisher.publish(msg);
 }
 
 
