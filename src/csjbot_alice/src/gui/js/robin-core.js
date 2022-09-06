@@ -79,7 +79,7 @@ $( document ).ready(function() {
         name : '/video_on',
         messageType : 'std_msgs/Bool'
     });
- 
+
     window.partsListUpdatedSubscriber = new ROSLIB.Topic({
         ros : window.ros,
         name : '/alice/parts/updated',
@@ -122,6 +122,11 @@ $( document ).ready(function() {
         messageType : 'slamware_ros_sdk/RotateToRequest'
     });
 
+    window.contextPublisher = new ROSLIB.Topic({
+        ros : window.ros,
+        name : '/alice/context',
+        messageType : 'std_msgs/String'
+    });
 
     window.parts_workshop = new ROSLIB.Param({
         ros : window.ros,
@@ -152,7 +157,7 @@ $( document ).ready(function() {
         source = $(this).parents('.parts-list').data("type");
         target = $(this).data('btntype');
         id = $(this).parents('.part').data('id');
-        
+
         window.partTransferPublisher.publish(
             new ROSLIB.Message({
                 id: id,
@@ -169,11 +174,11 @@ $( document ).ready(function() {
         messageType : 'std_msgs/Bool'
     });
 
-    $(document).on('change', '.openhab-state-switch', function(){ 
+    $(document).on('change', '.openhab-state-switch', function(){
         window.openHabStatePublisher.publish(new ROSLIB.Message({data:$(this).is(':checked')}));
     });
 
-    
+
     window.requestScan = new ROSLIB.Topic({
         ros : window.ros,
         name : '/alice/parts/scan',
@@ -192,7 +197,7 @@ $( document ).ready(function() {
         var parts_speech = "";
         $('#requested').find('li').each(function() {
             parts_speech += $(this).find('.parts-qty').html() + " " + $(this).find('.parts-name').html() + ". ";
-        });  
+        });
         if (parts_speech == '') {
             parts_speech = 'No parts have been requested.';
         } else {
@@ -206,7 +211,7 @@ $( document ).ready(function() {
         var parts_speech = "";
         $('#intransit').find('li').each(function() {
             parts_speech += $(this).find('.parts-qty').html() + " " + $(this).find('.parts-name').html() + ". ";
-        });  
+        });
         if (parts_speech == '') {
             parts_speech = 'My tray is empty. I have no parts.';
         } else {
@@ -290,7 +295,8 @@ $( document ).ready(function() {
             ros : ros,
             name :  '/alice/contexts/' + context
         });
-    
+        window.contextPublisher.publish(context);
+
         contexts_details.get(function(value){
             $.each(value, function( index, item ){
                 if (index == 'panels') {
@@ -301,7 +307,7 @@ $( document ).ready(function() {
             });
         });
 
-        retrieve_speechset(context); 
+        retrieve_speechset(context);
     });
 
     $(document).on('click', '.slam-home', function(){
@@ -313,14 +319,14 @@ $( document ).ready(function() {
         x = $(this).data('slam-x');
         y = $(this).data('slam-y');
         move_point(x, y);
-    });  
+    });
 
     $(document).on('click', '.slam-rotate', function(){
         console.log('slam rotate');
         z = $(this).data('slam-z');
         w = $(this).data('slam-w');
         rotate_point(z, w);
-    });   
+    });
 
     //   $("#btn_sofa").click(() => {
     //     var pos = {
@@ -364,7 +370,7 @@ $( document ).ready(function() {
     //     topic_go_to_point.publish(msg);
     //   });
 
-     
+
 
     //   $("#btn_sofa_turn").click(() => {
     //     var pos = {
@@ -410,7 +416,7 @@ $( document ).ready(function() {
 
       /* End Movement related */
 
-      
+
     //   window.slamMovePublisher = new ROSLIB.Topic({
     //     ros : window.ros,
     //     name : '/slamware_ros_sdk_server_node/move_to',
