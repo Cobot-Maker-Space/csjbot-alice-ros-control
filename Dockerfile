@@ -14,14 +14,15 @@ RUN apt-get update && apt-get install -y ros-noetic-desktop-full \
     python3-wstool python3-pip bash-completion && \
     rm -rf /var/lib/apt/lists/*
 
-# ADD . /root/catkin_ws/
-
 WORKDIR /root/catkin_ws
 
 # RUN ln -s /usr/bin/pip3 /usr/bin/pip
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
-RUN pip install websockets asyncio python-openhab 
+RUN pip install websockets asyncio python-openhab
+
+COPY src/yolo_parts/requirements.txt /tmp/yolo_parts_requirements.txt
+RUN pip install -r /tmp/yolo_parts_requirements.txt
 
 RUN echo "source /opt/ros/$ROS_DISTRO/setup.sh" >> /root/.bashrc
 RUN echo "source /root/catkin_ws/devel/setup.bash" >> /root/.bashrc
