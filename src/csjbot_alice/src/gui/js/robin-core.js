@@ -295,7 +295,6 @@ $( document ).ready(function() {
             ros : ros,
             name :  '/alice/contexts/' + context
         });
-        window.contextPublisher.publish(context);
 
         contexts_details.get(function(value){
             $.each(value, function( index, item ){
@@ -308,6 +307,7 @@ $( document ).ready(function() {
         });
 
         retrieve_speechset(context);
+        window.contextPublisher.publish(new ROSLIB.Message(context));
     });
 
     $(document).on('click', '.slam-home', function(){
