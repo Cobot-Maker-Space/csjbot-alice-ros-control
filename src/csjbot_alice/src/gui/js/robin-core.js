@@ -307,7 +307,7 @@ $( document ).ready(function() {
         });
 
         retrieve_speechset(context);
-        window.contextPublisher.publish(new ROSLIB.Message(context));
+        window.contextPublisher.publish(new ROSLIB.Message({data: context}));
     });
 
     $(document).on('click', '.slam-home', function(){
