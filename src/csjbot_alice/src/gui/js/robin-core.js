@@ -342,7 +342,9 @@ $(document).ready(function () {
     console.log("slam point");
     x = $(this).data("slam-x");
     y = $(this).data("slam-y");
-    move_point(x, y);
+    z = $(this).data("slam-z");
+    w = $(this).data("slam-w");
+    move_point(x, y, z, w);
   });
 
   $(document).on("click", ".slam-rotate", function () {
@@ -486,12 +488,7 @@ $(document).ready(function () {
   init_video_stream();
 });
 
-function move_point(x, y) {
-  var pos = {
-    x: x,
-    y: y,
-    z: 0,
-  };
+function move_point(x, y, z, w) {
   /*var msg = new ROSLIB.Message({
     location: pos,
     options: {},
@@ -500,15 +497,15 @@ function move_point(x, y) {
   var msg = new ROSLIB.Message({
     pose: {
       position: {
-        x: 2.593125637917997,
-        y: 3.468386734272904,
+        x: x,
+        y: y,
         z: 0.0,
       },
       orientation: {
         x: 0.0,
         y: 0.0,
-        z: 0.00028463629664725706,
-        w: 0.9999999594910884,
+        z: z,
+        w: w,
       },
     },
   });
