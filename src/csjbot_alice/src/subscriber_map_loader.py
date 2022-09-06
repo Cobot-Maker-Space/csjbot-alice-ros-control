@@ -21,15 +21,15 @@ class MapLoader(object):
         rospy.spin()
 
     def switch_context(self, msg):
-        rospy.loginfo(f"Switching context to {msg}")
+        rospy.loginfo(f"Switching context to {msg.data}")
         rospack = rospkg.RosPack()
         bdir = rospack.get_path("csjbot_alice")
-        p = pathlib.Path(f"{bdir}/config/maps/{msg}.stcm")
+        p = pathlib.Path(f"{bdir}/config/maps/{msg.data}.stcm")
         if p.exists() and p.is_file():
           with p.open(mode="rb") as f:
             self.load_map_service(f.read(), None)
         else:
-            req = ClearMapRequest(kind=0)
+            req = ClearMapRequest()
             self.clear_map_publisher.publish(req)
 
 
