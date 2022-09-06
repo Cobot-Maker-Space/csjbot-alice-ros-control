@@ -29,7 +29,7 @@ class MapLoader(object):
           with p.open(mode="rb") as f:
             self.load_map_service(f.read(), None)
         else:
-            req = ClearMapRequest(kind=MapKind.Unknown)
+            req = ClearMapRequest(kind=0)
             self.clear_map_publisher.publish(req)
 
 
