@@ -4,52 +4,52 @@ parts:
       model: Grabber
       code: white-9-hole-double-bend-beam
       name: White 9 Hole Double Bend Beam
-      qty: 2
+      qty: 10
     - id: 4
       model: Grabber
       code: black-2-hole-2-cross-connector
       name: Black 2 Hole 2 Cross Connector
-      qty: 2
+      qty: 10
     - id: 16
       model: Grabber
       code: dark-grey-2-hole-cross-block
       name: Dark Grey 2 Hole Cross Block
-      qty: 2
+      qty: 10
     - id: 10
       model: Grabber
       code: long-black-axle
       name: Long Black Axle
-      qty: 2
+      qty: 10
     - id: 7
       model: Grabber
       code: short-red-axle-connector
       name: Short Red Axle Connector
-      qty: 3
+      qty: 10
     - id: 2
       model: Grabber
       code: red-notched-axle
       name: Red Notched Axle
-      qty: 3
+      qty: 10
     - id: 6
       model: Grabber
       code: short-grey-axle
       name: Short Grey Axle 
-      qty: 2
+      qty: 10
     - id: 27
       model: Gyroboy
       code: black-1-hole-beam
       name: Black 1 Hole Beam
-      qty: 1    
+      qty: 10   
     - id: 24
       model: Gyroboy
       code: black-2-pin-link-tread
       name: Black 2 Pin Link Tread
-      qty: 1
+      qty: 10
     - id: 13
       model: Grabber
       code: red-long-pin-and-bush
       name: Red Long Pin and Bush
-      qty: 4
+      qty: 10
     - id: 9
       model: Grabber
       code: black-pin
@@ -59,92 +59,92 @@ parts:
       model: Gyroboy
       code: blue-short-axle-pin
       name: Blue Short Axle Pin
-      qty: 5
+      qty: 10
     - id: 30
       model: Gyroboy
       code: cream-short-axle-pin
       name: Cream Short Axle Pin
-      qty: 5
+      qty: 10
     - id: 22
       model: Gyroboy
       code: grey-pin-center-hole
       name: Grey Pin with Center Hole
-      qty: 1
+      qty: 10
     - id: 23
       model: Gyroboy
       code: ultrasonic-sensor
       name: Ultrasonic Sensor
-      qty: 1
+      qty: 10
     - id: 20
       model: Gyroboy
       code: black-fairing
       name: Black Fairing
-      qty: 1
+      qty: 10
     - id: 12
       model: Grabber
       code: black-angular-wheel
       name: Black Angular Wheel
-      qty: 2
+      qty: 10
     - id: 14
       model: Grabber
       code: long-grey-axle
       name: Long Grey Axle
-      qty: 1
+      qty: 10
     - id: 5
       model: Grabber
       code: black-2-hole-1-cross-connector
       name: Black 2 Hole 1 Cross Connector
-      qty: 2
+      qty: 10
     - id: 11
       model: Grabber
       code: black-5-hole-t-shape
       name: Black 5 Hole T-shape 
-      qty: 2
+      qty: 10
     - id: 1
       model: Grabber
       code: white-7-hole-l-shape
       name: White 7 Hole L-shape
-      qty: 2
+      qty: 10
     - id: 3
       model: Grabber
       code: medium-grey-axle
       name: Medium Grey Axle 
-      qty: 1
+      qty: 10
     - id: 8
       model: Grabber
       code: yellow-bush
       name: Yellow Bush
-      qty: 2
+      qty: 10
     - id: 19
       model: Gyroboy
       code: long-blue-pin
       name: Long Blue Pin
-      qty: 3
+      qty: 10
     - id: 29
       model: Gyroboy
       code: white-5-hole-bent-beam
       name: White 5 Hole Bent Beam
-      qty: 1
+      qty: 10
     - id: 21
       model: Gyroboy
       code: grey-5-hole-beam
       name: Grey 5 Hole Beam
-      qty: 2
+      qty: 10
     - id: 26
       model: Gyroboy
       code: black-7-hole-bent-beam
       name: Black 7 Hole Bent Beam
-      qty: 1
+      qty: 10
     - id: 18
       model: Gyroboy
       code: grey-4-pin-cross-beam
       name: Grey 4 Pin Cross Beam
-      qty: 1
+      qty: 10
     - id: 15
       model: Grabber
       code: servo-motor
       name: Servo Motor
-      qty: 1
+      qty: 10
     
   
   
