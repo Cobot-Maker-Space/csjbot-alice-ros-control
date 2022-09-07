@@ -489,11 +489,6 @@ $(document).ready(function () {
 });
 
 function move_point(x, y, z, w) {
-  /*var msg = new ROSLIB.Message({
-    location: pos,
-    options: {},
-    yaw: 0,
-  });*/
   var msg = new ROSLIB.Message({
     pose: {
       position: {
