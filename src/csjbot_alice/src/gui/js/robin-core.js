@@ -675,7 +675,7 @@ function moveLimbs(limb_to_move) {
   var joint_movement = new ROSLIB.Message({
     neck: neck_move,
     neck_to: neck_pos,
-    neck_speed: 5000,
+    neck_speed: 4000,
     left_arm: left_arm_move,
     left_arm_to: left_arm_pos,
     left_arm_speed: 3000,
