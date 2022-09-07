@@ -1,0 +1,79 @@
+cmake_minimum_required(VERSION 2.8.3)
+project(slamware_ros_sdk)
+
+find_package(catkin REQUIRED COMPONENTS
+  nav_msgs
+  sensor_msgs
+  std_msgs
+  message_generation
+)
+
+add_message_files(
+  FILES
+  OptionalBool.msg
+  OptionalInt8.msg
+  OptionalInt16.msg
+  OptionalInt32.msg
+  OptionalInt64.msg
+  OptionalUInt8.msg
+  OptionalUInt16.msg
+  OptionalUInt32.msg
+  OptionalUInt64.msg
+  OptionalFlt32.msg
+  OptionalFlt64.msg
+  Vec2DInt32.msg
+  Vec2DFlt32.msg
+  Line2DFlt32.msg
+  Line2DFlt32Array.msg
+  RectInt32.msg
+  RectFlt32.msg
+  RobotDeviceInfo.msg
+  MapKind.msg
+  ArtifactUsage.msg
+  SensorType.msg
+  ImpactType.msg
+  BasicSensorInfo.msg
+  BasicSensorInfoArray.msg
+  BasicSensorValue.msg
+  BasicSensorValueData.msg
+  BasicSensorValueDataArray.msg
+  ActionDirection.msg
+  RobotBasicState.msg
+  SyncMapRequest.msg
+  MoveOptionFlag.msg
+  MoveOptions.msg
+  MoveByDirectionRequest.msg
+  MoveByThetaRequest.msg
+  MoveToRequest.msg
+  MoveToLocationsRequest.msg
+  RotateToRequest.msg
+  RotateRequest.msg
+  LocalizationMovement.msg
+  OptionalLocalizationMovement.msg
+  LocalizationOptions.msg
+  RecoverLocalizationRequest.msg
+  ClearMapRequest.msg
+  SetMapUpdateRequest.msg
+  SetMapLocalizationRequest.msg
+  GoHomeRequest.msg
+  CancelActionRequest.msg
+  AddLineRequest.msg
+  AddLinesRequest.msg
+  RemoveLineRequest.msg
+  ClearLinesRequest.msg
+  MoveLineRequest.msg
+  MoveLinesRequest.msg
+)
+
+add_service_files(
+  FILES
+  SyncGetStcm.srv
+  SyncSetStcm.srv
+)
+
+generate_messages(
+  DEPENDENCIES
+  nav_msgs
+  sensor_msgs
+  std_msgs
+)

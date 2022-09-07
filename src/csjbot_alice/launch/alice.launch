@@ -29,7 +29,9 @@
     <node name="web_video_server" pkg="web_video_server" type="web_video_server">
         <param name="topic" value="/camera/image" />
     </node>
-    
+
+    <node name="subscriber_map_loader" pkg="csjbot_alice" type="subscriber_map_loader.py" />
+
     <group ns="alice">
         <rosparam file="$(find csjbot_alice)/config/contexts.yaml" />
         <rosparam file="$(find csjbot_alice)/config/speech_db.yaml" />
