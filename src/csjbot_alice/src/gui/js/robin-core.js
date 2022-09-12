@@ -125,6 +125,7 @@ $(document).ready(function () {
     ros: window.ros,
     name: "/alice/context",
     messageType: "std_msgs/String",
+    latch: true,
   });
 
   window.parts_workshop = new ROSLIB.Param({

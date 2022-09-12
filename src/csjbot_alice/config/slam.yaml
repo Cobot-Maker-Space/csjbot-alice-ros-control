@@ -1,0 +1,5 @@
+maps:
+  cms:
+    name: Cobot Maker Space
+    description: Generic map for the Cobot Maker Space.
+    filename: cms.stcm

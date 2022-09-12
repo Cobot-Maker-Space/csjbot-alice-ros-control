@@ -5,32 +5,33 @@ import pathlib
 import rospy
 import rospkg
 from std_msgs.msg import String
-from slamware_ros_sdk.msg import ClearMapRequest, MapKind
 from slamware_ros_sdk.srv import SyncSetStcm
 
 
 class MapLoader(object):
     def __init__(self):
         rospy.init_node("map_loader")
-        self.clear_map_publisher = rospy.Publisher(
-            "/slamware_ros_sdk_server_node/clear_map", ClearMapRequest, queue_size=10
-        )
         rospy.wait_for_service("/slamware_ros_sdk_server_node/sync_set_stcm")
-        self.load_map_service = rospy.ServiceProxy("/slamware_ros_sdk_server_node/sync_set_stcm", SyncSetStcm)
-        rospy.Subscriber("/alice/context", String, self.switch_context)
+        self.load_map_service = rospy.ServiceProxy(
+            "/slamware_ros_sdk_server_node/sync_set_stcm", SyncSetStcm
+        )
+        rospy.Subscriber("/alice/load_map", String, self.load_map)
         rospy.spin()
 
-    def switch_context(self, msg):
-        rospy.loginfo(f"Switching context to {msg.data}")
+    def load_map(self, msg):
         rospack = rospkg.RosPack()
         bdir = rospack.get_path("csjbot_alice")
-        p = pathlib.Path(f"{bdir}/config/maps/{msg.data}.stcm")
-        if p.exists() and p.is_file():
-          with p.open(mode="rb") as f:
-            self.load_map_service(f.read(), None)
-        else:
-            req = ClearMapRequest()
-            self.clear_map_publisher.publish(req)
+        try:
+            fname = rospy.get_param(f"/alice/maps/{msg.data}/filename")
+            p = pathlib.Path(f"{bdir}/config/maps/{fname}")
+            if p.exists() and p.is_file():
+                rospy.loginfo(f"Switching map to {msg.data}")
+                with p.open(mode="rb") as f:
+                    self.load_map_service(f.read(), None)
+            else:
+                rospy.logwarn(f"Unable to load map: {msg.data}")
+        except KeyError:
+            rospy.logwarn(f"No such map: {msg.data}")
 
 
 if __name__ == "__main__":
