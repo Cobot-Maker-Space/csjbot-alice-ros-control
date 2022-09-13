@@ -3,3 +3,26 @@ maps:
     name: Cobot Maker Space
     description: Generic map for the Cobot Maker Space.
     filename: cms.stcm
+  rmi:
+    name: Robots Mediating Interaction
+    description: Custom RMI project map of the CMS.
+    filename: cms.stcm
+    locations:
+      lab:
+        name: Lab
+        x: 2.593125637917997
+        y: 3.468386734272904
+        z: 0.00028463629664725706
+        w: 0.9999999594910884
+      corridor:
+        name: Corridor
+        x: -2.602432247997028
+        y: 2.74480826968578
+        z: 0.4283721203334798
+        w: 0.9036024161770478
+      livingspace:
+        name: Living Space
+        x: -6.276148239152499
+        y: -3.723596241944571
+        z: -0.9435484408027102
+        w: 0.3312345692387413
