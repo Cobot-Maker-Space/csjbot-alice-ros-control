@@ -1,8 +1,8 @@
 openhab:
   state: off
-  base_url: 'http://10.0.3.1:8080/rest'
+  base_url: 'http://10.0.10.10:8080/rest'
   sensors: 
-    CupboardASensor_SensorDoor:
+    'Open Close - Cupboard A':
       speech-state-OPEN: "You are getting the first aid kit? Are you ok?" 
       speech-state-CLOSED: "Thanks for closing the cupboard" 
       turn-state-direction-OPEN: "LEFT"
