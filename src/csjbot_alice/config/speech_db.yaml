@@ -12,6 +12,10 @@ speechsets:
         - Goodbye
         - Have a great day
       - long: 
+        - "You are getting the first aid kit? Are you ok?"
+        - "We are running low on cleaning supplies but I have ordered some more."
+        - "There is a lovely breeze coming in through the window."
+        - "Thats nice and warm now" 
         - "Welcome to the Cobot Maker Space. Feel free to have a look round"
         - "Hi I'm Robin and I welcome you to the Cobot Maker Space"
         - "Welcome. My name is Robin. Ask me if you have any questions"
