@@ -2,7 +2,7 @@ openhab:
   state: off
   base_url: 'http://10.0.10.10:80/rest'
   sensors: 
-    'Open Close - Cupboard A':
+    'zwave:fibaro_fgdw002_00_000':
       speech-state-OPEN: "You are getting the first aid kit? Are you ok?" 
       speech-state-CLOSED: "Thanks for closing the cupboard" 
       turn-state-direction-OPEN: "LEFT"
