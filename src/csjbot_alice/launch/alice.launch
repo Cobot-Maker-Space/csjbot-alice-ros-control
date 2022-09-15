@@ -24,7 +24,7 @@
         <param name="baud" value="$(arg serial_speed)" />
     </node>
 
-    <!-- <node name="openhab_connector" pkg="csjbot_alice" type="openhab_connector.py" output="screen" /> -->
+    <node name="openhab_connector" pkg="csjbot_alice" type="openhab_connector.py" output="screen" />
 
     <node name="web_video_server" pkg="web_video_server" type="web_video_server">
         <param name="topic" value="/camera/image" />
