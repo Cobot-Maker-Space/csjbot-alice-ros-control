@@ -3,27 +3,27 @@ parts:
     - id: 17
       model: Grabber
       code: white-9-hole-double-bend-beam
-      name: White 9 Hole Double Bend Beam
+      name: White Double Bend Beam
       qty: 10
     - id: 4
       model: Grabber
       code: black-2-hole-2-cross-connector
-      name: Black 2 Hole 2 Cross Connector
+      name: Black 2 Cross Connector
       qty: 10
     - id: 16
       model: Grabber
       code: dark-grey-2-hole-cross-block
-      name: Dark Grey 2 Hole Cross Block
+      name: Dark Grey Cross Block 
       qty: 10
     - id: 10
       model: Grabber
       code: long-black-axle
-      name: Long Black Axle
+      name: Black Axle Length 6
       qty: 10
     - id: 7
       model: Grabber
       code: short-red-axle-connector
-      name: Short Red Axle Connector
+      name: Red Axle Connector
       qty: 10
     - id: 2
       model: Grabber
@@ -33,22 +33,22 @@ parts:
     - id: 6
       model: Grabber
       code: short-grey-axle
-      name: Short Grey Axle 
+      name: Grey Axle Length 3
       qty: 10
     - id: 27
       model: Gyroboy
       code: black-1-hole-beam
-      name: Black 1 Hole Beam
+      name: Black Cross Beam
       qty: 10   
     - id: 24
       model: Gyroboy
       code: black-2-pin-link-tread
-      name: Black 2 Pin Link Tread
+      name: Black Tread Link
       qty: 10
     - id: 13
       model: Grabber
       code: red-long-pin-and-bush
-      name: Red Long Pin and Bush
+      name: Red Pin and Bush
       qty: 10
     - id: 9
       model: Grabber
@@ -58,17 +58,17 @@ parts:
     - id: 25
       model: Gyroboy
       code: blue-short-axle-pin
-      name: Blue Short Axle Pin
+      name: Blue Axle Pin
       qty: 10
     - id: 30
       model: Gyroboy
       code: cream-short-axle-pin
-      name: Cream Short Axle Pin
+      name: Cream Axle Pin
       qty: 10
     - id: 22
       model: Gyroboy
       code: grey-pin-center-hole
-      name: Grey Pin with Center Hole
+      name: Grey Double Pin
       qty: 10
     - id: 23
       model: Gyroboy
@@ -88,27 +88,27 @@ parts:
     - id: 14
       model: Grabber
       code: long-grey-axle
-      name: Long Grey Axle
+      name: Grey Axle Length 7
       qty: 10
     - id: 5
       model: Grabber
       code: black-2-hole-1-cross-connector
-      name: Black 2 Hole 1 Cross Connector
+      name: Black 2 Hole Connector
       qty: 10
     - id: 11
       model: Grabber
       code: black-5-hole-t-shape
-      name: Black 5 Hole T-shape 
+      name: Black T-shape 
       qty: 10
     - id: 1
       model: Grabber
       code: white-7-hole-l-shape
-      name: White 7 Hole L-shape
+      name: White L-beam
       qty: 10
     - id: 3
       model: Grabber
       code: medium-grey-axle
-      name: Medium Grey Axle 
+      name: Grey Axle Length 5
       qty: 10
     - id: 8
       model: Grabber
@@ -123,22 +123,22 @@ parts:
     - id: 29
       model: Gyroboy
       code: white-5-hole-bent-beam
-      name: White 5 Hole Bent Beam
+      name: White Single Bent Beam
       qty: 10
     - id: 21
       model: Gyroboy
       code: grey-5-hole-beam
-      name: Grey 5 Hole Beam
+      name: Grey Beam
       qty: 10
     - id: 26
       model: Gyroboy
       code: black-7-hole-bent-beam
-      name: Black 7 Hole Bent Beam
+      name: Black Single Bent Beam
       qty: 10
     - id: 18
       model: Gyroboy
       code: grey-4-pin-cross-beam
-      name: Grey 4 Pin Cross Beam
+      name: Grey Cross Beam
       qty: 10
     - id: 15
       model: Grabber
