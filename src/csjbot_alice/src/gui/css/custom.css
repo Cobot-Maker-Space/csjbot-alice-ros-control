@@ -106,3 +106,8 @@ input:checked + .slider:before {
 .scan-result-list ul li {
     font-size: 0.7em;
 }
+
+.person-button {
+  width: 200px;
+  height: 200px;
+}

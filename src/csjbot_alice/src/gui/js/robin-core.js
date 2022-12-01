@@ -325,6 +325,7 @@ $(document).ready(function () {
       $.each(value, function (index, item) {
         if (index == "panels") {
           $.each(item, function (panelid, panel) {
+            console.log()
             $(".panel-" + panel).removeClass("d-none");
           });
         }
@@ -353,6 +354,10 @@ $(document).ready(function () {
     z = $(this).data("slam-z");
     w = $(this).data("slam-w");
     rotate_point(z, w);
+  });
+
+  $(document).on("click", ".person-button", function () {
+    console.log('button hit')
   });
 
   //   $("#btn_sofa").click(() => {
