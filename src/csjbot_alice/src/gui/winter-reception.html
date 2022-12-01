@@ -1,0 +1,300 @@
+<html>
+    <head>
+        <script type="text/javascript" src="js/roslib.min.js"></script>
+        <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="js/throttle-debounce.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="js/eventemitter2.min.js"></script>
+        <script type="text/javascript" src="js/mjpegcanvas.min.js"></script>
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
+        <link rel="stylesheet" href="css/custom.css">
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.7.3/nipplejs.js"></script>
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+        </style>
+
+    </head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 header p5 bg-dark text-white text-center">
+                <div class="row pt-5 panel panel-openhab">
+                    <div class="col-8 text-right">
+                        OpenHAB
+                    </div>
+                    <div class="col-4">
+                        <label class="switch">
+                            <input type="checkbox" class="openhab-state-switch" />
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 header p5 bg-dark text-white text-center">
+                <h1>Robin <i class="fas fa-robot robot pr-4 pl-4 mb-2"></i> W.O.Z.</h1>
+            </div>
+            <div class="col-2 header p5 bg-dark text-white text-left">
+                <button type="button" class="btn btn-dark">
+                    <i class="fa-solid fa-computer pr-2"></i>
+                    Status: <span class="ml-2 connection-status badge badge-danger">Offline</span>
+                </button>
+                <div class="dropdown ml-2">
+                    <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Context
+                    </button>
+                    <div class="dropdown-menu contexts small" aria-labelledby="dropdownMenuButton">
+
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4 p-1 panel panel-movement">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card mt-2">
+                                    <div class="card-header text-center">
+                                        <i class="fa-solid fa-up-down-left-right pr-2"></i>
+                                        Movement Control
+                                    </div>
+                                    <div class="card-body p-0 pt-3 pb-3">
+                                        <div id="zone_joystick" style="position: relative;"></div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                Movement Goals
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col pt-2 text-center pr-0">
+                                                <button type="button" class="btn btn-secondary btn-sm slam-home">Home</button>
+                                                <button type="button" class="btn btn-danger btn-sm slam-stop">STOP</button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col pt-2 text-center pr-0">
+                                                Goto:
+                                                <button type="button" class="btn btn-primary btn-sm slam-point" data-slam-x="2.566924547172607" data-slam-y="3.739710154134511" data-slam-z="-0.08768831709974091" data-slam-w="0.9961479604176356">Lab</button>
+                                                <button type="button" class="btn btn-primary btn-sm slam-point" data-slam-x="-2.551456451416016" data-slam-y="2.65630054473877" data-slam-z="0.4806570760127678" data-slam-w="0.8769086470544445">Corridor</button>
+                                                <button type="button" class="btn btn-primary btn-sm slam-point" data-slam-x="-6.373766483242012" data-slam-y="-3.762844354977069" data-slam-z="-0.9028198878803588" data-slam-w="0.4300188949891578">Living Space</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer panel panel-limbs">
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                Limb Movement
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-2 pt-2 text-center pr-0">
+                                                <i class="fa-regular fa-hand-point-left pt-2"></i>
+                                            </div>
+                                            <div class="col-10 text-center pt-3">
+                                                <input class="appendix-movement left-arm" data-limb="left_arm" min="0" max="4000" value="0" type="range" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-2 pt-3 text-center pr-0">
+                                                <i class="fa-regular fa-face-flushed pt-2"></i>
+                                            </div>
+                                            <div class="col-10 text-center pt-4">
+                                                <input class="appendix-movement neck" data-limb="neck" min="-960" max="380" value="0" type="range" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-2 pt-3 text-center pr-0">
+                                                <i class="fa-regular fa-hand-point-right pt-2"></i>
+                                            </div>
+                                            <div class="col-10 text-center pt-4">
+                                                <input class="appendix-movement right-arm" data-limb="right_arm"  min="0" max="4000" value="0" type="range" />
+                                            </div>
+                                        </div>
+                                        <div class="row pt-3">
+                                            <div class="col-6 pt-3 text-center">
+                                                <button type="button" class="btn btn-sm btn-secondary link-arms" data-state="off">
+                                                    <i class="fa-solid fa-link pr-1"></i>Link Arms
+                                                </button>
+                                            </div>
+                                            <div class="col-6 pt-3 text-center">
+                                                <button type="button" class="btn btn-sm btn-secondary reset-limbs">
+                                                    <i class="fa-solid fa-arrows-rotate pr-1"></i>
+                                                    Reset Limbs
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-5 p-1">
+                <div class="card mt-2 panel panel-people">
+                    <div class="card-header visuals text-center">
+                        <i class="fa-solid fa-video pr-2"></i>
+                        Person related Speech
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active p-2" data-toggle="tab" href="#people"><small>People</small></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link p-2" data-toggle="tab" href="#scan-results"><small>Speeches</small></a>
+                                </li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div id="live-stream" class="container tab-pane active" data-type="people"><br>
+                                    <div class="row">
+                                        <div class="col">
+                                            <img class="person-button" src="media/people/jeremy-gregory.jpg" data-name="jeremy-gregory" />
+                                        </div>
+                                        <div class="col">
+                                            <img class="person-button"  src="media/people/shearer-west.jpg" data-name="shearer-west" />
+                                        </div>
+                                        <div class="col">
+                                            <img class="person-button"  src="media/people/edward-peck.jpg" data-name="edward-peck" />
+                                        </div>
+                                        <div class="col">
+                                            <img class="person-button"  src="media/people/john-peace.jpg" data-name="john-peace" />
+                                        </div>
+                                        <div class="col">
+                                            <img class="person-button"  src="media/people/mel-barrett.jpg" data-name="mel-barrett" />
+                                        </div>
+                                        <div class="col">
+                                            <img class="person-button"  src="media/people/adrian-smith.jpg" data-name="adrian-smith" />
+                                        </div>
+                                        <div class="col">
+                                            <img class="person-button"  src="media/people/wendy-smith.jpg" data-name="wendy-smith" />
+                                        </div>
+                                        <div class="col">
+                                            <img class="person-button"  src="media/people/paul-southby.jpg" data-name="paul-southby" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="scan-results" class="container tab-pane fade" data-type="scan-results"><br>
+                                    <div class="row">
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            <div class="col-3 p-1">
+                <div class="card mt-2 panel panel-speech">
+                    <div class="card-header text-center"><i class="fa-regular fa-comments pr-3"></i>Speech Center</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col p-3">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control custom-text-to-speak" placeholder="Text to speak" aria-label="Text to speak" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                    <button class="btn btn-secondary publish-speech" type="button"><i class="fa-regular fa-comment-dots pr-2"></i>Speak</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col speech-options-short" ></div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col">
+                                <div class="dropdown show big-speech pl-1">
+                                    <a class="btn btn-success btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa-regular fa-message pr-2"></i>
+                                        Longer Speeches
+                                    </a>
+                                    <div class="dropdown-menu speech-options-long" aria-labelledby="dropdownMenuLink"></div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-danger btn-sm m-0 cancel-speech">Cancel Speech</button>
+                            </div>
+                        </div>
+                        <div class="row"><hr class="w-100" /></div>
+                        <div class="row mt-1">
+                            <div class="col">
+                                <div class="dropdown show voice-select pl-1">
+                                    <a class="btn btn-secondary btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa-solid fa-person-harassing pr-2"></i>
+                                        Change Voice
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                      <a class="dropdown-item voice-option voice-default" href="#" data-voice="catherine">Catherine</a>
+                                      <a class="dropdown-item voice-option" href="#" data-voice="henry">Henry</a>
+                                      <a class="dropdown-item voice-option" href="#" data-voice="john">John</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-2 panel panel-expressions">
+                    <div class="card-header text-center"><i class="fa-regular fa-face-grimace pr-3"></i>Expressions</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col text-center">
+                                <button type="button" class="quick-expression btn btn-outline-info btn-lg" data-expression="angry"><i class="fa-regular fa-face-angry"></i></button>
+                                <button type="button" class="quick-expression btn btn-outline-info btn-lg" data-expression="surprise"><i class="fa-regular fa-face-surprise"></i></button>
+                                <button type="button" class="quick-expression btn btn-outline-info btn-lg" data-expression="sad"><i class="fa-regular fa-face-frown"></i></button>
+                                <button type="button" class="quick-expression btn btn-outline-info btn-lg" data-expression="smile"><i class="fa-regular fa-face-smile"></i></button>
+                                <button type="button" class="quick-expression btn btn-outline-info btn-lg" data-expression="happy"><i class="fa-regular fa-kiss-wink-heart"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/robin-core.js"></script>
+    <script type="text/javascript" src="js/robin-joystick.js"></script>
+
+    <div class="d-none templates">
+        <li class="list-group-item part p-1 m-0" data-type="" data-id="" data-model="" data-qty="">
+            <div class="container">
+                <div class="row">
+                  <!-- <div class="col text-left p-0 parts-qty"></div> -->
+                  <div class="col text-left p-0">
+                    <img class="parts-img" src="" width="40px" />
+                    <span class="badge badge-secondary mr-1 parts-qty"></span>
+                    <small class="parts-name"></small>
+
+                  </div>
+                  <div class="colm-0 p-0 pl-1 transfer-buttons">
+                    <a href="#" class="btn btn-sm btn-primary btn-lg btn-parts-action" data-btntype="warehouse" role="button" aria-pressed="true"><i class="fa-solid fa-warehouse"></i></a>
+                    <a href="#" class="btn btn-sm btn-primary btn-lg btn-parts-action" data-btntype="requested" role="button" aria-pressed="true"><i class="fa-solid fa-head-side-mask"></i></a>
+                    <a href="#" class="btn btn-sm btn-primary btn-lg btn-parts-action" data-btntype="intransit" role="button" aria-pressed="true"><i class="fa-solid fa-dolly"></i></a>
+                    <a href="#" class="btn btn-sm btn-primary btn-lg btn-parts-action" data-btntype="workshop" role="button" aria-pressed="true"><i class="fa-solid fa-wrench"></i></a>
+                  </div>
+                </div>
+            </div>
+        </li>
+        <button type="button" class="quick-speak btn btn-primary btn-sm m-1" data-phrase=""></button>
+        <a class="dropdown-item long-speak" data-phrase="" href="#"></a>
+        <a class="dropdown-item context" data-id="" href="#"></a>
+    </div>
+
+</body>
+
+</html>
