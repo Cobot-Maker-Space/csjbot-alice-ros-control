@@ -27,7 +27,6 @@ contexts:
     name: Winter Reception
     panels: 
       - speech
-      - visualise
       - movement
       - expressions
       - people

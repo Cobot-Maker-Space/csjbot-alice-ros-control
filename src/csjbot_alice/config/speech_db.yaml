@@ -60,4 +60,21 @@ speechsets:
         - No thanks
         - Goodbye 
         - Have a great day 
-        
+      - long: 
+        - "Hello Jeremy.  Good to see you again."
+        - "I hear you’re the MC for this evening?"
+        - "And you’re going to talk to a hologram?  They’re not as smart as robots you know!"
+        - "Good evening Professor West."
+        - "I hear you’re going to be turned into a hologram?!"
+        - "Be careful.  It might do you out of a job."
+        - "Good evening Professor Peck.  How are you?"
+        - "Good luck with your speech, hope it all goes well."
+        - "Sir John!  Lovely to see you again.  How are you?"
+        - "Enjoy the evening and good luck with the speech."
+        - "Good evening Mel.  Glad to see you could make it."
+        - "Good evening Adrian.  How are you?"
+        - "How’s your new job going? – Nice and quiet I imagine?"
+        - "Welcome Lord Mayor.  What a lovely necklace!"
+        - "Oh dear – it’s the Sherriff!  I’m Robin the Robot, not Robin Hood you know."
+        - "Welcome Mr Southby.  Please enjoy your evening."
+
