@@ -495,11 +495,11 @@ $(document).ready(function () {
   init_video_stream();
 
   $(document).on("click", ".person-button", function () {
-    console.log($(this).data('speech'));
-    var speechobj = $.parseJSON($(this).data('speech'));
+    var speechobj = $(this).data('speech');
     console.log(speechobj);
 
-  //   $.each(speechset, function (i, phrase) {
+    $.each(speechobj, function (i, phrase) {
+      console.log(phrase);
   //     display_phrase = phrase;
   //     if (phrase.length > 60) {
   //       display_phrase = phrase.substring(0, 60) + "...";
@@ -509,8 +509,8 @@ $(document).ready(function () {
   //       .html(display_phrase)
   //       .data("phrase", phrase)
   //       .appendTo(".speech-options-long");
-  //   });
-  // });
+    });
+  });
 
 });
 
