@@ -496,19 +496,21 @@ $(document).ready(function () {
 
   $(document).on("click", ".person-button", function () {
     var speechobj = $(this).data('speech');
-    console.log(speechobj);
 
-    $.each(speechobj, function (i, phrase) {
-      console.log(phrase);
-  //     display_phrase = phrase;
-  //     if (phrase.length > 60) {
-  //       display_phrase = phrase.substring(0, 60) + "...";
-  //     }
-  //     $(".templates .long-speak")
-  //       .clone()
-  //       .html(display_phrase)
-  //       .data("phrase", phrase)
-  //       .appendTo(".speech-options-long");
+    $('.speech-options-long').html('');
+
+    $.each(speechobj, function (i, phraseset) {
+      $.each(phraseset, function (index, phrase) {
+          display_phrase = phrase;
+          if (phrase.length > 60) {
+                    display_phrase = phrase.substring(0, 60) + "...";
+          }
+          $(".templates .long-speak")
+        .clone()
+        .html(display_phrase)
+        .data("phrase", phrase)
+        .appendTo(".speech-options-long");
+      });
     });
   });
 
