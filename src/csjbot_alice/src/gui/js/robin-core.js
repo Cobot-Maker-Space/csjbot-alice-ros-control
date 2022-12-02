@@ -262,7 +262,8 @@ $(document).ready(function () {
     $(".custom-text-to-speak").val("");
   });
 
-  $(document).on("click", ".quick-speak, .long-speak", function () {
+  $(document).on("click", ".quick-speak, .long-speak", function (e) {
+    e.preventDefault();
     speak($(this).data("phrase"));
   });
 
@@ -353,10 +354,6 @@ $(document).ready(function () {
     z = $(this).data("slam-z");
     w = $(this).data("slam-w");
     rotate_point(z, w);
-  });
-
-  $(document).on("click", ".person-button", function () {
-    console.log('button hit')
   });
 
   //   $("#btn_sofa").click(() => {
@@ -493,6 +490,8 @@ $(document).ready(function () {
   init_video_stream();
 
   $(document).on("click", ".person-button", function () {
+    $('.person-button').removeClass('active');
+    $(this).addClass('active');
     var speechobj = $(this).data('speech');
 
     $('.speech-options-long').html('');

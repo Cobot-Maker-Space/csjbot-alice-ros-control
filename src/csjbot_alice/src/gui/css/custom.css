@@ -114,3 +114,7 @@ input:checked + .slider:before {
   border: 1pt #666 solid;
   cursor: pointer;
 }
+
+.person-button.active {
+  background-color: rgb(174, 81, 81)
+}
