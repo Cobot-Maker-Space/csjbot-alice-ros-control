@@ -493,6 +493,11 @@ $(document).ready(function () {
 
   change_voice($(".voice-default").data("voice"));
   init_video_stream();
+
+  $(document).on("click", ".person-button", function () {
+    console.log($(this).data('speech'));
+  });
+
 });
 
 function move_point(x, y, z, w) {
