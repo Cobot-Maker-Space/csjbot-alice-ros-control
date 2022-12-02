@@ -499,8 +499,8 @@ $(document).ready(function () {
     $.each(speechobj, function (i, phraseset) {
       $.each(phraseset, function (index, phrase) {
           display_phrase = phrase;
-          if (phrase.length > 60) {
-                    display_phrase = phrase.substring(0, 60) + "...";
+          if (phrase.length > 40) {
+                    display_phrase = phrase.substring(0, 40) + "...";
           }
           $(".templates .long-speak")
         .clone()
