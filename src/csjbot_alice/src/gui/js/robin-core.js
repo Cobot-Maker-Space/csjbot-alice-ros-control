@@ -496,7 +496,21 @@ $(document).ready(function () {
 
   $(document).on("click", ".person-button", function () {
     console.log($(this).data('speech'));
-  });
+    var speechobj = $.parseJSON($(this).data('speech'));
+    console.log(speechobj);
+
+  //   $.each(speechset, function (i, phrase) {
+  //     display_phrase = phrase;
+  //     if (phrase.length > 60) {
+  //       display_phrase = phrase.substring(0, 60) + "...";
+  //     }
+  //     $(".templates .long-speak")
+  //       .clone()
+  //       .html(display_phrase)
+  //       .data("phrase", phrase)
+  //       .appendTo(".speech-options-long");
+  //   });
+  // });
 
 });
 
