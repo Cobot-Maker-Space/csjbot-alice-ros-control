@@ -324,8 +324,9 @@ $(document).ready(function () {
     contexts_details.get(function (value) {
       $.each(value, function (index, item) {
         if (index == "panels") {
+          console.log(panel + " being processed")
           $.each(item, function (panelid, panel) {
-            console.log()
+            console.log(panel + " being removed")
             $(".panel-" + panel).removeClass("d-none");
           });
         }
