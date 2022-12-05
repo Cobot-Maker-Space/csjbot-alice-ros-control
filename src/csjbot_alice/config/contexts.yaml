@@ -5,6 +5,7 @@ contexts:
       - speech
       - visualise
       - movement
+      - movement-goals
       - expressions
       # - limbs
       - openhab
