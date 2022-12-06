@@ -5,6 +5,7 @@ contexts:
       - speech
       - visualise
       - movement
+      - movement-goals
       - expressions
       # - limbs
       - openhab
@@ -23,5 +24,11 @@ contexts:
       - movement
       - expressions
       - limbs
-
+  winter-reception:
+    name: Winter Reception
+    panels: 
+      - speech
+      - movement
+      - expressions
+      - people
   

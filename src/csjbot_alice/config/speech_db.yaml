@@ -47,3 +47,23 @@ speechsets:
         - Where's Gopal? I haven't been paid!
       - long: 
         - "Hi I'm Robin and I welcome you to the Co Maker Space"
+
+  winter-reception:
+      - name: "Winter Reception"
+      - short:
+        - Hello I'm Robin
+        - Seasons Greetings
+        - Get yourself a drink and a mince pie
+        - Good evening and welcome to the Winter Reception.
+        - Enjoy the evening, hope to catch you later.
+        - It is cold out there
+        - Pleased to meet you
+        - Have you seen my dog?  
+        - I have lost Spot…
+        - Are you enjoying the Winter Reception?
+        - Everyone looks fantastic
+        - I'm autonomous, do you trust me?
+        - Yes please
+        - No thanks
+        - Goodbye 
+        - Have a great day 

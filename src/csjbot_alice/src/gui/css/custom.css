@@ -106,3 +106,15 @@ input:checked + .slider:before {
 .scan-result-list ul li {
     font-size: 0.7em;
 }
+
+.person-button {
+  width: 200px;
+  margin: 5px;
+  padding: 5px;
+  border: 1pt #666 solid;
+  cursor: pointer;
+}
+
+.person-button.active {
+  background-color: rgb(174, 81, 81)
+}

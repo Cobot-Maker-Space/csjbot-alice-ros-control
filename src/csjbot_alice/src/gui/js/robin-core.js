@@ -262,7 +262,8 @@ $(document).ready(function () {
     $(".custom-text-to-speak").val("");
   });
 
-  $(document).on("click", ".quick-speak, .long-speak", function () {
+  $(document).on("click", ".quick-speak, .long-speak", function (e) {
+    e.preventDefault();
     speak($(this).data("phrase"));
   });
 
@@ -487,6 +488,29 @@ $(document).ready(function () {
 
   change_voice($(".voice-default").data("voice"));
   init_video_stream();
+
+  $(document).on("click", ".person-button", function () {
+    $('.person-button').removeClass('active');
+    $(this).addClass('active');
+    var speechobj = $(this).data('speech');
+
+    $('.speech-options-long').html('');
+
+    $.each(speechobj, function (i, phraseset) {
+      $.each(phraseset, function (index, phrase) {
+          display_phrase = phrase;
+          if (phrase.length > 40) {
+                    display_phrase = phrase.substring(0, 40) + "...";
+          }
+          $(".templates .long-speak")
+        .clone()
+        .html(display_phrase)
+        .data("phrase", phrase)
+        .appendTo(".speech-options-long");
+      });
+    });
+  });
+
 });
 
 function move_point(x, y, z, w) {
