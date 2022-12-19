@@ -70,24 +70,18 @@ class OpenHABConnector(object):
                 for sensor in self.sensor_list:
                     current_state = self.fetch_current_sensor_state(sensor)
                     new_state = self.retrieve_openhab_item_state(sensor)
-                    if (current_state != new_state):
+                    if (current_state != new_state and new_state == "OPEN"):
+                        rospy.loginfo(f"Sensor state processing: {sensor}, {current_state}, {new_state}")    
                         self.update_current_sensor_state(sensor, new_state)
                         joke = self.fetch_sensor_joke(sensor)
                         if joke is not None:
                             rospy.loginfo(joke['joke']['question'])
                             self.pub_speech.publish(joke['joke']['question'])
-                            # rospy.sleep(1)
+                            rospy.sleep(1)
                             rospy.loginfo(joke['joke']['answer'])
                             self.pub_speech.publish(joke['joke']['answer'])
-
-                        speech = self.fetch_sensor_speech_state(sensor, new_state)
-                        if speech is not None:
-                            self.pub_speech.publish(speech)
-
-                        turn, time = self.fetch_sensor_turn_state(sensor, new_state)
-                        if turn is not None:
-                            self.turn(turn, time)
-                            
+                    else: 
+                        rospy.loginfo(f"Sensor state ignore: {sensor}, {current_state}, {new_state}")    
             rospy.sleep(0.5)    
 
     def turn(self, direction, time):
