@@ -43,12 +43,10 @@ class OpenHABConnector(object):
     def fetch_sensor_joke(self, sensor):
         param_topic = "/alice/openhab/sensors/" + sensor
         jokes = rospy.get_param(param_topic, None)
-        rospy.loginfo(jokes)
         joke = None
 
         if jokes is not None:
             joke = random.choice(jokes)
-            rospy.loginfo(joke)
 
         return joke 
 
