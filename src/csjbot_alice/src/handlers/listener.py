@@ -46,7 +46,7 @@ class SocketListenerHandler(object):
             self.pub_video_state.publish(Bool(False))
 
 
-        rospy.loginfo(payload)
+        # rospy.loginfo(payload)
 
 if __name__ == "__main__":
     slh = SocketListenerHandler()
