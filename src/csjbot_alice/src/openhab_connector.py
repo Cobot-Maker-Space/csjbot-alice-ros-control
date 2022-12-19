@@ -65,7 +65,6 @@ class OpenHABConnector(object):
         return turn, time
 
     def listen(self):
-        
         while not rospy.is_shutdown():
             if self.openhab_connection_active:
                 for sensor in self.sensor_list:
