@@ -5,6 +5,7 @@ import rospy
 from std_msgs.msg import String, Bool
 from geometry_msgs.msg import Twist
 from openhab import openHAB
+import random
 
 class OpenHABConnector(object):
 
@@ -13,7 +14,6 @@ class OpenHABConnector(object):
         rospy.Subscriber("/alice/openhab/state/", Bool, self.switch_state)
 
         self.pub_speech = rospy.Publisher("/speech/", String, queue_size=10, latch=False)
-        self.pub_movement = rospy.Publisher("/cmd_vel/", Twist, queue_size=10, latch=False)
         
         self.openhab_base_url = rospy.get_param("/alice/openhab/base_url", None)
         self.openhab = openHAB(self.openhab_base_url)
@@ -38,6 +38,16 @@ class OpenHABConnector(object):
         state = rospy.get_param("/alice/openhab/" + sensor + "/current/", None)
         return state
 
+    def fetch_joke(self, sensor):
+        param_topic = "/alice/openhab/sensors/" + sensor
+        jokes = rospy.get_param(param_topic, None)
+        joke = None
+
+        if jokes is not None:
+            joke = random.choice(jokes)
+
+        return joke 
+
     def fetch_sensor_speech_state(self, sensor, state):
         param_topic = "/alice/openhab/sensors/" + sensor + "/speech-state-" + state
         speech = rospy.get_param(param_topic, None)
@@ -60,6 +70,12 @@ class OpenHABConnector(object):
                     new_state = self.retrieve_openhab_item_state(sensor)
                     if (current_state != new_state):
                         self.update_current_sensor_state(sensor, new_state)
+                        joke = self.fetch_sensor_joke(sensor)
+                        if joke is not None:
+                            self.pub_speech.publish(joke['question'])
+                            # rospy.sleep(1)
+                            self.pub_speech.publish(joke['answer'])
+
                         speech = self.fetch_sensor_speech_state(sensor, new_state)
                         if speech is not None:
                             self.pub_speech.publish(speech)

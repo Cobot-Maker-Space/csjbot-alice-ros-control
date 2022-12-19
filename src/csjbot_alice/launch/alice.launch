@@ -36,7 +36,7 @@
         <rosparam file="$(find csjbot_alice)/config/contexts.yaml" />
         <rosparam file="$(find csjbot_alice)/config/speech_db.yaml" />
         <rosparam file="$(find csjbot_alice)/config/parts_db.yaml" />
-        <rosparam file="$(find csjbot_alice)/config/openhab.yaml" />
+        <rosparam file="$(find csjbot_alice)/config/openhab_jokes.yaml" />
         <rosparam file="$(find csjbot_alice)/config/slam.yaml" />
     </group>
 </launch>
