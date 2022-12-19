@@ -21,6 +21,8 @@ class OpenHABConnector(object):
 
         self.sensor_list = rospy.get_param("/alice/openhab/sensors/", None)
         self.initialise_sensor_states()
+
+        self.pending_answer = None
     
         self.listen()
 
@@ -65,21 +67,25 @@ class OpenHABConnector(object):
         return turn, time
 
     def listen(self):
+        
         while not rospy.is_shutdown():
             if self.openhab_connection_active:
                 for sensor in self.sensor_list:
                     current_state = self.fetch_current_sensor_state(sensor)
                     new_state = self.retrieve_openhab_item_state(sensor)
-                    if (current_state != new_state and new_state == "OPEN"):
-                        rospy.loginfo(f"Sensor state processing: {sensor}, {current_state}, {new_state}")    
-                        self.update_current_sensor_state(sensor, new_state)
-                        joke = self.fetch_sensor_joke(sensor)
-                        if joke is not None:
-                            rospy.loginfo(joke['joke']['question'])
-                            self.pub_speech.publish(joke['joke']['question'])
-                            rospy.sleep(1)
-                            rospy.loginfo(joke['joke']['answer'])
-                            self.pub_speech.publish(joke['joke']['answer'])
+                    if (current_state != new_state):
+                        if new_state == "OPEN":
+                            self.update_current_sensor_state(sensor, new_state)
+                            joke = self.fetch_sensor_joke(sensor)
+                            if joke is not None:
+                                rospy.loginfo("publishing question")
+                                self.pub_speech.publish(joke['joke']['question'])
+                                self.pending_answer = joke['joke']['answer']
+                        elif new_state == "CLOSED":
+                            if self.pending_answer is not None:
+                                rospy.loginfo("publishing answer")
+                                self.pub_speech.publish(self.pending_answer)
+                                self.pending_answer = None
                     else: 
                         rospy.loginfo(f"Sensor state ignore: {sensor}, {current_state}, {new_state}")    
             rospy.sleep(0.5)    
