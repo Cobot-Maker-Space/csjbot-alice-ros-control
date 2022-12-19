@@ -74,11 +74,11 @@ class OpenHABConnector(object):
                         self.update_current_sensor_state(sensor, new_state)
                         joke = self.fetch_sensor_joke(sensor)
                         if joke is not None:
-                            rospy.loginfo(joke['question'])
-                            self.pub_speech.publish(joke['question'])
+                            rospy.loginfo(joke[0]['question'])
+                            self.pub_speech.publish(joke[0]['question'])
                             # rospy.sleep(1)
-                            rospy.loginfo(joke['answer'])
-                            self.pub_speech.publish(joke['answer'])
+                            rospy.loginfo(joke[0]['answer'])
+                            self.pub_speech.publish(joke[0]['answer'])
 
                         speech = self.fetch_sensor_speech_state(sensor, new_state)
                         if speech is not None:
