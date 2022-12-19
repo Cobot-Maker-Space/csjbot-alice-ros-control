@@ -55,6 +55,60 @@ openhab:
       - joke:
           question: Why was the window feeling so frosty on a cold winter day?
           answer: Because it was covered in a layer of frost and ice, and it was feeling "frosty" and chilled to the bone!
+    OpenCloseFridge_SensorDoor:
+      - joke:
+          question: Why was the fridge feeling so cool?
+          answer: Because it was always "chilling" in the kitchen!
+      - joke:
+          question: Why was the fridge feeling so cold and lonely on Christmas Day?
+          answer: Because all the leftovers had been eaten and there was no one left to keep it company!
+      - joke:
+          question: Why was the fridge feeling so down in the dumps?
+          answer: Because it was empty and feeling "cool" and alone!
+      - joke:
+          question: Why was the person so excited to open the kitchen cupboard?
+          answer: Because they were hoping to find a "cupboard full of treats" waiting for them!
+      - joke:
+          question: Why was the person so excited to open the fridge?
+          answer: Because they were hoping to find a "fridge full of surprises" waiting for them inside!
+      - joke:
+          question: Why did the person open the fridge so many times?
+          answer: Because they were "fridge-nally" going to find something to eat!
+      - joke:
+          question: Why was the fridge feeling so lonely?
+          answer: Because it was empty and had no "fridge-ends" to keep it company!
+    WallPlugKettle_Switch_Binary:
+      - joke:
+          question: Why was the kettle feeling depressed on Christmas?
+          answer: Because it was feeling the weight of all the extra cups of tea it had to make during the holiday season!
+      - joke:
+          question: Why was the kettle feeling depressed on Christmas?
+          answer: Because it was feeling a little teapot!
+      - joke:
+          question: Why did the electric kettle go to therapy?
+          answer: Because it was feeling pot-ty!
+      - joke:
+          question: Why was the kettle feeling so depressed on Christmas Day?
+          answer: Because it was feeling the weight of all its responsibilities - it had to be the teapot, the coffee pot, and the hot water bottle all rolled into one!
+      - joke:
+          question: Why was the hot water feeling so cold on Christmas Day?
+          answer: Because it had lost its heating element!
+      - joke:
+          question: Why did the tea bag go to the doctor on Christmas Day?
+          answer: Because it was feeling a little steeped!
+      - joke:
+          question: Why was the tea feeling so festive on Christmas Day?
+          answer: Because it was all dressed up in its holiday best - a sprig of holly, a sprinkle of cinnamon, and a dash of nutmeg!
+      - joke:
+          question: Why was the person so excited to turn the kettle on?
+          answer: Because they were desperate for a cup of tea and they knew it would be the "tea-light" of their life!
+
+
+
+      # - joke:
+      #     question: 
+      #     answer:
+
 
     # OpenCloseCupboardG_SensorDoor:
     #   speech-state-OPEN: "We are running low on cleaning supplies but I have ordered some more." 
