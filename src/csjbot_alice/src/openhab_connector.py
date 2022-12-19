@@ -82,9 +82,11 @@ class OpenHABConnector(object):
                                 rospy.loginfo("publishing answer")
                                 self.pub_speech.publish(self.pending_answer)
                                 self.pending_answer = None
+                        else:
+                            rospy.loginfo(f"Sensor state ignored: {sensor}, {current_state}, {new_state}")    
+                    
                         self.update_current_sensor_state(sensor, new_state)
-                    else: 
-                        rospy.loginfo(f"Sensor state ignore: {sensor}, {current_state}, {new_state}")    
+                        
             rospy.sleep(0.5)    
 
     def turn(self, direction, time):
