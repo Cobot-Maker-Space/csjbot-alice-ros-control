@@ -27,7 +27,34 @@ openhab:
       - joke:
           question: Why was the person so surprised to find a first aid kit in their kitchen cabinet?
           answer: Because they were expecting to find a "cabinet of cookies" instead, and they ended up feeling "band-aid" about it!
-
+    OpenCloseWindowB_SensorDoor:
+      - joke:
+          question: Why was the person so excited to open the window on Christmas Day?
+          answer: Because they wanted to see if Santa had come down the chimney yet!
+      - joke:
+          question: Why was the person so excited to open the window on Christmas Day?
+          answer: Because they couldn't wait to see if Santa had left any "window" presents!
+      - joke:
+          question: Why was the window feeling so lonely?
+          answer: Because it had no panes!
+      - joke:
+          question: Why was the window so popular with the insects?
+          answer: Because it was always open to new ideas!
+      - joke:
+          question: Why was the window always so depressed?
+          answer: Because it was feeling "glass half empty" all the time!
+      - joke:
+          question: Why did the person open the window on a cold winter day?
+          answer: Because they wanted to let in some fresh air, but they ended up "freezing" their behinds off instead!
+      - joke:
+          question: Why was the window feeling so chilly on a cold winter day?
+          answer: Because it was "frosted" over and couldn't keep the heat in!
+      - joke:
+          question: Why did the window stay closed all winter?
+          answer: Because it was feeling "frosty" and didn't want to let anyone in!
+      - joke:
+          question: Why was the window feeling so frosty on a cold winter day?
+          answer: Because it was covered in a layer of frost and ice, and it was feeling "frosty" and chilled to the bone!
 
     # OpenCloseCupboardG_SensorDoor:
     #   speech-state-OPEN: "We are running low on cleaning supplies but I have ordered some more." 
