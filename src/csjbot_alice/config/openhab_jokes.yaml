@@ -3,30 +3,30 @@ openhab:
   base_url: 'http://10.0.10.10/rest'
   sensors: 
     OpenCloseCupboardA_SensorDoor:
-      joke:
-        question: Why was the kitchen cabinet feeling so stressed out?
-        answer: Because it was feeling the weight of all the extra cups of tea it had to make during the holiday season!
-      joke:
-        question: Why was the kitchen cabinet feeling so stressed out?
-        answer: Because it was trying to keep all the pots, pans, and dishes in order, and it was always "on the shelf" with all its responsibilities!
-      joke:
-        question: Why was the first aid kit feeling so important?
-        answer: Because it was the band aid that held everything together in an emergency!
-      joke:
-        question: Why was the person so excited to open the kitchen cupboard?
-        answer: Because they were hoping to find a magic potion that would make all their cooking and cleaning chores disappear!
-      joke:
-        question: Why was the person so excited to open the kitchen cupboard?
-        answer: Because they had heard a rumor that there was a cupboard monster living inside, and they wanted to see if it was true!
-      joke:
-        question: Why was the kitchen cupboard feeling so cluttered and disorganized?
-        answer: Because it was filled to the brim with pots, pans, and dishes, and it was feeling crowded and overwhelmed!
-      joke:
-        question: Why was the person so surprised to find a first aid kit in the kitchen cabinet?
-        answer: Because they were expecting to find something to eat, but instead they found a band aid for their hunger pains!
-      joke:
-        question: Why was the person so surprised to find a first aid kit in their kitchen cabinet?
-        answer: Because they were expecting to find a "cabinet of cookies" instead, and they ended up feeling "band-aid" about it!
+      - joke:
+          question: Why was the kitchen cabinet feeling so stressed out?
+          answer: Because it was feeling the weight of all the extra cups of tea it had to make during the holiday season!
+      - joke:
+          question: Why was the kitchen cabinet feeling so stressed out?
+          answer: Because it was trying to keep all the pots, pans, and dishes in order, and it was always "on the shelf" with all its responsibilities!
+      - joke:
+          question: Why was the first aid kit feeling so important?
+          answer: Because it was the band aid that held everything together in an emergency!
+      - joke:
+          question: Why was the person so excited to open the kitchen cupboard?
+          answer: Because they were hoping to find a magic potion that would make all their cooking and cleaning chores disappear!
+      - joke:
+          question: Why was the person so excited to open the kitchen cupboard?
+          answer: Because they had heard a rumor that there was a cupboard monster living inside, and they wanted to see if it was true!
+      - joke:
+          question: Why was the kitchen cupboard feeling so cluttered and disorganized?
+          answer: Because it was filled to the brim with pots, pans, and dishes, and it was feeling crowded and overwhelmed!
+      - joke:
+          question: Why was the person so surprised to find a first aid kit in the kitchen cabinet?
+          answer: Because they were expecting to find something to eat, but instead they found a band aid for their hunger pains!
+      - joke:
+          question: Why was the person so surprised to find a first aid kit in their kitchen cabinet?
+          answer: Because they were expecting to find a "cabinet of cookies" instead, and they ended up feeling "band-aid" about it!
 
 
     # OpenCloseCupboardG_SensorDoor:
