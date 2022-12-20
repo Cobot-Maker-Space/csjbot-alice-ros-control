@@ -72,10 +72,14 @@ class OpenHABConnector(object):
                     new_state = self.retrieve_openhab_item_state(sensor)
                     if (current_state != new_state):
                         if new_state == "OPEN" or new_state == "ON":
+                            if new_state == "OPEN":
+                                post_text = "Shut it and I will tell you"
+                            else: 
+                                post_text = "Turn it off and I will tell you"
                             joke = self.fetch_sensor_joke(sensor)
                             if joke is not None:
                                 rospy.loginfo("publishing question")
-                                self.pub_speech.publish(joke['joke']['question'])
+                                self.pub_speech.publish(joke['joke']['question'] + post_text)
                                 self.pending_answer = joke['joke']['answer']
                         elif new_state == "CLOSED" or new_state == "OFF":
                             if self.pending_answer is not None:
