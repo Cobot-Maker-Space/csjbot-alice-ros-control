@@ -73,7 +73,7 @@ class OpenHABConnector(object):
                     if (current_state != new_state):
                         if new_state == "OPEN" or new_state == "ON":
                             if new_state == "OPEN":
-                                post_text = "Shut it and I will tell you"
+                                post_text = "Close it and I will tell you"
                             else: 
                                 post_text = "Turn it off and I will tell you"
                             joke = self.fetch_sensor_joke(sensor)
