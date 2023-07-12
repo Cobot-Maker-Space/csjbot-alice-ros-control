@@ -11,7 +11,7 @@ from std_msgs.msg import Bool
 
 class SocketListenerHandler(object):
     def __init__(self):
-        self.APP_ENV = 'prod'
+        self.APP_ENV = rospy.get_param('/APP_ENV', 'dev')
         self.config_loader = ConfigLoader(self.APP_ENV)
         self.port = self.config_loader.fetch_value('port')
         self.host = self.config_loader.fetch_value('host')

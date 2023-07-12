@@ -1,24 +1,36 @@
-# ROBIN - Lily Service Bot Interface for ROS
+# CSJBot Alice Service Bot Interface for ROS
 
 ## Build Docker container:
 
-`docker build -t ros:robin .`
+`docker compose build`
 
-## Run Docker container: 
+## Run Docker container:
 
-Run the docker start script from your command line. This will start the docker container and automatically fire Robins launch file to start all the relevant nodes. 
+For local development, create a `docker-compose.override.yml` file with the following contents:
 
-`start_docker.sh`
+```
+version: "3.9"
+services:
+  alice:
+    environment:
+      - APP_ENV=dev
+    network_mode: host
+    privileged: true
+```
+
+Run the docker start script from your command line. This will start the docker container and automatically fire Robins launch file to start all the relevant nodes.
+
+`docker compose up`
 
 Runs interactively and launches roscore as default. extend this as needed to setup everything we need to make porting easier to new machines, etc. Will need to adjust local directory for mapping source code until git repo is included in dockerfile.. (one step at a time eh).
 
-To access docker container once running (e.g. to run catkin build, etc)... 
+To access docker container once running (e.g. to run catkin build, etc)...
 
-`docker exec -it robin bash` to launch (replacing container id with relevant one)
+`docker compose exec alice /bin/bash`
 
 **NOTE**: Docker container is based on ros-noetic-desktop-full but we can strip down at later point if size is issue or just needs optimising.
 
-## TODO: 
+## TODO:
 - Add device support
 - Move volume mapping into composer file
 - Execute launch file on startup (to allow docker container to run lily stack autonomously)
@@ -36,7 +48,7 @@ Movement:
 `rosrun csjbot_alice subscriber_movement.py`
 `rosrun teleop_twist_keyboard teleop_twist_keyboard.py`
 
-TODO: 
+TODO:
 - Fix acceleration on movement - maybe look at incremental changes from 0 upwards depending on keypress timings.
 - Look at MPO's speech research - https://github.com/MixedRealityLab/nottreal
 
@@ -46,12 +58,12 @@ Speech:
 
 Video:
 `rosrun csjbot_alice subscriber_video.py`
-`rostopic pub /video_enable std_msgs/Bool "true"` 
+`rostopic pub /video_enable std_msgs/Bool "true"`
 `rostopic pub /video_enable std_msgs/Bool "false"`
 <!-- https://stackoverflow.com/questions/59587166/send-webcam-stream-from-server-in-python-using-sockets -->
 <!-- https://www.youtube.com/watch?v=7-O7yeO3hNQ -->
 
-Each frame of the picture header is: 0xff , 0xfe , 0xfd , 0xfc , 0xfb , 0xfa , 0xd8 
+Each frame of the picture header is: 0xff , 0xfe , 0xfd , 0xfc , 0xfb , 0xfa , 0xd8
 Tail of each frame image data is: 0xff , 0xfe , 0xfd , 0xfc , 0xfb , 0xfa , 0xd9
 
 
@@ -69,11 +81,11 @@ Then run the publisher (which retrieves the image from the web socket and republ
 
 `rosrun csjbot_alice publisher_video.py`
 
-publishes the images to the /camera/image topic. However, can only seem to pick it up using: 
+publishes the images to the /camera/image topic. However, can only seem to pick it up using:
 
 `rosrun csjbot_alice subscriber_testimage.py`
 
-Which writes the received image to an image (test2.jpg) which is viewable. Unable to get image viewer on an alternative machine from being able to receive the image. Not sure why, possibly a multi-node ros configuration issue. 
+Which writes the received image to an image (test2.jpg) which is viewable. Unable to get image viewer on an alternative machine from being able to receive the image. Not sure why, possibly a multi-node ros configuration issue.
 
 
 ## GUI

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import asyncio
 import websockets
@@ -6,12 +6,12 @@ import ast
 import time
 import os
 import yaml
-from config.loader import ConfigLoader 
+from config.loader import ConfigLoader
 
 def process_message(message):
     payload = None
     message = ast.literal_eval(message)
-    
+
     if message['msg_id'] == 'NAVI_ROBOT_MOVE_REQ':
         time.sleep(2)
         payload = {
@@ -24,7 +24,7 @@ def process_message(message):
             "msg_id": "SPEECH_TTS_RSP",
             "error_code": 0,
         }
-    
+
     if message['msg_id'] == 'SET_ROBOT_EXPRESSION_REQ':
         payload = {
             "msg_id": "SET_ROBOT_EXPRESSION_RSP",
@@ -40,6 +40,11 @@ async def echo(websocket, path):
         response = process_message(message)
         print("RESP:", response)
         await websocket.send(str(response))
+
+
+print("************")
+print("Pseudo Lily Service: Starting....", flush=True)
+print("************")
 
 SERVER_MODE = 'dev'
 config_loader = ConfigLoader(SERVER_MODE)

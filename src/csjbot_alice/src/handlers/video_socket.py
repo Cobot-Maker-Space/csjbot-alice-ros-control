@@ -5,14 +5,12 @@ import websockets
 import json
 import sys
 import rospy
-from config.loader import ConfigLoader 
+from config.loader import ConfigLoader
 
 class VideoSocket(object):
     def __init__(self):
         self.TIMEOUT = 5
-        # self.APP_ENV = rospy.get_param('APP_ENV', 'dev')
-        self.APP_ENV = 'prod'
-        
+        self.APP_ENV = rospy.get_param('/APP_ENV', 'dev')
         self.config_loader = ConfigLoader(self.APP_ENV)
         self.config_loader.set_type('video_connection')
         self.port = self.config_loader.fetch_value('port')
@@ -33,7 +31,7 @@ class VideoSocket(object):
         return self
 
     async def __aexit__(self, *args, **kwargs):
-        try: 
+        try:
             await self._conn.__aexit__(*args, **kwargs)
         except:
             rospy.logerr('Error closing sockets')
@@ -50,7 +48,7 @@ class CommandHandler(object):
         self.wws = WebSocket()
         self.loop = asyncio.get_event_loop()
 
-    def action(self, payload, wait_for_return=True):  
+    def action(self, payload, wait_for_return=True):
         return self.loop.run_until_complete(
             self.__async__get_ticks(payload, wait_for_return)
         )
