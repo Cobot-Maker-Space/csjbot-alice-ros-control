@@ -14,7 +14,7 @@ __pycache__/
 *$py.class
 
 # Docker
-docker-compose.override.yml
+docker-compose.override.*
 
 # Misc
 .DS_Store
