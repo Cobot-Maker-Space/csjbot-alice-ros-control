@@ -16,8 +16,12 @@ RUN apt-get update && apt-get install -y ros-noetic-desktop-full \
 
 WORKDIR /root/catkin_ws
 
-# RUN ln -s /usr/bin/pip3 /usr/bin/pip
 RUN ln -s /usr/bin/python3 /usr/bin/python
+
+RUN apt remove -y python3-pip \
+  && wget https://bootstrap.pypa.io/get-pip.py \
+  && python3 get-pip.py \
+  && pip install pyopenssl --upgrade
 
 RUN pip install websockets asyncio python-openhab
 
