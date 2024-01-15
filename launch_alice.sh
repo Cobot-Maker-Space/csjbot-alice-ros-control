@@ -1,5 +1,5 @@
 #!/bin/bash
-
+sleep 30s
 source ~/.bashrc
 
 cd ~/catkin_ws/
