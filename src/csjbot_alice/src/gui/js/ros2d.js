@@ -102,11 +102,11 @@ var ROS2D = (function (exports, createjs, ROSLIB) {
     };
   }
 
-  function getDefaultExportFromCjs (x) {
-  	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
-  }
-
-  var eventemitter2 = {exports: {}};
+  var eventemitter2Exports = {};
+  var eventemitter2 = {
+    get exports(){ return eventemitter2Exports; },
+    set exports(v){ eventemitter2Exports = v; },
+  };
 
   /*!
    * EventEmitter2
@@ -115,7 +115,6 @@ var ROS2D = (function (exports, createjs, ROSLIB) {
    * Copyright (c) 2013 hij1nx
    * Licensed under the MIT license.
    */
-  eventemitter2.exports;
 
   (function (module, exports) {
   !function(undefined$1) {
@@ -1734,11 +1733,10 @@ var ROS2D = (function (exports, createjs, ROSLIB) {
   	    // CommonJS
   	    module.exports = EventEmitter;
   	  }
-  	}(); 
-  } (eventemitter2, eventemitter2.exports));
+  	}();
+  } (eventemitter2));
 
-  var eventemitter2Exports = eventemitter2.exports;
-  var EventEmitter2 = /*@__PURE__*/getDefaultExportFromCjs(eventemitter2Exports);
+  var EventEmitter2 = eventemitter2Exports;
 
   /**
    * @fileOverview
