@@ -266,6 +266,7 @@
           name: "/slamware_ros_sdk_server_node/odom",
           messageType: "nav_msgs/Odometry",
         }).subscribe(function (message) {
+          console.log(message.pose.pose);
           robotMarker.x = message.pose.pose.position.x;
           robotMarker.y = -message.pose.pose.position.y;
           robotMarker.rotation = viewer.scene.rosQuaternionToGlobalTheta(message.pose.pose.orientation);
