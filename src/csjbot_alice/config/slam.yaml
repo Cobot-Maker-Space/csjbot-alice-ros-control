@@ -1,4 +1,8 @@
 maps:
+  cfloor:
+    name: C Floor
+    description: C Floor map for RMI
+    filename: cfloor.stcm
   cms:
     name: Cobot Maker Space
     description: Generic map for the Cobot Maker Space.
