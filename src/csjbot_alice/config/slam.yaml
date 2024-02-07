@@ -7,6 +7,32 @@ maps:
     name: Cobot Maker Space
     description: Generic map for the Cobot Maker Space.
     filename: cms.stcm
+    locations:
+      c14:
+        name: C14
+        x: 2.112573290789484
+        y: 0.06410779006258027
+        z: 0.9072999205375236
+        w: 0.4204840712709618
+      c12:
+        name: C12
+        x: 8.093743049838098
+        y: 1.197878175439792
+        z: 0.9949871948852654
+        w: 0.10000241004271254
+      introduction:
+        name: Introduction
+        x: 0.5900761641845526
+        y: -5.126387314031936
+        z: -0.4139215729279623
+        w: 0.9103125460328676
+      neutral:
+        name: Neutral
+        x: 4.796923251189749
+        y: -3.061279628904876
+        z: -0.7121103361803323
+        w: 0.7020675673360323
+
   rmi:
     name: Robots Mediating Interaction
     description: Custom RMI project map of the CMS.
