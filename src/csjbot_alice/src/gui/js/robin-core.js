@@ -689,10 +689,10 @@ function moveLimbs(limb_to_move) {
 }
 
 function move(linear, angular) {
-  if (linear > 0.5) linear = 0.5;
-  if (linear < -0.5) linear = -0.5;
-  if (angular > 1) angular = 1;
-  if (angular < -1) angular = -1;
+  if (linear > 0.25) linear = 0.5;
+  if (linear < -0.25) linear = -0.5;
+  if (angular > 0.5) angular = 0.5;
+  if (angular < -0.5) angular = -0.5;
 
   var twist = new ROSLIB.Message({
     linear: { x: linear, y: 0, z: 0 },
