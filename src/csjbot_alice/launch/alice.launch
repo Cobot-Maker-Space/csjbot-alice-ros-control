@@ -7,8 +7,8 @@
 
     <node name="psuedo_lily_server" pkg="csjbot_alice" type="pseudo_lily_server.py" output="screen" if="$(eval env('APP_ENV') == 'dev')" />
 
-    <node name="subscriber_movement" pkg="csjbot_alice" type="subscriber_movement.py" />
-    <node name="subscriber_speech" pkg="csjbot_alice" type="subscriber_speech.py" />
+    <!--node name="subscriber_movement" pkg="csjbot_alice" type="subscriber_movement.py" /-->
+    <!--node name="subscriber_speech" pkg="csjbot_alice" type="subscriber_speech.py" /-->
     <node name="subscriber_expression" pkg="csjbot_alice" type="subscriber_expression.py" />
 
     <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />

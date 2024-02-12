@@ -1,7 +1,7 @@
 contexts:
   general:
     name: General Demo
-    panels: 
+    panels:
       - speech
       - visualise
       - movement
@@ -24,4 +24,11 @@ contexts:
       - expressions
       - limbs
 
-  
+  lovebusiness:
+    name: Love Business
+    panels:
+      - speech
+      - visualise
+      - movement
+      - expressions
+      - limbs

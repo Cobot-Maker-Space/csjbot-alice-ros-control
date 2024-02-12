@@ -50,7 +50,7 @@ $(document).ready(function () {
 
   window.movementPublisher = new ROSLIB.Topic({
     ros: window.ros,
-    name: "/cmd_vel",
+    name: "/slamware_ros_sdk_server_node/cmd_vel",
     messageType: "geometry_msgs/Twist",
   });
 
