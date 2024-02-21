@@ -17,7 +17,7 @@ $( document ).ready(function() {
         var parts_speech = "I have the following parts on my tray. "
         $('#in-transit').find('li').each(function() {
             parts_speech += $(this).find('.parts-name').html() + ". ";
-        });  
+        });
 
         console.log(parts_speech)
         // speak(speech).val();
@@ -27,7 +27,10 @@ $( document ).ready(function() {
 
 function load_parts_from_file() {
     $.getJSON("db/parts.json", function(json) {
-        json.forEach(function(obj) { 
+        json.sort((a, b) => {
+          return a.name.localeCompare(b.name);
+        });
+        json.forEach(function(obj) {
             for (i=0; i < obj.qty; i++) {
                 add_part(obj);
             }

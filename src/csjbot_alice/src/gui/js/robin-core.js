@@ -257,9 +257,28 @@ $(document).ready(function () {
     $(".scan-result-list ul").append("<li>" + message.data + "</li>");
   });
 
+  $(".custom-text-to-speak").keypress(function (e) {
+    if (e.which == 13) {
+      var phrase = $(".custom-text-to-speak").val();
+      speak(phrase);
+      $(".custom-text-to-speak").val("");
+      $(".templates .long-speak")
+        .clone()
+        .html(phrase)
+        .data("phrase", phrase)
+        .prependTo(".speech-options-history");
+    }
+  });
+
   $(".publish-speech").on("click", function () {
-    speak($(".custom-text-to-speak").val());
+    var phrase = $(".custom-text-to-speak").val();
+    speak(phrase);
     $(".custom-text-to-speak").val("");
+    $(".templates .long-speak")
+      .clone()
+      .html(phrase)
+      .data("phrase", phrase)
+      .prependTo(".speech-options-history");
   });
 
   $(document).on("click", ".quick-speak, .long-speak", function () {
