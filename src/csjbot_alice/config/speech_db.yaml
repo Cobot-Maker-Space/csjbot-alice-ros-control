@@ -19,8 +19,13 @@ speechsets:
         - "I hope you enjoy it. Have a great day"
 
   rmi:
-      - name: "Human-Robot Interaction"
+      - name: "Robots Mediating Interaction"
       - short:
+        - "Yes"
+        - "No"
+        - "Scanning parts, please wait"
+        - "Processing, please wait"
+        - "Processing complete"
         - Can I help with anything?
         - I'll take that through
         - How can I help?
@@ -28,43 +33,13 @@ speechsets:
         - No thanks
         - Thank you
         - I'm sorry, I don't understand
+        - That is not within my remit
+        - Is that correct?
       - long:
         - "Hello. My name is Robin. I am a service robot. I am here to move parts around for you as you need. You can place up to 6 parts on the tray in front of me and then ask me to take them between the Warehouse and the Workshop. To get my attention, make sure you say my name first, Robin, so I know that you are talking to me."
         - "Parts Team, please follow me to the Warehouse"
         - "I can take parts through, I can get the Facilitator, I can check parts, I can take a message to the other team, etc…"
-        - "I cannot help with that, I will get the researcher "
+        - "I cannot help with that, I will get the facilitator "
         - "There are <6> parts on this tray, would you like me to check them before I take them through?"
 
-  tas:
-      - name: "TAS"
-      - short:
-        - Hello I'm Robin
-        - Pleased to meet you
-        - It's hot out there today
-        - Are you enjoying the all hands meeting?
-        - Have a fan. taz. tick. day!
-        - I'm autonomous, do you trust me?
-        - Where's Gopal? I haven't been paid!
-      - long:
-        - "Hi I'm Robin and I welcome you to the Co Maker Space"
 
-  lovebusiness:
-      - name: "Love Business"
-      - short:
-        - Hello I'm Robin
-        - Pleased to meet you
-        - Coming through
-      - long:
-        - "The University of Nottingham is the place for businesses that mean business."
-        - "Join the University of Nottingham Business Network and discover how your business could partner with the university."
-        - "Visit Stand T26 today and talk to the team"
-        - "Unlock your business's potential with funded research and academic expertise."
-        - "Degree apprenticeships are not just for big business. Talk to our team about the benefits for SMEs."
-        - "Start your apprenticeship journey, join us on Tuesday 5 March for our Degree Apprenticeship Employer Engagement Day."
-        - "Recruit the brightest minds from a global community. Our students and graduates can bring fresh thinking to your business."
-        - "Talk to us about your business needs, visit Stand T26"
-        - "Develop your people with our Executive Education programmes."
-        - "Learn without limitations with the University of Nottingham Online."
-        - "Relocate your business to the University of Nottingham Innovation Park, it's where innovation thrives."
-        - "Come and meet us at Stand T26"
-        - "At the Cobot Maker Space, we like to create, connect and collaborate."

@@ -6,7 +6,7 @@ contexts:
       - visualise
       - movement
       - expressions
-      # - limbs
+      - limbs
       - openhab
   rmi:
     name: Robots Mediating Interaction
@@ -15,20 +15,3 @@ contexts:
       - speech
       - visualise
       - movement
-  tas:
-    name: TAS
-    panels:
-      - speech
-      - visualise
-      - movement
-      - expressions
-      - limbs
-
-  lovebusiness:
-    name: Love Business
-    panels:
-      - speech
-      - visualise
-      - movement
-      - expressions
-      - limbs
