@@ -623,6 +623,11 @@ function retrieve_parts(location_param, location) {
     .find("ul")
     .empty();
   location_param.get(function (value) {
+    if (value) {
+      value.sort((a, b) => {
+        return a.name.localeCompare(b.name);
+      });
+    }
     $.each(value, function (index, part) {
       part_obj = $(".templates .part").clone();
       part_obj.find(".parts-name").html(part.name);
