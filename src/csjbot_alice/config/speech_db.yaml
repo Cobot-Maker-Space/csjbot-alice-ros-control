@@ -32,7 +32,7 @@ speechsets:
         - Yes please
         - No thanks
         - Thank you
-        - I'm sorry, I don't understand
+        - I'm sorry. I don't understand.
         - That is not within my remit
         - Is that correct?
       - long:

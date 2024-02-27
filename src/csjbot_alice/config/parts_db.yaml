@@ -13,7 +13,7 @@ parts:
     - id: 16
       model: Grabber
       code: dark-grey-2-hole-cross-block
-      name: Dark Grey Cross Block 
+      name: Dark Grey Cross Block
       qty: 10
     - id: 10
       model: Grabber
@@ -39,7 +39,7 @@ parts:
       model: Gyroboy
       code: black-1-hole-beam
       name: Black Cross Beam
-      qty: 10   
+      qty: 10
     - id: 24
       model: Gyroboy
       code: black-2-pin-link-tread
@@ -98,7 +98,7 @@ parts:
     - id: 11
       model: Grabber
       code: black-5-hole-t-shape
-      name: Black T-shape 
+      name: Black T-shape
       qty: 10
     - id: 1
       model: Grabber
@@ -145,6 +145,21 @@ parts:
       code: servo-motor
       name: Servo Motor
       qty: 10
-    
-  
-  
+    - id: 31
+      model: Grabber
+      code: cable-connector
+      name: 25 centimetre cable
+      qty: 10
+    - id: 32
+      model: Grabber
+      code: grey-pin
+      name: Grey pin
+      qty: 20
+    - id: 33
+      model: Grabber
+      code: blu-pin
+      name: Blue pin
+      qty: 20
+
+
+
