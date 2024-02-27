@@ -160,6 +160,11 @@ parts:
       code: blu-pin
       name: Blue pin
       qty: 20
+    - id: 34
+      model: Grabber
+      code: grey-l-beam
+      name: Grey L beam
+      qty: 20
 
 
 
